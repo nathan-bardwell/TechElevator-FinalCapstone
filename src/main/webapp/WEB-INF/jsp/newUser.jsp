@@ -44,6 +44,14 @@
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<div class="form-group">
+				<label for="firstName">First Name: </label>
+				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />	
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name: </label>
+				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />	
+			</div>
+			<div class="form-group">
 				<label for="userName">User Name: </label>
 				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
 			</div>
@@ -54,6 +62,17 @@
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password: </label>
 				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
+			</div>
+			<div class="form-group">
+				<label for="email">Email: </label>
+				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" />	
+			</div>
+			<div class="form-group">
+				<label for="role">Role: </label>
+				<select>
+				<option value="Admin"><c:out value="Admin"/></option>
+				<option value="User"><c:out value="User"/></option>
+				</select>
 			</div>
 			<button type="submit" class="btn btn-default">Create User</button>
 		</div>
