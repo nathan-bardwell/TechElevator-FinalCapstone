@@ -30,7 +30,7 @@ public class JDBCUserDAO implements UserDAO {
 		String saltString = new String(Base64.encode(salt));
 		
 		jdbcTemplate.update("INSERT INTO app_user(first_name, last_name, user_name, password, salt, email, role) VALUES (?, ?, ?, ?, ?, ?, ?)",
-				userName, hashedPassword, saltString);
+				firstName, lastName, userName, hashedPassword, saltString, email, role);
 	}
 
 	@Override
