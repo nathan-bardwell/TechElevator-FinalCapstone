@@ -1,5 +1,12 @@
 package com.techelevator.model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +18,9 @@ import org.springframework.stereotype.Component;
 public class JDBCHouseDAO implements HouseDAO {
 
 	private JdbcTemplate jdbcTemplate;
-
+	
+	
+	
 	@Autowired
 	public JDBCHouseDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -25,5 +34,30 @@ public class JDBCHouseDAO implements HouseDAO {
 				address, resident, notes, phone_number, status);
 	}
 	
+	public int createHouseByCsv(File imported) throws IOException 
+	{
+		try
+		{
+			BufferedReader reader = new BufferedReader(new FileReader(imported));
+			String currentLine = reader.readLine();
+			while(currentLine!=null) 
+			{
+				String [] houseFields = currentLine.split(",");
+				jdbcTemplate.update("INSERT INTO house(address, resident, notes, phone_number, status) VALUES (?, ?, ?, ?, ?)",
+						houseFields[0], houseFields[1], houseFields[2], houseFields[3], houseFields[4]);
+			
+			}
+
+		} catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+			System.out.println("There was an error in the csv import method");
+			return 1;
+			
+		}
+		return 0;
+	}
 	
+	
+
 }
