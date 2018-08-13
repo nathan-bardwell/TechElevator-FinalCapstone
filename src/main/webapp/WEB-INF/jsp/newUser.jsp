@@ -67,13 +67,6 @@
 				<label for="email">Email: </label>
 				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" />	
 			</div>
-			<div class="form-group">
-				<label for="role">Role: </label>
-				<select name="role">
-				<option value="Admin"><c:out value="Admin"/></option>
-				<option value="User"><c:out value="User"/></option>
-				</select>
-			</div>
 			<button type="submit" class="btn btn-default">Create User</button>
 		</div>
 		<div class="col-sm-4"></div>
