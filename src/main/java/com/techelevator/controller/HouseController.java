@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.HouseDAO;
 
@@ -19,8 +20,14 @@ public class HouseController {
 	
 	
 	@RequestMapping(path = "/addHouse",method = RequestMethod.GET)
-	public String addNewHouses() {
-		return null;
+	public String displayAddHousePage() {
+		return "/addHouse";
 	}
-
+	
+	@RequestMapping(path = "/addHouse",method = RequestMethod.POST)
+	public String addNewHouses(@RequestParam String address, @RequestParam String resident, @RequestParam String status, @RequestParam String phoneNumber, @RequestParam String notes) {
+		houseDAO.createHouse(address,resident,notes,phoneNumber,status);
+		return "redirect:/addHouse";
+	}
+	
 }
