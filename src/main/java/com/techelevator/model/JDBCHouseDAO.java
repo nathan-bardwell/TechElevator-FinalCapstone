@@ -34,11 +34,13 @@ public class JDBCHouseDAO implements HouseDAO {
 				address, resident, notes, phone_number, status);
 	}
 	
-	public int createHouseByCsv(File imported) throws IOException 
+	@Override
+	public int createHouseByCsv(String imported) 
 	{
+		File houseInput = new File(imported);
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(imported));
+			BufferedReader reader = new BufferedReader(new FileReader(houseInput));
 			String currentLine = reader.readLine();
 			while(currentLine!=null) 
 			{
@@ -48,13 +50,15 @@ public class JDBCHouseDAO implements HouseDAO {
 			
 			}
 
-		} catch (FileNotFoundException e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 			System.out.println("There was an error in the csv import method");
+			
 			return 1;
 			
 		}
+		
 		return 0;
 	}
 	
