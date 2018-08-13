@@ -33,16 +33,25 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
-		if(result.hasErrors()) {
-			flash.addFlashAttribute("user", user);
-			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-			return "redirect:/users/new";
-		}
-		user.setRole("Admin");
-		
-		userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
-		return "redirect:/login";
+    public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
+        if(result.hasErrors()) {
+            flash.addFlashAttribute("user", user);
+            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            return "redirect:/users/new";
+        }
+        
+        userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
+        return "redirect:/login";
+    }
+	
+	@RequestMapping(path="/salesman", method=RequestMethod.GET)
+	public String showSalesmanPage() {
+		return "/salesman";
+	}
+	
+	@RequestMapping(path="/admin", method=RequestMethod.GET)
+	public String showWelcomeAdminPage() {
+		return "/admin";
 	}
 	
 	

@@ -15,7 +15,7 @@
 				},
 				password : {
 					required : true,
-					minlength: 15,
+					minlength: 10,
 					capitals: true,
 				},
 				confirmPassword : {
@@ -66,6 +66,9 @@
 			<div class="form-group">
 				<label for="email">Email: </label>
 				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" />	
+			</div>
+			<div class="form-group">
+				<input type="hidden" id="role" name="role" class="form-control" />	
 			</div>
 			<button type="submit" class="btn btn-default">Create User</button>
 		</div>
