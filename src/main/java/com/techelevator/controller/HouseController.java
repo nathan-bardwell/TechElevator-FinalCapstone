@@ -19,15 +19,15 @@ public class HouseController {
 	}
 	
 	
-	@RequestMapping(path = "/addHouse",method = RequestMethod.GET)
+	@RequestMapping(path = "/addHouses",method = RequestMethod.GET)
 	public String displayAddHousePage() {
-		return "/addHouse";
+		return "/addHouses";
 	}
 	
-	@RequestMapping(path = "/addHouse",method = RequestMethod.POST)
+	@RequestMapping(path = "/addHouses",method = RequestMethod.POST)
 	public String addNewHouses(@RequestParam String address, @RequestParam String resident, @RequestParam String status, @RequestParam String phoneNumber, @RequestParam String notes) {
 		houseDAO.createHouse(address,resident,notes,phoneNumber,status);
-		return "redirect:/addHouse";
+		return "redirect:/addHouses";
 	}
 	
 }
