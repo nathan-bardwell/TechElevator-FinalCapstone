@@ -21,7 +21,7 @@ public class AuthenticationController {
 		this.userDAO = userDAO;
 	}
 
-	@RequestMapping(path="/login", method=RequestMethod.GET)
+	@RequestMapping(path= {"/", "/login"}, method=RequestMethod.GET)
 	public String displayLoginForm() {
 		return "login";
 	}
