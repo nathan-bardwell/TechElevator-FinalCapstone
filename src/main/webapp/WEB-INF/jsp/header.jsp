@@ -40,8 +40,7 @@
 	<body>
 		<header class = "header">
 		<div class = "headerContents">
-			<c:url var = "maximus" value = "/img/Bunny.jpg"/>
-			<img id = "maximus" src = "${maximus }"/>
+			
 			<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
 		</div>	
 		</header>

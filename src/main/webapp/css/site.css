@@ -1,23 +1,24 @@
-#maximus {
-	width: 200px;
-	height:200px;
-	
-	
-}
 #headerText{
 	font-size: 60pt;
 	text-align: center;
-	
-	
 }
 
 #headerTextDiv{
 	margin-bottom: 0px;
-	position: relative;
+	padding-top: 100px;
 	bottom: 10rem;
+	color: #FF6347;
 }
 
 .headerContents{
 	height: 200px;
 	padding-left:50px;
+}
+
+.header{
+	background-image: url("https://i.imgur.com/e9DXv9v.jpg?1");
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+	
 }
