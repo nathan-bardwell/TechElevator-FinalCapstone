@@ -51,7 +51,7 @@ public class UserController {
 	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash, HttpSession session) {
 		
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/newSalesman";
 		}
 		
 		if( ! modelHolder.containsAttribute("user")) {
@@ -82,7 +82,7 @@ public class UserController {
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
 	public String showSalesmanPage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/salesman";
 		}
 		return "/salesman";
 	}
@@ -90,7 +90,7 @@ public class UserController {
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
 	public String showWelcomeAdminPage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/admin";
 		}
 		return "/viewTeam";
 	}
