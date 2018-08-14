@@ -58,28 +58,5 @@
 </div> 
 
 <c:url var="addHouseUrl" value="/addHouses"/>
-<%-- <form action="${addHouseUrl}" method="POST">
-	<div class="form-group">
-				<label for="address">Address: </label>
-				<input type="text" id="address" name="address" placeHolder="Address" class="form-control" />	
-			</div>
-			<div class="form-group">
-				<label for="name">Name </label>
-				<input type="text" id="name" name="name" placeHolder="Name" class="form-control" />	
-			</div>
-			<div class="form-group">
-				<label for="phoneNumber">Phone Number: </label>
-				<input type="text" id="phoneNumber" name="phoneNumber" placeHolder="Phone Number" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label for="status">Status: </label>
-				<input type="text" id="status" name="status" placeHolder="Status" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label for="notes">Notes </label>
-				<input type="text" id="notes" name="notes" placeHolder="Notes" class="form-control" />	
-			</div>
-			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
 
-</form> --%>
 <c:import url="/WEB-INF/jsp/footer.jsp" /> 
