@@ -47,16 +47,19 @@
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
 					<c:if test="${not empty currentUser}">
-						<c:if test ="${currentUser.role == 'Admin' }">
+					<c:choose>	
+						<c:when test ="${currentUser.role == 'Admin' }">
 							<c:url var = "addNewSalesman" value = "/newSalesman"/>
 							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<li><a>View Team</a></li>
-							<li><a>Add Houses</a></li>
+							<c:url var = "addHouses" value = "/addHouses"/>
+							<li><a href = "${addHouses }">Add Houses</a></li>
 							<li><a>Sales Data</a></li>
-						</c:if>
-						<c:if test = "${currentUser.role = 'Salesman' }">
+						</c:when>
+						<c:when test = "${currentUser.role == 'Salesman' }">
 						
-						</c:if>	
+						</c:when>	
+					</c:choose>
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
