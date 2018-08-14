@@ -10,7 +10,6 @@ public class House {
 	
 	
 	
-	
 
 	public String getAddress() {
 		return address;

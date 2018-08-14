@@ -41,8 +41,8 @@ public class JDBCHouseDAO implements HouseDAO {
 			String currentLine = reader.readLine();
 			while(currentLine!=null) 
 			{
-				String [] houseFields = currentLine.split(",");
-				jdbcTemplate.update("INSERT INTO house(address, resident, notes, phone_number, status) VALUES (?, ?, ?, ?, ?)",
+				String [] houseFields = currentLine.split("|");
+				jdbcTemplate.update("INSERT INTO house(address, resident, phone_number, status, notes) VALUES (?, ?, ?, ?, ?)",
 						houseFields[0], houseFields[1], houseFields[2], houseFields[3], houseFields[4]);
 			
 			}
