@@ -46,7 +46,7 @@
 		<header class = "header">
 		<div class = "headerContents">
 			
-			<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
+			
 		</div>	
 		</header>
 		
@@ -91,6 +91,7 @@
 				</ul>
 			</div>
 		</nav>
+		<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
 		<c:if test="${not empty currentUser}">
 			<p id="currentUser">Current User: <c:out value="${currentUser.role}"/></p>
 		</c:if>		
