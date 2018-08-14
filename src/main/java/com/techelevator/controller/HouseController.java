@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,7 +34,7 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/addHouses",method = RequestMethod.POST)
-	public String addNewHouses(@ModelAttribute House house) { //, BindingResult result, RedirectAttributes flash) {
+	public String addNewHouses(@RequestParam String address,@RequestParam String resident, @RequestParam String notes, @RequestParam String status, @RequestParam String phoneNumber  ) { //, BindingResult result, RedirectAttributes flash) {
 //		if(result.hasErrors()) {
 //			flash.addFlashAttribute("house",house);
 //			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX+ "user", result);
@@ -41,7 +42,7 @@ public class HouseController {
 //		}
 		
 		
-		houseDAO.createHouse(house.getAddress(), house.getResident(), house.getNotes(), house.getPhoneNumber(), house.getStatus());
+		houseDAO.createHouse(address,resident,notes,phoneNumber,status);
 		return "redirect:/addHouses";
 	}
 	
