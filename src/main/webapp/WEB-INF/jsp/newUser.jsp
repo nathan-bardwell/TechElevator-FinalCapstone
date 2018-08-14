@@ -68,9 +68,9 @@
 				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" />	
 			</div>
 			<div class="form-group">
-				<input type="hidden" id="role" name="role" class="form-control" />	
+				<input type="hidden" id="role" name="role" value="Admin"/>	
 			</div>
-			<button type="submit" class="btn btn-default">Create User</button>
+			<button type="submit" class="btn btn-default"><c:out value="Create User" /></button>
 		</div>
 		<div class="col-sm-4"></div>
 	</div>
