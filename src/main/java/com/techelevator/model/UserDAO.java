@@ -8,6 +8,6 @@ public interface UserDAO {
 
 	public void updatePassword(String userName, String password);
 
-	public Object getUserByUserName(String userName);
+	public User getUserByUserName(String userName);
 
 }
