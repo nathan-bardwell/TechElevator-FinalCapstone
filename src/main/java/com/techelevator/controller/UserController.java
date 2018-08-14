@@ -38,10 +38,12 @@ public class UserController {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            flash.addFlashAttribute("errorMessage", "Error creating new Admin.");
             return "redirect:/users/new";
         }
         
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
+        flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
         return "redirect:/login";
     }
 	

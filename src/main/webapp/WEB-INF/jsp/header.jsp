@@ -24,7 +24,7 @@
 		</div>
 	</c:if>
 		
-<!-- 		<script type="text/javascript">
+<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();
 				
@@ -38,7 +38,7 @@
 			});
 			
 			
-		</script> -->
+</script>
 		
 		
 	</head>
