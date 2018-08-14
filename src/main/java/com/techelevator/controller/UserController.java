@@ -51,7 +51,7 @@ public class UserController {
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
 	public String showWelcomeAdminPage() {
-		return "/admin";
+		return "/viewTeam";
 	}
 	
 	
