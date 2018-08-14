@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 
-<h1><a href="#"><c:out value="Create a new non-admin user" /></a></h1>
+<h1><c:out value="New Salesman Form \/\/\/\/\/" /></h1>
 
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
