@@ -10,7 +10,7 @@
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="/site.css" />
+	    <c:url var="cssHref" value="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
 		<script type="text/javascript">
@@ -29,25 +29,29 @@
 			
 		</script>
 		
+		
 	</head>
 	<body>
-		<header>
+		<header class = "header">
+			<h1 id = "headerText" >Door 2 Door Sales</h1>
 		</header>
 		
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
+			
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
 					<c:if test="${not empty currentUser}">
-						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${dashboardHref}">Private Messages</a></li>
-						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
-						<li><a href="${newMessageHref}">New Message</a></li>
-						<c:url var="sentMessagesHref" value="/users/${currentUser}/messages" />
-						<li><a href="${sentMessagesHref}">Sent Messages</a></li>
-						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
-						<li><a href="${changePasswordHref}">Change Password</a></li>
+						<c:if test ="${currentUser.role == 'Admin' }">
+							<li><a>Add New Salesman</a></li>
+							<li><a>View Team</a></li>
+							<li><a>Add Houses</a></li>
+							<li><a>Sales Data</a></li>
+						</c:if>
+						<c:if test = "${currentUser.role = 'Salesman' }">
+						
+						</c:if>	
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
