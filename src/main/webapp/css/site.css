@@ -1,5 +1,23 @@
-
+#maximus {
+	width: 200px;
+	height:200px;
+	
+	
+}
 #headerText{
+	font-size: 60pt;
 	text-align: center;
 	
+	
+}
+
+#headerTextDiv{
+	margin-bottom: 0px;
+	position: relative;
+	bottom: 10rem;
+}
+
+.headerContents{
+	height: 200px;
+	padding-left:50px;
 }

@@ -33,7 +33,11 @@
 	</head>
 	<body>
 		<header class = "header">
-			<h1 id = "headerText" >Door 2 Door Sales</h1>
+		<div class = "headerContents">
+			<c:url var = "maximus" value = "/img/Bunny.jpg"/>
+			<img id = "maximus" src = "${maximus }"/>
+			<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
+		</div>	
 		</header>
 		
 		<nav class="navbar navbar-default">
@@ -44,7 +48,8 @@
 					<li><a href="${homePageHref}">Home</a></li>
 					<c:if test="${not empty currentUser}">
 						<c:if test ="${currentUser.role == 'Admin' }">
-							<li><a>Add New Salesman</a></li>
+							<c:url var = "addNewSalesman" value = "/newSalesman"/>
+							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<li><a>View Team</a></li>
 							<li><a>Add Houses</a></li>
 							<li><a>Sales Data</a></li>
