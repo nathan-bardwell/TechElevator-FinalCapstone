@@ -7,9 +7,6 @@
 #headerTextDiv{
 	color: blue;
 	background-color: #E0FFFF;
-	border-bottom: 0px;
-	border-top: 0px;
-	margin:0px;
 }
 
 .headerContents{
@@ -35,4 +32,11 @@
 	height:100%;
 	margin-left:0px;
 	margin-right: 0px;
+}
+body {
+	    background-color: #E0FFFF;
+}
+footer{
+	padding-top:200px;
+	text-align: center;
 }
