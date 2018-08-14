@@ -13,13 +13,18 @@
 	    <c:url var="cssHref" value="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
-			<c:if test="${message != null}">
-		<div class="alert alert-success" role="alert">
+	<c:if test="${message != null}">
+		<div class="alert alert-success alert-dismissible" role="alert">
 			<c:out value="${message}"/>
 		</div>
 	</c:if>
+	<c:if test="${errorMessage != null}">
+		<div class="alert alert-danger alert-dismissible fade in" role="alert">
+			<c:out value="${errorMessage}"/>
+		</div>
+	</c:if>
 		
-		<script type="text/javascript">
+<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();
 				
@@ -33,7 +38,7 @@
 			});
 			
 			
-		</script>
+</script>
 		
 		
 	</head>

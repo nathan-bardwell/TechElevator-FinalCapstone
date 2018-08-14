@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.UserDAO;
 
@@ -30,7 +31,8 @@ public class AuthenticationController {
 	public String login(@RequestParam String userName, 
 						@RequestParam String password, 
 						@RequestParam(required=false) String destination,
-						HttpSession session) {
+						HttpSession session,
+						RedirectAttributes flash) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			session.setAttribute("currentUser", userDAO.getUserByUserName(userName));
 			
@@ -44,6 +46,7 @@ public class AuthenticationController {
 				}
 			}
 		} else {
+			flash.addFlashAttribute("errorMessage", "Incorrect username or password");
 			return "redirect:/login";
 		}
 	}

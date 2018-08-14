@@ -57,7 +57,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password">Password: </label>
-				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
+				<input type="password" id="password" name="password" placeHolder="Password (at least 10 characters and 1 capital)" class="form-control" />
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password: </label>

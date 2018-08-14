@@ -1,10 +1,12 @@
 package com.techelevator.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,22 +30,27 @@ public class HouseController {
 	@RequestMapping(path = "/addHouses",method = RequestMethod.GET)
 	public String displayAddHousePage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/addHouses";
 		}
 		return "/addHouses";
 	}
 	
 	@RequestMapping(path = "/addHouses",method = RequestMethod.POST)
-	public String addNewHouses(@RequestParam String address,@RequestParam String resident, @RequestParam String notes, @RequestParam String status, @RequestParam String phoneNumber  ) { //, BindingResult result, RedirectAttributes flash) {
-//		if(result.hasErrors()) {
-//			flash.addFlashAttribute("house",house);
-//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX+ "user", result);
-//			return "redirect:/addHouses";
-//		}
+	public String addNewHouses(@Valid @ModelAttribute House house,
+									  BindingResult result,
+									  RedirectAttributes flash) {
+		if(result.hasErrors()) {
+			flash.addFlashAttribute("house",house);
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX+ "house", result);
+            flash.addFlashAttribute("errorMessage", "Error creating new House.");
+			return "redirect:/addHouses";
+		} 
+		
+			houseDAO.createHouse(house.getAddress(), house.getResident(), house.getNotes(), house.getPhoneNumber(), house.getStatus());
+			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
+			return "redirect:/addHouses";
 		
 		
-		houseDAO.createHouse(address,resident,notes,phoneNumber,status);
-		return "redirect:/addHouses";
 	}
 	
 	@RequestMapping(path = "/addHousesByCsv",method = RequestMethod.POST)

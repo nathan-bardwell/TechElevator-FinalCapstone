@@ -38,10 +38,12 @@ public class UserController {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            flash.addFlashAttribute("errorMessage", "Error creating new Admin.");
             return "redirect:/users/new";
         }
         
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
+        flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
         return "redirect:/login";
     }
 	
@@ -49,7 +51,7 @@ public class UserController {
 	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash, HttpSession session) {
 		
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/newSalesman";
 		}
 		
 		if( ! modelHolder.containsAttribute("user")) {
@@ -66,6 +68,7 @@ public class UserController {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
             return "redirect:/newSalesman";
         }
         
@@ -79,7 +82,7 @@ public class UserController {
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
 	public String showSalesmanPage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/salesman";
 		}
 		return "/salesman";
 	}
@@ -87,7 +90,7 @@ public class UserController {
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
 	public String showWelcomeAdminPage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/admin";
 		}
 		return "/viewTeam";
 	}
