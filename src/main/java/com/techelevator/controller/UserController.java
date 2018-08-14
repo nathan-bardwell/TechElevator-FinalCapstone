@@ -52,6 +52,8 @@ public class UserController {
 		
 		if(session.getAttribute("currentUser") == null) {
 			return "redirect:/login?destination=/newSalesman";
+		} else if (!((User) session.getAttribute("currentUser")).getRole().equals("Admin")) {
+			return "/notAuthorized";
 		}
 		
 		if( ! modelHolder.containsAttribute("user")) {

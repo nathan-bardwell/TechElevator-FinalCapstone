@@ -57,4 +57,9 @@ public class AuthenticationController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	@RequestMapping(path="/notAuthorized", method=RequestMethod.GET)
+	public String showUnauthorizedPage() {
+		return "notAuthorized";
+	}
 }

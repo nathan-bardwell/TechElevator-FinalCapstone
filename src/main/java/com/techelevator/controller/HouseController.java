@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.House;
 import com.techelevator.model.HouseDAO;
+import com.techelevator.model.User;
 
 @Controller
 public class HouseController {
@@ -31,6 +32,8 @@ public class HouseController {
 	public String displayAddHousePage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
 			return "redirect:/login?destination=/addHouses";
+		} else if (!((User) session.getAttribute("currentUser")).getRole().equals("Admin")) {
+			return "/notAuthorized";
 		}
 		return "/addHouses";
 	}
