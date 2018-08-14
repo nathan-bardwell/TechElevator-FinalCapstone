@@ -37,7 +37,11 @@ public class AuthenticationController {
 			if(destination != null && !destination.isEmpty()) {
 				return "redirect:" + destination;
 			} else {
-				return "redirect:/salesman";
+				if(userDAO.getUserByUserName(userName).getRole().equals("Admin")) {
+					return "redirect:/admin";
+				} else {
+					return "redirect:/salesman";
+				}
 			}
 		} else {
 			return "redirect:/login";
