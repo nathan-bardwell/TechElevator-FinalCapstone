@@ -1,7 +1,7 @@
 package com.techelevator.model;
 
 public class House {
-	private long house_id;
+	
 	private String address;
 	private String resident;
 	private String notes;
@@ -10,12 +10,8 @@ public class House {
 	
 	
 	
-	public long getHouse_id() {
-		return house_id;
-	}
-	public void setHouse_id(long house_id) {
-		this.house_id = house_id;
-	}
+	
+
 	public String getAddress() {
 		return address;
 	}

@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,12 @@ public class UserController {
     }
 	
 	@RequestMapping(path="/newSalesman", method=RequestMethod.GET)
-	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash) {
+	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash, HttpSession session) {
+		
+		if(session.getAttribute("currentUser") == null) {
+			return "redirect:/login";
+		}
+		
 		if( ! modelHolder.containsAttribute("user")) {
 			modelHolder.addAttribute("user", new User());
 		}
@@ -71,12 +77,18 @@ public class UserController {
 	
 	
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
-	public String showSalesmanPage() {
+	public String showSalesmanPage(HttpSession session) {
+		if(session.getAttribute("currentUser") == null) {
+			return "redirect:/login";
+		}
 		return "/salesman";
 	}
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
-	public String showWelcomeAdminPage() {
+	public String showWelcomeAdminPage(HttpSession session) {
+		if(session.getAttribute("currentUser") == null) {
+			return "redirect:/login";
+		}
 		return "/viewTeam";
 	}
 	

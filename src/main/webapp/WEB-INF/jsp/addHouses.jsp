@@ -23,23 +23,25 @@
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
-	<c:url var="addHouseUrl" value="/addHouse"/>
+	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
-		<div style="display: none"  id="individualHouseForm">
+		<div   id="individualHouseForm">
 			Address:<br><input type="text" name="address" class="form-control"><br>
 			Resident Name:<br><input type="text" name="resident" class="form-control"><br>
 			Phone:<br><input type="tel" name="phoneNumber" class="form-control"><br>
 			Status:<br><select name="status" class="form-control">
 				<option value="NV">Not Visited</option>
 				<option value="O">Ordered</option>
-				<option value="NI">Not Intrested</option>
-				<option value="FU">Fuck You</option>
+				<option value="NI">Not Interested</option>
+				<option value="FU">Follow Up</option>
 				<option value="NS">No Solicitors</option>
 			</select><br>
 			Notes:<br><textarea class="form-control" name="notes"></textarea><br>
-			<input type="submit" value="Submit" >
+ 		<!-- <input type="submit" value="Submit" > -->
+			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
 		</div>
 	</form>
+	
 	<c:url var="importCsvUrl" value="/addHousesByCsv"/>
 	<form action="${importCsvUrl}" method="POST">
 		<div style="display: none" id="importCsvForm">
@@ -48,9 +50,9 @@
 			<input type="submit" value="Submit">
 		</div>
 	</form>
+	 
 	</div>
 	<div class="col-sm-4"></div>
-	</div>
+</div>
 
-
-<c:import url="/WEB-INF/jsp/footer.jsp" />
+<c:import url="/WEB-INF/jsp/footer.jsp" /> 
