@@ -1,8 +1,6 @@
 package com.techelevator.controller;
 
-import org.mockito.internal.debugging.WarningsCollector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,8 +32,8 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/addHousesByCsv",method = RequestMethod.POST)
-	public String addNewHousesByCsv(RedirectAttributes flash, @RequestParam String address, @RequestParam String resident, @RequestParam String status, @RequestParam String phoneNumber, @RequestParam String notes) {
-		int success = houseDAO.createHouseByCsv(address,resident,notes,phoneNumber,status);
+	public String addNewHousesByCsv(RedirectAttributes flash, @RequestParam String path) {
+		int success = houseDAO.createHouseByCsv(path);
 		if(success == 1) {
 			flash.addFlashAttribute("Failure Message" , "The Import was not Succesful" );
 		}

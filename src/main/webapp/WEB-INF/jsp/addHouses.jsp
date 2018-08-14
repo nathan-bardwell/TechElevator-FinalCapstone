@@ -12,6 +12,7 @@
 		How would you like to add houses?<br>
 		<form>
 		<select id="formToggler" class="form-control">
+			<option>Select one...</option>
 			<option value="individual" >Individually</option>
 			<option  value="csv">Import CSV</option>
 		</select>
@@ -24,12 +25,12 @@
 	<div class="col-sm-4">
 	<c:url var="addHouseUrl" value="/addHouse"/>
 	<form action="${addHouseUrl}" method="POST">
-		<div  id="individualHouseForm">
-			Address:<br><input type="text" class="form-control"><br>
-			Resident Name:<br><input type="text" class="form-control"><br>
-			Phone:<br><input type="tel" class="form-control"><br>
-			Status:<br><input type="text" class="form-control"><br>
-			Notes:<br><textarea class="form-control"></textarea><br>
+		<div style="display: none"  id="individualHouseForm">
+			Address:<br><input type="text" name="address" class="form-control"><br>
+			Resident Name:<br><input type="text" name="resident" class="form-control"><br>
+			Phone:<br><input type="tel" name="phoneNumber" class="form-control"><br>
+			Status:<br><input type="text" name="status" class="form-control"><br>
+			Notes:<br><textarea class="form-control" name="notes"></textarea><br>
 			<input type="submit" value="Submit" >
 		</div>
 	</form>
@@ -37,7 +38,7 @@
 	<form action="${importCsvUrl}" method="POST">
 		<div style="display: none" id="importCsvForm">
 			<h3>Select CSV file below</h3>
-			<input type="file" accept=".csv">
+			<input type="file" name="path" accept=".csv">
 			<input type="submit" value="Submit">
 		</div>
 	</form>
