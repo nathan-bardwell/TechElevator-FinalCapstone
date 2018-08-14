@@ -30,7 +30,7 @@ public class HouseController {
 	@RequestMapping(path = "/addHouses",method = RequestMethod.GET)
 	public String displayAddHousePage(HttpSession session) {
 		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login";
+			return "redirect:/login?destination=/addHouses";
 		}
 		return "/addHouses";
 	}
