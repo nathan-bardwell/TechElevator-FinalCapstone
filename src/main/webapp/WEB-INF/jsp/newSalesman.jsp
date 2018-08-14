@@ -11,6 +11,12 @@
 		$("form").validate({
 			
 			rules : {
+				firstName : {
+					required : true
+				},
+				lastName : {
+					required : true
+				},
 				userName : {
 					required : true
 				},
@@ -24,7 +30,16 @@
 					equalTo : "#password"  
 				}
 			},
-			messages : {			
+			messages : {	
+				firstName: {
+					required: "First Name is required."
+				},
+				lastName: {
+					required: "Last Name is required."
+				},
+				userName: {
+					required: "Username is required."
+				},
 				password: {
 					minlength: "Password too short, make it at least 10 characters",
 					capitals: "Field must contain a capital letter",
@@ -45,28 +60,28 @@
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<div class="form-group">
-				<label for="firstName">First Name: </label>
-				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />	
+				<label for="firstName"><c:out value="First Name:" /></label>
+				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" required />	
 			</div>
 			<div class="form-group">
-				<label for="lastName">Last Name: </label>
-				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />	
+				<label for="lastName"><c:out value="Last Name:" /></label>
+				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" required />	
 			</div>
 			<div class="form-group">
-				<label for="userName">User Name: </label>
-				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
+				<label for="userName"><c:out value="User Name:" /></label>
+				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" required />
 			</div>
 			<div class="form-group">
-				<label for="password">Password: </label>
-				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
+				<label for="password"><c:out value="Password:" /></label>
+				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" required />
 			</div>
 			<div class="form-group">
-				<label for="confirmPassword">Confirm Password: </label>
-				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
+				<label for="confirmPassword"><c:out value="Confirm Password:" /></label>
+				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" required />	
 			</div>
 			<div class="form-group">
-				<label for="email">Email: </label>
-				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" />	
+				<label for="email"><c:out value="Email:" /></label>
+				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" required />	
 			</div>
 			<div class="form-group">
 				<input type="hidden" id="role" name="role" value="Salesman"/>	

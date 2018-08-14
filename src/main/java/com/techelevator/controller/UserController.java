@@ -66,6 +66,7 @@ public class UserController {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
             return "redirect:/newSalesman";
         }
         
