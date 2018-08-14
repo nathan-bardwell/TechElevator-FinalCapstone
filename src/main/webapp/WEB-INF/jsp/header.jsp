@@ -13,6 +13,12 @@
 	    <c:url var="cssHref" value="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
+			<c:if test="${message != null}">
+		<div class="alert alert-success" role="alert">
+			<c:out value="${message}"/>
+		</div>
+	</c:if>
+		
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();

@@ -44,6 +44,32 @@ public class UserController {
         return "redirect:/login";
     }
 	
+	@RequestMapping(path="/newSalesman", method=RequestMethod.GET)
+	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash) {
+		if( ! modelHolder.containsAttribute("user")) {
+			modelHolder.addAttribute("user", new User());
+		}
+		if(flash.containsAttribute("message")) {
+			
+		}
+		return "newSalesman";
+	}
+	
+	@RequestMapping(path="/newSalesman", method=RequestMethod.POST)
+    public String createNewSalesman(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
+        if(result.hasErrors()) {
+            flash.addFlashAttribute("user", user);
+            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+            return "redirect:/newSalesman";
+        }
+        
+        userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
+        flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
+        return "redirect:/newSalesman";
+    }
+	
+	
+	
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
 	public String showSalesmanPage() {
 		return "/salesman";

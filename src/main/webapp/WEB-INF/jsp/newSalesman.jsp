@@ -38,7 +38,7 @@
 	});
 </script>
 
-<c:url var="formAction" value="/users" />
+<c:url var="formAction" value="/newSalesman" />
 <form method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
@@ -71,7 +71,7 @@
 			<div class="form-group">
 				<input type="hidden" id="role" name="role" value="Salesman"/>	
 			</div>
-			<button type="submit" class="btn btn-default"><c:out value="Create User" /></button>
+			<button type="submit" class="btn btn-default"><c:out value="Create Salesman" /></button>
 		</div>
 		<div class="col-sm-4"></div>
 	</div>
