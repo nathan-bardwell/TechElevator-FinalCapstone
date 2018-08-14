@@ -29,7 +29,13 @@
 			Address:<br><input type="text" name="address" class="form-control"><br>
 			Resident Name:<br><input type="text" name="resident" class="form-control"><br>
 			Phone:<br><input type="tel" name="phoneNumber" class="form-control"><br>
-			Status:<br><input type="text" name="status" class="form-control"><br>
+			Status:<br><select name="status" class="form-control">
+				<option value="NV">Not Visited</option>
+				<option value="O">Ordered</option>
+				<option value="NI">Not Intrested</option>
+				<option value="FU">Fuck You</option>
+				<option value="NS">No Solicitors</option>
+			</select><br>
 			Notes:<br><textarea class="form-control" name="notes"></textarea><br>
 			<input type="submit" value="Submit" >
 		</div>

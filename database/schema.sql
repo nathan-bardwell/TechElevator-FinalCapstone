@@ -5,10 +5,10 @@
 BEGIN;
 
 -- CREATE statements go here
-DROP TABLE IF EXISTS app_user;
-DROP TABLE IF EXISTS house;
-DROP TABLE IF EXISTS user_team;
-DROP TABLE IF EXISTS team;
+DROP TABLE IF EXISTS app_user cascade;
+DROP TABLE IF EXISTS house cascade;
+DROP TABLE IF EXISTS user_team cascade;
+DROP TABLE IF EXISTS team cascade;
 
 CREATE TABLE app_user (
   user_id SERIAL,
