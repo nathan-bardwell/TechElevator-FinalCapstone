@@ -73,7 +73,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password"><c:out value="Password:" /></label>
-				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" required />
+				<input type="password" id="password" name="password" placeHolder="Password (at least 10 characters and 1 capital)" class="form-control" required />
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword"><c:out value="Confirm Password:" /></label>

@@ -12,7 +12,7 @@
 		How would you like to add houses?<br>
 		<form>
 		<select id="formToggler" class="form-control">
-			<option>Select one...</option>
+			<option>--Select one--</option>
 			<option value="individual" >Individually</option>
 			<option  value="csv">Import CSV</option>
 		</select>
@@ -26,11 +26,12 @@
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-		<div   id="individualHouseForm">
-			Address:<br><input type="text" name="address" class="form-control"><br>
-			Resident Name:<br><input type="text" name="resident" class="form-control"><br>
-			Phone:<br><input type="tel" name="phoneNumber" class="form-control"><br>
-			Status:<br><select name="status" class="form-control">
+		<div  style="display:none" id="individualHouseForm">
+			Address: *<br><input type="text" name="address" class="form-control" required><br>
+			Resident Name: *<br><input type="text" name="resident" class="form-control" required><br>
+			Phone: <br><input type="tel" name="phoneNumber" class="form-control" ><br>
+			Status: *<br><select name="status" class="form-control" required>
+				<option disabled selected value>--Select a status--</option>
 				<option value="NV">Not Visited</option>
 				<option value="O">Ordered</option>
 				<option value="NI">Not Interested</option>
