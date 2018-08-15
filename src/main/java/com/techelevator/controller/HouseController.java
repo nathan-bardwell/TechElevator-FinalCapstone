@@ -59,10 +59,10 @@ public class HouseController {
 	
 	@RequestMapping(path = "/addHousesByCsv",method = RequestMethod.POST)
 	public String addNewHousesByCsv(RedirectAttributes flash, @RequestParam String path) {
-		int success = houseDAO.createHouseByCsv(path);
-		if(success == 1) {
+		//int success = houseDAO.createHouseByCsv(path);
+		//if(success == 1) {
 			flash.addFlashAttribute("Failure Message" , "The Import was not Succesful" );
-		}
+		//}
 		return "redirect:/addHouses";
 	}
 	
