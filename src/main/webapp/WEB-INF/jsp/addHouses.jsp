@@ -22,7 +22,7 @@
 </div>
 <div class="row">
 	<div class="col-sm-4"></div>
-	<div class="col-sm-4">
+	<div class="col-sm-7">
 	<div  style="display:none" id="individualHouseForm">
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
@@ -50,10 +50,11 @@
 	<form action="${importCsvUrl}" method="POST">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<textarea class="form-control" id="textAreaInput" name="textArea"></textarea>
-		<div style="display: none" id="MultipleInput">
+		
 			<h3>Add house info above: Copy and Paste from CSV using the following format</h3>
 			<h4> address|resident|phone number|status|notes</h4>
 			<input type="submit" value="Submit">
+			
 		
 	</form></div>
 	 
