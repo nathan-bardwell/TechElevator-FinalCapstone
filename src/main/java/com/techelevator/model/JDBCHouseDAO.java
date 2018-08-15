@@ -20,68 +20,53 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Component
-public class JDBCHouseDAO implements HouseDAO {
+public class JDBCHouseDAO implements HouseDAO
+{
 
 	private JdbcTemplate jdbcTemplate;
-	
-	
-	
+
 	@Autowired
-	public JDBCHouseDAO(DataSource dataSource) {
+	public JDBCHouseDAO(DataSource dataSource)
+	{
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		
+
 	}
-	
+
 	@Override
-	public void createHouse(String address, String resident, String notes, String phone_number, String status, String creatorId) {
-		
-		jdbcTemplate.update("INSERT INTO house(address, resident, notes, phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
-				address, resident, notes, phone_number, status, creatorId);
-	}
-	
-	@Override
-	public int createHouseByCsv(MultipartFile file) 
+	public void createHouse(String address, String resident, String notes, String phone_number, String status,
+			String creatorId)
 	{
 
-		try
-		{
-			BufferedReader reader = new BufferedReader((Reader) file);
-			String currentLine = reader.readLine();
-			while(currentLine!=null) 
-			{
-				String [] houseFields = currentLine.split("|");
-				jdbcTemplate.update("INSERT INTO house(address, resident, phone_number, status, notes) VALUES (?, ?, ?, ?, ?)",
-						houseFields[0], houseFields[1], houseFields[2], houseFields[3], houseFields[4]);
-			
-			}
-
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("There was an error in the csv import method");
-			
-			return 1;
-			
-		}
-		
-		return 0;
+		jdbcTemplate.update(
+				"INSERT INTO house(address, resident, notes, phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
+				address, resident, notes, phone_number, status, creatorId);
 	}
+
 	@Override
-	public List<House> viewHouses(String userName){
-		List<House> houseList = new ArrayList<House>(); 
+	public void createHouseMultiple(String textArea)
+	{
+		ArrayList<String> line = new ArrayList<String>();
+
+	}
+
+	@Override
+	public List<House> viewHouses(String userName)
+	{
+		List<House> houseList = new ArrayList<House>();
 		String sql = "SELECT * FROM house WHERE creator_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);	
-		
-		while(results.next()) {
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
+
+		while (results.next())
+		{
 			houseList.add(mapToRow(results));
 		}
-	
+
 		return houseList;
 	}
-	
-	private House mapToRow(SqlRowSet results) {
+
+	private House mapToRow(SqlRowSet results)
+	{
 		House house = new House();
 		house.setAddress(results.getString("address"));
 		house.setAssignmentId(results.getString("assignment_id"));
@@ -94,11 +79,10 @@ public class JDBCHouseDAO implements HouseDAO {
 	}
 
 	@Override
-	public List<House> getHouseByTeam(long teamId) {
-		
+	public List<House> getHouseByTeam(long teamId)
+	{
+
 		return null;
 	}
-	
-	
 
 }
