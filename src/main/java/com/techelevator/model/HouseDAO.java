@@ -9,7 +9,7 @@ public interface HouseDAO {
 
 	List<House> viewHouses(String userName);
 	
-	public void createHouseMultiple(String textArea, String userName);
+	public int createHouseMultiple(String textArea, String userName);
 	
 	public List<House> getHouseByTeam(long teamId);
 }
