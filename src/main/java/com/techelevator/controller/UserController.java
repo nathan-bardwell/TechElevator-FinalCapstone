@@ -24,8 +24,9 @@ public class UserController {
 	private TeamDAO teamDAO;
 
 	@Autowired
-	public UserController(UserDAO userDAO) {
+	public UserController(UserDAO userDAO, TeamDAO teamDAO) {
 		this.userDAO = userDAO;
+		this.teamDAO = teamDAO;
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
