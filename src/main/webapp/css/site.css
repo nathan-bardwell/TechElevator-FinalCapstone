@@ -8,6 +8,12 @@
 	color: black;
 	background-color: #E0FFFF;
 }
+
+#textAreaInput{
+	width:40rem;
+	height:10rem;
+margin-top:2rem;
+}
 .headerContents{
 	height: 200px;
 	

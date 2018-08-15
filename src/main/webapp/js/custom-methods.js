@@ -7,10 +7,10 @@ function switchForms(event) {
     let value = event.currentTarget.value;
     if(value == 'individual') {
         document.getElementById('individualHouseForm').style.display = "";
-        document.getElementById('importCsvForm').style.display = "none";
+        document.getElementById('MultipleInput').style.display = "none";
     }
     if(value == 'csv') {
         document.getElementById('individualHouseForm').style.display = "none";
-        document.getElementById('importCsvForm').style.display = "";
+        document.getElementById('MultipleInput').style.display = "";
     }
 }

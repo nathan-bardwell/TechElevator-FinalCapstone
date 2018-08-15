@@ -14,7 +14,7 @@
 		<select id="formToggler" class="form-control">
 			<option>--Select one--</option>
 			<option value="individual" >Individually</option>
-			<option  value="csv">Import CSV</option>
+			<option  value="csv">Enter multiple</option>
 		</select>
 		</form>
 	</div>
@@ -45,12 +45,11 @@
 		</div>
 	</form>
 	
-	<c:url var="importCsvUrl" value="/uploadFile"/>
-	<form action="${importCsvUrl}" method="POST" enctype="multipart/form-data">
-	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-		<div style="display: none" id="importCsvForm">
-			<h3>Select CSV file below</h3>
-			<input type="file" name="file" accept=".csv">
+	<c:url var="importCsvUrl" value="/textArea"/>
+	<form action="${importCsvUrl}" method="POST">
+	<textarea class="form-control"name="CSRF_TOKEN" value="${CSRF_TOKEN}"id="textAreaInput"></textarea>
+		<div style="display: none" id="MultipleInput">
+			<h3>Add house info above: Follow format</h3><h4> address|resident|phone number|status|notes</h4>
 			<input type="submit" value="Submit">
 		</div>
 	</form>
