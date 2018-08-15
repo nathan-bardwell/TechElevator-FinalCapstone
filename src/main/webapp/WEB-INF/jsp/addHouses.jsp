@@ -31,7 +31,7 @@
 			Resident Name: *<br><input type="text" name="resident" class="form-control" required><br>
 			Phone: <br><input type="tel" name="phoneNumber" class="form-control" ><br>
 			Status: *<br><select name="status" class="form-control" required>
-				<option disabled selected value>--Select a status--</option>
+				<option disabled selected >--Select a status--</option>
 				<option value="NV">Not Visited</option>
 				<option value="O">Ordered</option>
 				<option value="NI">Not Interested</option>
@@ -58,6 +58,5 @@
 	<div class="col-sm-4"></div>
 </div> 
 
-<c:url var="addHouseUrl" value="/addHouses"/>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" /> 
