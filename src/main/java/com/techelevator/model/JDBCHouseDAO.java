@@ -44,9 +44,17 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 
 	@Override
-	public void createHouseMultiple(String textArea)
+	public void createHouseMultiple(String textArea,String userName)
 	{
-		ArrayList<String> line = new ArrayList<String>();
+		int i =0;
+		String[] line = textArea.split("\n");
+		while(i<line.length-1)
+		for (String field : line)
+		{
+			String[] values = field.split("\\|");
+			createHouse(values[0], values[1], values[2], values[3], values[4], userName);
+		}
+		
 
 	}
 

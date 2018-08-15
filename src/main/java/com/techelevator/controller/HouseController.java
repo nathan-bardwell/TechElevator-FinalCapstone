@@ -58,8 +58,10 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/textArea",method = RequestMethod.POST)
-	public String addNewHousesByCsv(@Valid @RequestParam String textArea, BindingResult result, RedirectAttributes flash) {
-				
+	public String addNewHousesByCsv(@Valid @RequestParam String textArea, BindingResult result, RedirectAttributes flash, HttpSession session) {
+		houseDAO.createHouseMultiple(textArea, ((User)session.getAttribute("currentUser")).getUserName());	
+		flash.addFlashAttribute("message", "Houses Created Successfully!");
+
 		
 		return "redirect:/addHouses";
 	}
