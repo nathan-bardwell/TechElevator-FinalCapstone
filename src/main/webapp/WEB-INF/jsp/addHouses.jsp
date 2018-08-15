@@ -31,7 +31,7 @@
 			Resident Name: *<br><input type="text" name="resident" class="form-control" required><br>
 			Phone: <br><input type="tel" name="phoneNumber" class="form-control" ><br>
 			Status: *<br><select name="status" class="form-control" required>
-				<option disabled selected value>--Select a status--</option>
+				<option disabled selected >--Select a status--</option>
 				<option value="NV">Not Visited</option>
 				<option value="O">Ordered</option>
 				<option value="NI">Not Interested</option>
@@ -44,7 +44,7 @@
 		</div>
 	</form>
 	
-	<c:url var="importCsvUrl" value="/upLoadFile"/>
+	<c:url var="importCsvUrl" value="/uploadFile"/>
 	<form action="${importCsvUrl}" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 		<div style="display: none" id="importCsvForm">
@@ -58,6 +58,5 @@
 	<div class="col-sm-4"></div>
 </div> 
 
-<c:url var="addHouseUrl" value="/addHouses"/>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" /> 
