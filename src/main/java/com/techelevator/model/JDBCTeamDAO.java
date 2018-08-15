@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 public class JDBCTeamDAO implements TeamDAO {
 	
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
 	private UserDAO userDao;
 	
 	@Autowired

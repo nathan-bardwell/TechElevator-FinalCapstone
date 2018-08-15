@@ -70,6 +70,10 @@
 			<div class="form-group">
 				<input type="hidden" id="role" name="role" value="Admin"/>	
 			</div>
+			<div class="form-group">
+				<label for="teamName">What would you like your team to be named?: </label>
+				<input type="text" id="teamName" name="teamName" placeHolder="Team Name" class="form-control" />	
+			</div>
 			<button type="submit" class="btn btn-default"><c:out value="Create User" /></button>
 		</div>
 		<div class="col-sm-4"></div>
