@@ -10,7 +10,7 @@
 	<th>Assigned To</th>
 </tr>
 
-<c:forEach var = "house" items = "${houses }"/>
+<c:forEach var = "house" items = "${houses }">
 <tr>
  <td><c:out value = "${house.resident }"/></td>
  <td><c:out value = "${house.address }"/></td>
@@ -24,8 +24,9 @@
  	</c:otherwise>
  </c:choose>
  
- 
+
 </tr>
+</c:forEach>
 </table>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" /> 
