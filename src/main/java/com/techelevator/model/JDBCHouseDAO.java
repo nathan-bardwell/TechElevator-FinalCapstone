@@ -3,6 +3,7 @@ package com.techelevator.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -32,12 +33,12 @@ public class JDBCHouseDAO implements HouseDAO {
 	}
 	
 	@Override
-	public int createHouseByCsv(String imported) 
+	public int createHouseByCsv(File file) 
 	{
-		File houseInput = new File(imported);
+
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(houseInput));
+			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String currentLine = reader.readLine();
 			while(currentLine!=null) 
 			{
@@ -57,6 +58,12 @@ public class JDBCHouseDAO implements HouseDAO {
 		}
 		
 		return 0;
+	}
+
+	@Override
+	public List<House> getHouseByTeam(long teamId) {
+		
+		return null;
 	}
 	
 	
