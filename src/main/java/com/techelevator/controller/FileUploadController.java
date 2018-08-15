@@ -3,7 +3,7 @@ package com.techelevator.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-
+import java.util.Scanner;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,36 +23,19 @@ public class FileUploadController {
 	 * Upload single file using Spring Controller
 	 */
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public @ResponseBody
-	String uploadFileHandler(@RequestParam("name") String name,
+	public String uploadFileHandler(
 			@RequestParam("file") MultipartFile file) {
+		System.out.println("here");
 
 		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
+			try (Scanner fileReader = new Scanner(file.getInputStream())){
 
-				// Creating the directory to store file
-				String rootPath = System.getProperty("catalina.home");
-				File dir = new File(rootPath + File.separator + "tmpFiles");
-				if (!dir.exists())
-					dir.mkdirs();
-
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-				
-				
-
-				return "You successfully uploaded file=" + name;
+				return "You successfully uploaded file=";
 			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
+				return "You failed to upload " + " => " + e.getMessage();
 			}
 		} else {
-			return "You failed to upload " + name
+			return "You failed to upload "
 					+ " because the file was empty.";
 		}
 	}
