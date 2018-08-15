@@ -49,7 +49,8 @@
 	<form action="${importCsvUrl}" method="POST">
 	<textarea class="form-control"name="CSRF_TOKEN" value="${CSRF_TOKEN}"id="textAreaInput"></textarea>
 		<div style="display: none" id="MultipleInput">
-			<h3>Add house info above: Follow format</h3><h4> address|resident|phone number|status|notes</h4>
+			<h3>Add house info above: Follow format</h3>
+			<h4> address|resident|phone number|status|notes</h4>
 			<input type="submit" value="Submit">
 		</div>
 	</form>
