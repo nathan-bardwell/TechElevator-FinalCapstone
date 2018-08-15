@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.io.Reader;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Component
@@ -39,12 +42,12 @@ public class JDBCHouseDAO implements HouseDAO {
 	}
 	
 	@Override
-	public int createHouseByCsv(String imported) 
+	public int createHouseByCsv(MultipartFile file) 
 	{
-		File houseInput = new File(imported);
+
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(houseInput));
+			BufferedReader reader = new BufferedReader((Reader) file);
 			String currentLine = reader.readLine();
 			while(currentLine!=null) 
 			{
@@ -88,6 +91,12 @@ public class JDBCHouseDAO implements HouseDAO {
 		house.setResident(results.getString("resident"));
 		house.setStatus(results.getString("status"));
 		return house;
+	}
+
+	@Override
+	public List<House> getHouseByTeam(long teamId) {
+		
+		return null;
 	}
 	
 	
