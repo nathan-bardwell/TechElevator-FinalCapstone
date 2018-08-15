@@ -73,7 +73,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/newSalesman", method=RequestMethod.POST)
-    public String createNewSalesman(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
+    public String createNewSalesman(@Valid @ModelAttribute User user, BindingResult result, HttpSession session, RedirectAttributes flash) {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
@@ -83,6 +83,8 @@ public class UserController {
         
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
+        long team_id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
+        teamDAO.addSalesmanToTeam(team_id, user.getUserName());
         return "redirect:/newSalesman";
     }
 	

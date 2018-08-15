@@ -2,7 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<table>
+<table class="table">
 <tr>
 	<th>Resident Name</th>
 	<th>Address</th>
