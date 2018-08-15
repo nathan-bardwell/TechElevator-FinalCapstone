@@ -10,8 +10,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.TeamDAO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
@@ -19,6 +21,7 @@ import com.techelevator.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
+	private TeamDAO teamDAO;
 
 	@Autowired
 	public UserController(UserDAO userDAO) {
@@ -26,7 +29,7 @@ public class UserController {
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
-	public String displayNewUserForm(ModelMap modelHolder) {
+	public String displayNewAdminForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
 			modelHolder.addAttribute("user", new User());
 		}
@@ -34,7 +37,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
-    public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
+    public String createAdmin(@Valid @ModelAttribute User user, @RequestParam String teamName, BindingResult result, RedirectAttributes flash) {
         if(result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
@@ -44,6 +47,9 @@ public class UserController {
         
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
+        
+        teamDAO.createNewTeam(teamName, user.getUserName());
+        
         return "redirect:/login";
     }
 	
