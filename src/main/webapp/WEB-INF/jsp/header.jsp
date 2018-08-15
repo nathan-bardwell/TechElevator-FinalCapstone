@@ -54,7 +54,7 @@
 			<div class="container-fluid">
 			
 				<ul class="nav navbar-nav">
-					<c:url var="homePageHref" value="/" />
+					<c:url var="homePageHref" value="/admin" />
 					<li><a href="${homePageHref}">Home</a></li>
 					<c:if test="${not empty currentUser}">
 					<c:choose>	
@@ -62,6 +62,8 @@
 							<c:url var = "addNewSalesman" value = "/newSalesman"/>
 							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<li><a>View Team</a></li>
+							<c:url var = "viewHouses" value = "/viewHouses"/>
+							<li><a href = "${viewHouses }">View Houses</a></li>
 							<c:url var = "addHouses" value = "/addHouses"/>
 							<li><a href = "${addHouses }">Add Houses</a></li>
 							<li><a>Sales Data</a></li>

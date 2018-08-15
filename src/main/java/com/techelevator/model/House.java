@@ -5,11 +5,25 @@ public class House {
 	private String address;
 	private String resident;
 	private String notes;
+	private String creatorId;
+
+	private String assignmentId;
 	private String phoneNumber;
 	private String status;
 	
 	
-	
+	public String getCreatorId() {
+		return creatorId;
+	}
+	public void setCreatorId(String creatorId) {
+		this.creatorId = creatorId;
+	}
+	public String getAssignmentId() {
+		return assignmentId;
+	}
+	public void setAssignmentId(String assignmentId) {
+		this.assignmentId = assignmentId;
+	}
 
 	public String getAddress() {
 		return address;

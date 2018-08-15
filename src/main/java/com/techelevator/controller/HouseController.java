@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/addHouses",method = RequestMethod.POST)
-	public String addNewHouses(@Valid @ModelAttribute House house,
+	public String addNewHouses(@Valid @ModelAttribute House house,@RequestParam String creatorId,
 									  BindingResult result,
 									  RedirectAttributes flash) {
 		if(result.hasErrors()) {
@@ -49,7 +50,7 @@ public class HouseController {
 			return "redirect:/addHouses";
 		} 
 		
-			houseDAO.createHouse(house.getAddress(), house.getResident(), house.getNotes(), house.getPhoneNumber(), house.getStatus());
+			houseDAO.createHouse(house.getAddress(), house.getResident(), house.getNotes(), house.getPhoneNumber(), house.getStatus(), creatorId);
 			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
 			return "redirect:/addHouses";
 		
@@ -63,6 +64,12 @@ public class HouseController {
 			flash.addFlashAttribute("Failure Message" , "The Import was not Succesful" );
 		}
 		return "redirect:/addHouses";
+	}
+	
+	@RequestMapping(path ="/viewHouses", method = RequestMethod.GET)
+	public String viewHouse(ModelMap modelHolder, HttpSession session) {
+		modelHolder.put("houses", houseDAO.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
+		return "/viewHouses";
 	}
 	
 }

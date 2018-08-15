@@ -26,6 +26,7 @@
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	<input type ="hidden" name = "creatorId" value = "${currentUser.userName}"/>
 		<div  style="display:none" id="individualHouseForm">
 			Address: *<br><input type="text" name="address" class="form-control" required><br>
 			Resident Name: *<br><input type="text" name="resident" class="form-control" required><br>

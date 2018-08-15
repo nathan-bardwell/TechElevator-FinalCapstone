@@ -28,7 +28,11 @@ CREATE TABLE house(
   resident varchar(64) NOT NULL,
   notes varchar(280),
   phone_number varchar(15),
+  creator_id varchar(32) NOT NULL,
+  assignment_id varchar(32),
   status varchar(40) DEFAULT 'NV',
+  CONSTRAINT fk_house_creator_id FOREIGN KEY (creator_id) REFERENCES app_user(user_name),
+  CONSTRAINT fk_house_assignment_id FOREIGN KEY (assignment_id) REFERENCES app_user(user_name),
   CONSTRAINT check_status CHECK(status = 'NV' 
   OR status = 'O' OR status = 'NI' OR status = 'FU' OR status = 'NS')  
   );
