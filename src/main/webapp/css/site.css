@@ -5,8 +5,8 @@
 }
 
 #headerTextDiv{
-	color: blue;
-	background-color: #E0FFFF;
+	color: black;
+	background-color: transparent;
 }
 
 .headerContents{
@@ -32,9 +32,11 @@
 	height:100%;
 	margin-left:0px;
 	margin-right: 0px;
+	background-image: url("https://i.imgur.com/a0oiKxm.png?2");
 }
 body {
 	    background-color: #E0FFFF;
+	    
 }
 footer{
 	padding-top:200px;
