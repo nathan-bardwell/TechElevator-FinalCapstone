@@ -58,10 +58,13 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/textArea",method = RequestMethod.POST)
-	public String addNewHousesByCsv(@Valid @RequestParam String textArea, BindingResult result, RedirectAttributes flash, HttpSession session) {
-		houseDAO.createHouseMultiple(textArea, ((User)session.getAttribute("currentUser")).getUserName());	
-		flash.addFlashAttribute("message", "Houses Created Successfully!");
-
+	public String addNewHousesByCsv(@Valid @RequestParam String textArea, RedirectAttributes flash, HttpSession session) {
+		int success = houseDAO.createHouseMultiple(textArea, ((User)session.getAttribute("currentUser")).getUserName());	
+		if(success==0) {
+			flash.addFlashAttribute("message", "Houses Created Successfully!");
+		}else {
+			flash.addFlashAttribute("message", "Unable to create new houses");
+		}
 		
 		return "redirect:/addHouses";
 	}

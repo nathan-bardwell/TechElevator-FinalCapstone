@@ -47,10 +47,11 @@
 	
 	<c:url var="importCsvUrl" value="/textArea"/>
 	<form action="${importCsvUrl}" method="POST">
-	<textarea class="form-control"name="CSRF_TOKEN" value="${CSRF_TOKEN}"id="textAreaInput"></textarea>
+		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	<textarea class="form-control" id="textAreaInput" name="textArea"></textarea>
 		<div style="display: none" id="MultipleInput">
 			<h3>Add house info above: Follow format</h3>
-			<h4> address|resident|phone number|status|notes</h4>
+			<h4> address|resident|phone number|status|notes &</h4>
 			<input type="submit" value="Submit">
 		</div>
 	</form>
