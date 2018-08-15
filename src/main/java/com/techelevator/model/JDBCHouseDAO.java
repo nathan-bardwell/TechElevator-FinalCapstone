@@ -39,23 +39,24 @@ public class JDBCHouseDAO implements HouseDAO
 	{
 
 		jdbcTemplate.update(
-				"INSERT INTO house(address, resident, notes, phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
+				"INSERT INTO house(address, resident,  phone_number, status,notes,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
 				address, resident, notes, phone_number, status, creatorId);
 	}
 
 	@Override
 	public int createHouseMultiple(String textArea, String userName)
 	{
-		int i = 0;
-		String[] line = textArea.split("&");
+	
+		String[] line = textArea.split("\n");
 
 		try
 		{
-			while (i < line.length - 1)
 				for (String field : line)
 				{
+					if(!field.isEmpty()) {
 					String[] values = field.split("\\|");
 					createHouse(values[0], values[1], values[2], values[3], values[4], userName);
+					}
 				}
 		} catch (Exception e)
 		{
