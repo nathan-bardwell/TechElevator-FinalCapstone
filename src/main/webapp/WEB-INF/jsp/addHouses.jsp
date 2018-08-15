@@ -45,11 +45,11 @@
 	</form>
 	
 	<c:url var="importCsvUrl" value="/addHousesByCsv"/>
-	<form action="${importCsvUrl}" method="POST">
+	<form action="${importCsvUrl}" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 		<div style="display: none" id="importCsvForm">
 			<h3>Select CSV file below</h3>
-			<input type="file" name="path" accept=".csv">
+			<input type="file" name="file" accept=".csv">
 			<input type="submit" value="Submit">
 		</div>
 	</form>
