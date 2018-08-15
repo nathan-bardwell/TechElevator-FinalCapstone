@@ -73,5 +73,20 @@ public class JDBCUserDAO implements UserDAO {
 		return thisUser;
 	}
 	
+	@Override
+	public Long getUserIdByUserName(String userName) {
+		String sqlSearchForUsername ="SELECT * "+
+		"FROM app_user "+
+		"WHERE UPPER(user_name) = ? ";
+
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName.toUpperCase()); 
+		Long id = null;
+		if(user.next()) {
+			id = user.getLong("user_id");
+		}
+
+		return id;
+	}
+	
 
 }

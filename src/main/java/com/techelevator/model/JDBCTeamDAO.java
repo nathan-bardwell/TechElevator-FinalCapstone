@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class JDBCTeamDAO implements TeamDAO {
 	
 	private JdbcTemplate jdbcTemplate;
+	private UserDAO userDao;
 	
 	@Autowired
 	public JDBCTeamDAO(DataSource dataSource) {
@@ -23,8 +23,21 @@ public class JDBCTeamDAO implements TeamDAO {
 	}
 
 	@Override
-	public void createNewTeam(String name, User admin) {
-		// TODO Auto-generated method stub
+	public void createNewTeam(String name, String username) {
+		Long teamId = null;
+		Long adminId = userDao.getUserIdByUserName(username);
+		
+		String createTeamSql = "INSERT INTO team (name) " + 
+									 "VALUES (?) RETURNING team_id";
+		SqlRowSet createTeamResult = jdbcTemplate.queryForRowSet(createTeamSql, name);
+		while(createTeamResult.next()) {
+			teamId = createTeamResult.getLong("team_id");
+		}
+		
+		String matchAdminToTeamSql = "INSERT INTO user_team (user_id, team_id) " + 
+											 "VALUES (?, ?)";
+		jdbcTemplate.update(matchAdminToTeamSql, adminId, teamId);
+		
 		
 	}
 

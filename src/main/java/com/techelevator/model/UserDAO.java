@@ -10,4 +10,6 @@ public interface UserDAO {
 
 	public User getUserByUserName(String userName);
 
+	public Long getUserIdByUserName(String userName);
+
 }
