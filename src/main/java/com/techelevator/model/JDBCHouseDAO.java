@@ -3,6 +3,7 @@ package com.techelevator.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.Reader;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -10,6 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Component
@@ -33,12 +35,12 @@ public class JDBCHouseDAO implements HouseDAO {
 	}
 	
 	@Override
-	public int createHouseByCsv(File file) 
+	public int createHouseByCsv(MultipartFile file) 
 	{
 
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			BufferedReader reader = new BufferedReader((Reader) file);
 			String currentLine = reader.readLine();
 			while(currentLine!=null) 
 			{
