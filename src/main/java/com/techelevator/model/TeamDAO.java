@@ -5,8 +5,7 @@ import java.util.List;
 public interface TeamDAO {
 
 	void createNewTeam(String name, String username);
-	Team getTeamInfo(long team_id);
-	void addSalesmanToTeam(User salesman);
+	void addSalesmanToTeam(Long team_id, String username);
 	User getTeamAdmin(long team_id);
 	List<User> getAllTeamMembers(long team_id);
 }

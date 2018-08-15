@@ -42,18 +42,6 @@ public class JDBCTeamDAO implements TeamDAO {
 	}
 
 	@Override
-	public Team getTeamInfo(long team_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addSalesmanToTeam(User salesman) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public User getTeamAdmin(long team_id) {
 		User adminUser = new User();
 		String getTeamAdminSql = "SELECT * " + 
@@ -95,6 +83,15 @@ public class JDBCTeamDAO implements TeamDAO {
 			
 		}
 		return teamMembers;
+	}
+
+	@Override
+	public void addSalesmanToTeam(Long team_id, String username) {
+		Long userId = userDao.getUserIdByUserName(username);
+		String addSalesmanSql = "INSERT INTO user_team (user_id, team_id) " + 
+									   "VALUES (?, ?)";
+		jdbcTemplate.update(addSalesmanSql, userId, team_id);
+		
 	}
 	
 	
