@@ -46,10 +46,16 @@ public class UserController {
             return "redirect:/users/new";
         }
         
-        userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
-        flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
+       int success= userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
+       if(success ==0) {
+    	   flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
+    	   teamDAO.createNewTeam(teamName, user.getUserName());
+       }else {
+    	   flash.addFlashAttribute("message", "Invalid Registration, Please Try Again");
+    	   return "redirect:/users/new";
+       }
         
-        teamDAO.createNewTeam(teamName, user.getUserName());
+      
         
         return "redirect:/login";
     }
