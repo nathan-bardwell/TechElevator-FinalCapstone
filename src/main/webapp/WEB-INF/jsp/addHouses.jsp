@@ -23,11 +23,12 @@
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
+	<div  style="display:none" id="individualHouseForm">
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<input type ="hidden" name = "creatorId" value = "${currentUser.userName}"/>
-		<div  style="display:none" id="individualHouseForm">
+		
 			Address: *<br><input type="text" name="address" class="form-control" required><br>
 			Resident Name: *<br><input type="text" name="resident" class="form-control" required><br>
 			Phone: <br><input type="tel" name="phoneNumber" class="form-control" ><br>
@@ -42,19 +43,19 @@
 			Notes:<br><textarea class="form-control" name="notes"></textarea><br>
  		<!-- <input type="submit" value="Submit" > -->
 			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
-		</div>
-	</form>
-	
+		
+	</form></div>
+	<div style="display: none" id="MultipleInput">
 	<c:url var="importCsvUrl" value="/textArea"/>
 	<form action="${importCsvUrl}" method="POST">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<textarea class="form-control" id="textAreaInput" name="textArea"></textarea>
-		<div style="display: none" id="MultipleInput">
+		
 			<h3>Add house info above: Follow format</h3>
 			<h4> address|resident|phone number|status|notes &</h4>
 			<input type="submit" value="Submit">
-		</div>
-	</form>
+		
+	</form></div>
 	 
 	</div>
 	<div class="col-sm-4"></div>
