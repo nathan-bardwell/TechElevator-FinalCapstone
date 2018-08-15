@@ -61,7 +61,8 @@
 						<c:when test ="${currentUser.role == 'Admin' }">
 							<c:url var = "addNewSalesman" value = "/newSalesman"/>
 							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
-							<li><a>View Team</a></li>
+							<c:url var = "viewTeam" value = "/viewTeam"/>
+							<li><a href = "${viewTeam }">View Team</a></li>
 							<c:url var = "viewHouses" value = "/viewHouses"/>
 							<li><a href = "${viewHouses }">View Houses</a></li>
 							<c:url var = "addHouses" value = "/addHouses"/>
@@ -96,6 +97,6 @@
 		<div class="container">
 		<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
 		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Current User: <c:out value="${currentUser.role}"/></p>
+			<p id="currentUser">Current User: <c:out value="${currentUser.userName}"/></p>
 		</c:if>		
 		

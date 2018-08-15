@@ -95,6 +95,16 @@ public class JDBCTeamDAO implements TeamDAO {
 		jdbcTemplate.update(addSalesmanSql, userId, team_id);
 		
 	}
+
+	@Override
+	public long getTeamId(String userName) {
+		long id;
+		String getIdSql = "SELECT team_id FROM user_team WHERE user_id = (SELECT user_id FROM app_user WHERE UPPER(user_name)= ?)";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getIdSql,userName.toUpperCase());
+		results.next();
+		id = results.getLong("team_id");
+		return id;
+	}
 	
 	
 

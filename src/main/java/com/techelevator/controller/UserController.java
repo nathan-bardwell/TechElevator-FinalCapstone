@@ -96,11 +96,14 @@ public class UserController {
 		return "/salesman";
 	}
 	
-	@RequestMapping(path="/admin", method=RequestMethod.GET)
-	public String showWelcomeAdminPage(HttpSession session) {
+	@RequestMapping(path= {"/admin", "/viewTeam"}, method=RequestMethod.GET)
+	public String showTeam(HttpSession session, ModelMap modelHolder) {
 		if(session.getAttribute("currentUser") == null) {
 			return "redirect:/login?destination=/admin";
 		}
+		
+		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
+		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
 		return "/viewTeam";
 	}
 	
