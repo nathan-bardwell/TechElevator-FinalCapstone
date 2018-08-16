@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.HouseDAO;
 import com.techelevator.model.TeamDAO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
@@ -22,11 +23,13 @@ public class UserController {
 
 	private UserDAO userDAO;
 	private TeamDAO teamDAO;
+	private HouseDAO houseDao;
 
 	@Autowired
-	public UserController(UserDAO userDAO, TeamDAO teamDAO) {
+	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao) {
 		this.userDAO = userDAO;
 		this.teamDAO = teamDAO;
+		this.houseDao= houseDao;
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
@@ -97,10 +100,11 @@ public class UserController {
 	
 	
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
-	public String showSalesmanPage(HttpSession session) {
+	public String showSalesmanPage(HttpSession session, ModelMap modelHolder) {
 		if(session.getAttribute("currentUser") == null) {
 			return "redirect:/login?destination=/salesman";
 		}
+		modelHolder.put("houses", houseDao.viewAssignedHouses(((User)session.getAttribute("currentUser")).getUserName()));
 		return "/salesman";
 	}
 	
@@ -113,6 +117,12 @@ public class UserController {
 		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
 		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
 		return "/viewTeam";
+	}
+	
+	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
+	public String showHouseDetail(ModelMap modelHolder, @RequestParam String resident) {
+		modelHolder.put("house", houseDao.getHouseByResident(resident));
+		return "/houseDetail";
 	}
 	
 	

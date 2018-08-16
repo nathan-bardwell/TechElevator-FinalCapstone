@@ -12,4 +12,8 @@ public interface HouseDAO {
 	public int createHouseMultiple(String textArea, String userName);
 	
 	public List<House> getHouseByTeam(long teamId);
+	
+	public House getHouseByResident(String resident);
+
+	List<House> viewAssignedHouses(String userName);
 }

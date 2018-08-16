@@ -80,6 +80,30 @@ public class JDBCHouseDAO implements HouseDAO
 
 		return houseList;
 	}
+	
+	@Override
+	public List<House> viewAssignedHouses(String userName){
+		List<House> houseList = new ArrayList<House>();
+		String sql = "SELECT * FROM house WHERE assignment_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
+
+		while (results.next())
+		{
+			houseList.add(mapToRow(results));
+		}
+
+		return houseList;
+	}
+	
+	@Override
+	public House getHouseByResident(String resident) {
+		House house = new House();
+		String sql = "SELECT * FROM house WHERE resident = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,resident);
+		results.next();
+		house = mapToRow(results);
+		return house;
+	}
 
 	private House mapToRow(SqlRowSet results)
 	{
@@ -100,5 +124,7 @@ public class JDBCHouseDAO implements HouseDAO
 
 		return null;
 	}
+
+
 
 }

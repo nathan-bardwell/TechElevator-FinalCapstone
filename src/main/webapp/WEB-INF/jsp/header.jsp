@@ -54,11 +54,12 @@
 			<div class="container-fluid">
 			
 				<ul class="nav navbar-nav">
-					<c:url var="homePageHref" value="/admin" />
-					<li><a href="${homePageHref}">Home</a></li>
+					
 					<c:if test="${not empty currentUser}">
 					<c:choose>	
 						<c:when test ="${currentUser.role == 'Admin' }">
+							<c:url var="homePageHref" value="/admin" />
+							<li><a href="${homePageHref}">Home</a></li>
 							<c:url var = "addNewSalesman" value = "/newSalesman"/>
 							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<c:url var = "viewTeam" value = "/viewTeam"/>
@@ -70,7 +71,8 @@
 							<li><a>Sales Data</a></li>
 						</c:when>
 						<c:when test = "${currentUser.role == 'Salesman' }">
-						
+							<c:url var="homePageHref" value="/salesman" />
+						<li><a href="${homePageHref}">Home</a></li>
 						</c:when>	
 					</c:choose>
 					</c:if>
