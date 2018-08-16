@@ -39,8 +39,8 @@ public class JDBCHouseDAO implements HouseDAO
 	{
 
 		jdbcTemplate.update(
-				"INSERT INTO house(address, resident,  phone_number, status,notes,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
-				address, resident,phone_number, status,notes, creatorId);
+				"INSERT INTO house(address, resident,  phone_number, status, notes,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
+				address, resident, phone_number, status, notes, creatorId);
 	}
 
 	@Override
