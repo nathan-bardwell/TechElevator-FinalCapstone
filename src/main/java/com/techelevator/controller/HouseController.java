@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.House;
 import com.techelevator.model.HouseDAO;
+import com.techelevator.model.NoteDAO;
 import com.techelevator.model.TeamDAO;
 import com.techelevator.model.User;
 
@@ -25,11 +28,13 @@ public class HouseController {
 	
 	private HouseDAO houseDAO;
 	private TeamDAO teamDao;
+	private NoteDAO noteDAO;
 	
 	@Autowired
-	public HouseController(HouseDAO houseDAO, TeamDAO teamDao) {
+	public HouseController(HouseDAO houseDAO, TeamDAO teamDao, NoteDAO noteDAO) {
 		this.houseDAO = houseDAO;
 		this.teamDao = teamDao;
+		this.noteDAO = noteDAO;
 	}
 	
 	
@@ -44,7 +49,9 @@ public class HouseController {
 	}
 	
 	@RequestMapping(path = "/addHouses",method = RequestMethod.POST)
-	public String addNewHouses(@Valid @ModelAttribute House house,@RequestParam String creatorId,
+	public String addNewHouses(@Valid @ModelAttribute House house,
+							          @RequestParam String creatorId,
+							          @RequestParam String note,
 									  BindingResult result,
 									  RedirectAttributes flash) {
 		if(result.hasErrors()) {
@@ -54,7 +61,8 @@ public class HouseController {
 			return "redirect:/addHouses";
 		} 
 		
-			houseDAO.createHouse(house.getAddress(), house.getResident(),  house.getPhoneNumber(), house.getStatus(), creatorId);
+			Long id = houseDAO.createHouse(house.getAddress(), house.getResident(),  house.getPhoneNumber(), house.getStatus(), creatorId);
+			noteDAO.saveNewNote(id, creatorId, note, LocalDateTime.now());
 			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
 			return "redirect:/addHouses";
 		

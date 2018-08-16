@@ -34,13 +34,17 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 
 	@Override
-	public void createHouse(String address, String resident, String phone_number, String status,
-			String creatorId)
-	{
+	public Long createHouse(String address, String resident, String phone_number, String status,
+			String creatorId) {
+		
+		String creatHouseSql = "INSERT INTO house(address, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?) RETURNING house_id";
 
-		jdbcTemplate.update(
-				"INSERT INTO house(address, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?)",
-				address, resident, phone_number, status,  creatorId);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(creatHouseSql, address, resident, phone_number, status,  creatorId);
+		
+		result.next();
+		long id = result.getLong("house_id");
+		
+		return id;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface HouseDAO {
 
-	public void createHouse(String address, String resident,String phone_number, String status, String creatorId);
+	public Long createHouse(String address, String resident,String phone_number, String status, String creatorId);
 
 	List<House> viewHouses(String userName);
 	
