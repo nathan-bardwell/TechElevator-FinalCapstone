@@ -18,14 +18,23 @@
 </tr>
 
 <c:forEach var = "teamMember" items = "${teamMembers }">
-<tr>
- <td><c:out value = "${teamMember.firstName }"/></td>
- <td><c:out value = "${teamMember.lastName}"/></td>
- <td><c:out value = "${teamMember.email }"/></td>
 
- 
-
-</tr>
+<c:choose>
+	<c:when test="${teamMember.role == 'Admin'}">
+		<tr>
+ 			<td><strong><c:out value = "${teamMember.firstName }"/></strong></td>
+ 			<td><strong><c:out value = "${teamMember.lastName}"/></strong></td>
+ 			<td><strong><c:out value = "${teamMember.email }"/></strong></td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<tr>
+			<td><c:out value = "${teamMember.firstName }"/></td>
+			<td><c:out value = "${teamMember.lastName}"/></td>
+			<td><c:out value = "${teamMember.email }"/></td>
+		</tr>
+	</c:otherwise>
+</c:choose>
 </c:forEach>
 </table>
 
