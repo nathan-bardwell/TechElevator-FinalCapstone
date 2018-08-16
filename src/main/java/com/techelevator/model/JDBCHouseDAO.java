@@ -34,19 +34,20 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 
 	@Override
-	public void createHouse(String address, String resident, String notes, String phone_number, String status,
+	public void createHouse(String address, String resident, String phone_number, String status,
 			String creatorId)
 	{
 
 		jdbcTemplate.update(
-				"INSERT INTO house(address, resident,  phone_number, status, notes,creator_id) VALUES (?, ?, ?, ?, ?, ?)",
-				address, resident, phone_number, status, notes, creatorId);
+				"INSERT INTO house(address, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?)",
+				address, resident, phone_number, status,  creatorId);
 	}
 
 	@Override
 	public int createHouseMultiple(String textArea, String userName)
 	{
 	
+		
 		String[] line = textArea.split("\n");
 
 		try
@@ -55,7 +56,7 @@ public class JDBCHouseDAO implements HouseDAO
 				{
 					if(!field.isEmpty()) {
 					String[] values = field.split("\\|");
-					createHouse(values[0], values[1], values[2], values[3], values[4], userName);
+					createHouse(values[0], values[1], values[2], values[3],  userName);
 					}
 				}
 		} catch (Exception e)
@@ -129,7 +130,6 @@ public class JDBCHouseDAO implements HouseDAO
 		house.setAddress(results.getString("address"));
 		house.setAssignmentId(results.getString("assignment_id"));
 		house.setCreatorId(results.getString("creator_id"));
-		house.setNotes(results.getString("notes"));
 		house.setPhoneNumber(results.getString("phone_number"));
 		house.setResident(results.getString("resident"));
 		house.setStatus(results.getString("status"));

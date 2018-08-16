@@ -15,7 +15,7 @@
 
 <c:forEach var = "house" items = "${houses }">
 <tr>
- <c:url var = "detailPageUrl" value = "/houseDetail?resident=${house.resident}"/>	
+ <c:url var = "detailPageUrl" value = "/houseDetail?houseId=${house.houseId}"/>	
  <td><a href = "${detailPageUrl }"><c:out value = "${house.resident }"/></a></td>
  <td><c:out value = "${house.address }"/></td>
  <td><c:out value = "${house.phoneNumber }"/></td>
