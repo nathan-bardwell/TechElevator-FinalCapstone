@@ -96,18 +96,36 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 	
 	@Override
-	public House getHouseByResident(String resident) {
+	public House getHouseById(long houseId) {
 		House house = new House();
-		String sql = "SELECT * FROM house WHERE resident = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,resident);
+		String sql = "SELECT * FROM house WHERE house_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,houseId);
 		results.next();
 		house = mapToRow(results);
 		return house;
+	}
+	
+	@Override
+	public int updateAssignment(long houseId, String assignmentId) {
+	
+		String updateSql = "UPDATE house SET assignment_id = ? WHERE house_id =?";
+		
+		try {
+			jdbcTemplate.update(updateSql,assignmentId,houseId);
+			
+		}catch (Exception e) {
+			return 1;
+		}
+		
+		
+		
+		return 0;
 	}
 
 	private House mapToRow(SqlRowSet results)
 	{
 		House house = new House();
+		house.setHouseId(results.getLong("house_id"));
 		house.setAddress(results.getString("address"));
 		house.setAssignmentId(results.getString("assignment_id"));
 		house.setCreatorId(results.getString("creator_id"));
