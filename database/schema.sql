@@ -35,7 +35,7 @@ CREATE TABLE house(
   CONSTRAINT fk_house_creator_id FOREIGN KEY (creator_id) REFERENCES app_user(user_name),
   CONSTRAINT fk_house_assignment_id FOREIGN KEY (assignment_id) REFERENCES app_user(user_name),
   CONSTRAINT check_status CHECK(status = 'NV' 
-  OR status = 'C' OR status = 'NI' OR status = 'FU' OR status = 'NS')  
+  OR status = 'CL' OR status = 'NI' OR status = 'FU' OR status = 'O')  
 );
   
 CREATE TABLE house_notes(
