@@ -35,12 +35,12 @@
 			Status: *<br><select name="status" class="form-control" required>
 				<option disabled selected >--Select a status--</option>
 				<option value="NV">Not Visited</option>
-				<option value="O">Ordered</option>
 				<option value="NI">Not Interested</option>
+				<option value="O">Ordered</option>
+				<option value="CL">Closed</option>
 				<option value="FU">Follow Up</option>
-				<option value="NS">No Solicitors</option>
 			</select><br>
-			Notes:<br><textarea class="form-control" name="notes"></textarea><br>
+			
  		<!-- <input type="submit" value="Submit" > -->
 			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
 		
@@ -52,7 +52,7 @@
 	<textarea class="form-control" id="textAreaInput" name="textArea"></textarea>
 		
 			<h3>Add house info above: Copy and Paste from CSV using the following format</h3>
-			<h4> address|resident|phone number|status|notes</h4>
+			<h4> address|resident|phone number|status</h4>
 			<input type="submit" value="Submit">
 			
 		

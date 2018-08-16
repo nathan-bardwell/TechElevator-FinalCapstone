@@ -4,7 +4,6 @@ public class House {
 	
 	private String address;
 	private String resident;
-	private String notes;
 	private String creatorId;
 	private long houseId;
 	private String assignmentId;
@@ -43,12 +42,7 @@ public class House {
 	public void setResident(String resident) {
 		this.resident = resident;
 	}
-	public String getNotes() {
-		return notes;
-	}
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

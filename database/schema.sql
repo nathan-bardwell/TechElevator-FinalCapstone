@@ -38,13 +38,7 @@ CREATE TABLE house(
   OR status = 'CL' OR status = 'NI' OR status = 'FU' OR status = 'O')  
 );
   
-CREATE TABLE house_notes(
-  house_id integer,
-  note_id integer
-  CONSTRAINT pk_house_id_note_id PRIMARY KEY (house_id, note_id),
-  CONSTRAINT fk_house_id FOREIGN KEY (house_id) REFERENCES house(house_id),
-  CONSTRAINT fk_note_id FOREIGN KEY (note_id) REFERENCES note(note_id)
-);  
+
   
 CREATE TABLE note(
   note_id SERIAL,
@@ -53,6 +47,13 @@ CREATE TABLE note(
   CONSTRAINT pk_note_id PRIMARY KEY (note_id)
 );  
   
+ CREATE TABLE house_notes(
+  house_id integer, 
+  note_id integer,
+  CONSTRAINT pk_house_notes_house_id_note_id PRIMARY KEY (house_id, note_id),      
+  CONSTRAINT fk_house_notes_house_id FOREIGN KEY (house_id) REFERENCES house(house_id),
+  CONSTRAINT fk_house_notes_note_id FOREIGN KEY (note_id) REFERENCES note(note_id)
+);   
 CREATE TABLE team(
     team_id SERIAL NOT NULL,
     name varchar(64),
