@@ -6,12 +6,18 @@ public class House {
 	private String resident;
 	private String notes;
 	private String creatorId;
-
+	private long houseId;
 	private String assignmentId;
 	private String phoneNumber;
 	private String status;
 	
 	
+	public long getHouseId() {
+		return houseId;
+	}
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
+	}
 	public String getCreatorId() {
 		return creatorId;
 	}

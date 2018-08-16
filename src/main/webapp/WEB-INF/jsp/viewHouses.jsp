@@ -8,6 +8,7 @@
 	<th>Address</th>
 	<th>Phone Number</th>
 	<th>Assigned To</th>
+	
 </tr>
 
 <c:forEach var = "house" items = "${houses }">
@@ -15,14 +16,49 @@
  <td><c:out value = "${house.resident }"/></td>
  <td><c:out value = "${house.address }"/></td>
  <td><c:out value = "${house.phoneNumber }"/></td>
- <c:choose>
- 	<c:when  test = "${house.assignmentId == null }">
- 	<td><c:out value = "Not Assigned"/></td>
- 	</c:when>
- 	<c:otherwise>
- 	<td><c:out value = "${house.assignmentId }"/></td>
- 	</c:otherwise>
- </c:choose>
+
+ 	
+ 	<td>
+ 	<c:url var = "formAction" value = "/updateAssignment"/>
+ 	<form action = "${formAction }" method = "POST">
+ 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+ 		<input type="hidden" name="houseId" value="${house.houseId}"/>
+ 		<select name = "assignmentId">
+ 		<c:if test = "${house.assignmentId  == null}">
+ 			<option><c:out value = "Not Assigned"/></option>
+ 		</c:if>
+ 		
+ 		<c:forEach var = "team" items = "${teamMembers }">
+ 			<c:forEach var = "team2" items = "${teamMembers }">
+		 		<c:if test = "${house.assignmentId == team2.userName }">
+		 		<option><c:out value = "${team2.userName }"/></option>
+		 		</c:if>
+		 	</c:forEach>	
+ 		<c:if test = "${team.role == 'Salesman' }">
+ 		
+ 			<c:if test = "${house.assignmentId != team.userName }">
+ 				<option value = "${team.userName }"><c:out value = "${team.userName }"/></option>
+ 			</c:if>
+ 		
+ 		
+ 		</c:if>
+ 		
+ 		
+ 		</c:forEach>
+ 		<c:if test = "${house.assignmentId != null }">
+ 			<option value = ""><c:out value = "Remove Assignment"/></option>
+ 		</c:if>
+ 		
+ 		
+ 		</select>
+ 		<button type="submit" class="btn"><c:out value="Update" /></button>
+ 	
+ 	
+ 	
+ 	</form>
+ 	
+ 	</td>
+ 
  
 
 </tr>

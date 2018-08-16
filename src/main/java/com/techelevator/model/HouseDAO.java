@@ -13,7 +13,9 @@ public interface HouseDAO {
 	
 	public List<House> getHouseByTeam(long teamId);
 	
-	public House getHouseByResident(String resident);
+	public House getHouseById(long houseId);
 
 	List<House> viewAssignedHouses(String userName);
+
+	int updateAssignment(long houseId, String assignmentId);
 }

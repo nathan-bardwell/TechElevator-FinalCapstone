@@ -75,7 +75,7 @@ public class JDBCTeamDAO implements TeamDAO {
 		
 		while(results.next()) {
 			User user = new User();
-			
+			user.setUserName(results.getString("user_name"));
 			user.setFirstName(results.getString("first_name"));
 			user.setLastName(results.getString("last_name"));
 			user.setEmail(results.getString("email"));

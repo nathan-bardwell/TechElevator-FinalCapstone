@@ -120,8 +120,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
-	public String showHouseDetail(ModelMap modelHolder, @RequestParam String resident) {
-		modelHolder.put("house", houseDao.getHouseByResident(resident));
+	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId) {
+		modelHolder.put("house", houseDao.getHouseById(houseId));
 		return "/houseDetail";
 	}
 	
