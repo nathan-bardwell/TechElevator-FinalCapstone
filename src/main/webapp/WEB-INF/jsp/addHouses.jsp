@@ -40,6 +40,8 @@
 				<option value="CL">Closed</option>
 				<option value="FU">Follow Up</option>
 			</select><br>
+			Notes:<br>
+			<textarea  name="note" class="form-control"></textarea>
 			
  		<!-- <input type="submit" value="Submit" > -->
 			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
