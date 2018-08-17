@@ -11,8 +11,6 @@
 			<option value="timestamp"><c:out value="Time" /></option>
 			<option value="userId"><c:out value="Salesman" /></option>
 			<option value="status"><c:out value="Status" /></option>
-
-			
 		</select>
 <input type = "submit" value = "Get Data"/>
 
