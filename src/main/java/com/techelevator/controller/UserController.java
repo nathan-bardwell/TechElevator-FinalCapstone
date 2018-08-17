@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.HouseDAO;
+import com.techelevator.model.NoteDAO;
 import com.techelevator.model.TeamDAO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
@@ -24,12 +25,14 @@ public class UserController {
 	private UserDAO userDAO;
 	private TeamDAO teamDAO;
 	private HouseDAO houseDao;
+	private NoteDAO noteDao;
 
 	@Autowired
-	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao) {
+	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao, NoteDAO noteDao) {
 		this.userDAO = userDAO;
 		this.teamDAO = teamDAO;
 		this.houseDao= houseDao;
+		this.noteDao= noteDao;
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
@@ -123,6 +126,16 @@ public class UserController {
 	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId) {
 		modelHolder.put("house", houseDao.getHouseById(houseId));
 		return "/houseDetail";
+	}
+	
+	@RequestMapping(path = "/salesData" , method = RequestMethod.GET)
+	public String showSalesData(ModelMap modelHolder, HttpSession session) {
+		
+		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
+     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
+		modelHolder.put("houses", houseDao.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
+		
+		return "/salesData";
 	}
 	
 	

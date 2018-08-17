@@ -48,3 +48,8 @@ footer{
 	padding-top:200px;
 	text-align: center;
 }
+
+a.nameLink{
+	color: black;
+	text-decoration: none;
+}

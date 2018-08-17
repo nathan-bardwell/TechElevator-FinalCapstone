@@ -68,7 +68,8 @@
 							<li><a href = "${viewHouses }">View Houses</a></li>
 							<c:url var = "addHouses" value = "/addHouses"/>
 							<li><a href = "${addHouses }">Add Houses</a></li>
-							<li><a>Sales Data</a></li>
+							<c:url var = "salesData" value = "/salesData"/>
+							<li><a href = "${salesData }">Sales Data</a></li>
 						</c:when>
 						<c:when test = "${currentUser.role == 'Salesman' }">
 							<c:url var="homePageHref" value="/salesman" />
