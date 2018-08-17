@@ -31,7 +31,52 @@
   
   <filter-mapping>
   	<filter-name>authFilter</filter-name>
-  	<url-pattern>/users/*</url-pattern>
+  	<url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/salesman/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/viewTeam/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/houseDetail/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/salesData/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/newSalesman/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/addHouses/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/textArea/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/viewHouses/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/updateAssignment/*</url-pattern>
   </filter-mapping>
   
   <filter-mapping>
