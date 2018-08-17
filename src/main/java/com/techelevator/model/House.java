@@ -10,8 +10,22 @@ public class House {
 	private String phoneNumber;
 	private String status;
 	private String recentNote;
+	private String city;
+	private String state;
 	
 	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getRecentNote() {
 		return recentNote;
 	}

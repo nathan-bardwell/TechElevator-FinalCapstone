@@ -61,7 +61,7 @@ public class HouseController {
 			return "redirect:/addHouses";
 		} 
 		
-			Long id = houseDAO.createHouse(house.getAddress(), house.getResident(),  house.getPhoneNumber(), house.getStatus(), creatorId);
+			Long id = houseDAO.createHouse(house.getAddress(), house.getResident(),  house.getPhoneNumber(), house.getStatus(),house.getCity(), house.getState(), creatorId);
 			noteDAO.saveNewNote(id, creatorId, note, LocalDateTime.now());
 			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
 			return "redirect:/addHouses";

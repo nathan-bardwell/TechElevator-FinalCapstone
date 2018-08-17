@@ -1,15 +1,7 @@
 package com.techelevator.model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.io.Reader;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -18,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class JDBCHouseDAO implements HouseDAO
@@ -34,12 +25,11 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 
 	@Override
-	public Long createHouse(String address, String resident, String phone_number, String status,
-			String creatorId) {
+	public Long createHouse(String address, String resident, String phone_number, String status, String city, String state, String creatorId) {
 		
-		String creatHouseSql = "INSERT INTO house(address, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?) RETURNING house_id";
+		String creatHouseSql = "INSERT INTO house(address, city, state, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING house_id";
 
-		SqlRowSet result = jdbcTemplate.queryForRowSet(creatHouseSql, address, resident, phone_number, status,  creatorId);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(creatHouseSql, address, city, state, resident, phone_number, status,  creatorId);
 		
 		result.next();
 		long id = result.getLong("house_id");
@@ -60,7 +50,7 @@ public class JDBCHouseDAO implements HouseDAO
 				{
 					if(!field.isEmpty()) {
 					String[] values = field.split("\\|");
-					createHouse(values[0], values[1], values[2], values[3],  userName);
+					createHouse(values[0], values[1], values[2], values[3], values[4], values[5],  userName);
 					}
 				}
 		} catch (Exception e)
@@ -189,6 +179,8 @@ public class JDBCHouseDAO implements HouseDAO
 		house.setPhoneNumber(results.getString("phone_number"));
 		house.setResident(results.getString("resident"));
 		house.setStatus(results.getString("status"));
+		house.setCity(results.getString("city"));
+		house.setState(results.getString("state"));
 		return house;
 	}
 

@@ -27,6 +27,8 @@ CREATE TABLE app_user (
 CREATE TABLE house(
   house_id SERIAL PRIMARY KEY,
   address varchar(120) NOT NULL,
+  city varchar(25) NOT NULL,
+  state varchar(25) NOT NULL,
   resident varchar(64) NOT NULL,
   phone_number varchar(15),
   creator_id varchar(32) NOT NULL,
