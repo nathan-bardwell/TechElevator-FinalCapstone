@@ -16,11 +16,7 @@ public class JDBCNoteDAO implements NoteDAO{
 
 	private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-	public JDBCNoteDAO(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
 
-	}
 	
 	@Autowired
 	private NoteDAO noteDAO;
