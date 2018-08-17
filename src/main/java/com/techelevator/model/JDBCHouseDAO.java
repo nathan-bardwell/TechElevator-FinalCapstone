@@ -111,6 +111,58 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 	
 	@Override
+	public List<House> viewHousesSortedBySalesman(String userName){
+		List<House> houseList = new ArrayList<House>();
+		String sql = "SELECT * FROM house WHERE creator_id = ? ORDER BY assignment_id ASC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
+
+		while (results.next())
+		{
+			houseList.add(mapToRow(results));
+		}
+
+		return houseList;
+	}
+	@Override
+	public List<House> viewHousesSortedByStatus(String userName){
+		List<House> houseList = new ArrayList<House>();
+		String sql = "SELECT * FROM house WHERE creator_id = ? " + 
+				"ORDER BY " + 
+				"        CASE status " + 
+				"        WHEN 'NV' THEN 1 " + 
+				"        WHEN 'NI' THEN 2 " + 
+				"        WHEN 'O'  THEN 3 " + 
+				"        WHEN 'CL' THEN 4 " + 
+				"        WHEN 'FU' THEN 5 " + 
+				"     " + 
+				"   END;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
+
+		while (results.next())
+		{
+			houseList.add(mapToRow(results));
+		}
+
+		return houseList;
+	}
+	
+	@Override
+	public List<House> viewHousesSortedByResident(String userName){
+		List<House> houseList = new ArrayList<House>();
+		String sql = "SELECT * FROM house WHERE creator_id = ? ORDER BY resident ASC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
+
+		while (results.next())
+		{
+			houseList.add(mapToRow(results));
+		}
+
+		return houseList;
+	}
+	
+	
+	
+	@Override
 	public int updateAssignment(long houseId, String assignmentId) {
 	
 		String updateSql = "UPDATE house SET assignment_id = ? WHERE house_id =?";

@@ -18,4 +18,10 @@ public interface HouseDAO {
 	List<House> viewAssignedHouses(String userName);
 
 	int updateAssignment(long houseId, String assignmentId);
+
+	List<House> viewHousesSortedBySalesman(String userName);
+
+	List<House> viewHousesSortedByStatus(String userName);
+
+	List<House> viewHousesSortedByResident(String userName);
 }

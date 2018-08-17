@@ -8,7 +8,7 @@
 <form method = "GET" action = "${formAction }">
 		<label for="sort">Sort By:</label> 
 		<select name="sort"	id="sort">
-			<option value="timestamp">Time</option>
+			<option value="resident">Resident Name</option>
 			<option value="userId">Salesman</option>
 			<option value="status">Status</option>
 
