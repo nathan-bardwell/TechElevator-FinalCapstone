@@ -9,8 +9,15 @@ public class House {
 	private String assignmentId;
 	private String phoneNumber;
 	private String status;
+	private String recentNote;
 	
 	
+	public String getRecentNote() {
+		return recentNote;
+	}
+	public void setRecentNote(String recentNote) {
+		this.recentNote = recentNote;
+	}
 	public long getHouseId() {
 		return houseId;
 	}
