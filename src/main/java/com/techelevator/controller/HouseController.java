@@ -83,8 +83,8 @@ public class HouseController {
 	
 	@RequestMapping(path ="/viewHouses", method = RequestMethod.GET)
 	public String viewHouse(ModelMap modelHolder, HttpSession session) {
-		long id  = teamDao.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-		modelHolder.put("teamMembers",teamDao.getAllTeamMembers(id));
+		long teamId  = teamDao.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
+		modelHolder.put("teamMembers",teamDao.getAllTeamMembers(teamId));
 		modelHolder.put("houses", houseDAO.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
 		return "/viewHouses";
 	}
