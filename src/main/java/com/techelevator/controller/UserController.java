@@ -69,9 +69,7 @@ public class UserController {
 	@RequestMapping(path="/newSalesman", method=RequestMethod.GET)
 	public String displayNewSalesmanForm(ModelMap modelHolder, RedirectAttributes flash, HttpSession session) {
 		
-		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login?destination=/newSalesman";
-		} else if (!((User) session.getAttribute("currentUser")).getRole().equals("Admin")) {
+		if (!((User) session.getAttribute("currentUser")).getRole().equals("Admin")) {
 			return "/notAuthorized";
 		}
 		
@@ -104,26 +102,24 @@ public class UserController {
 	
 	@RequestMapping(path="/salesman", method=RequestMethod.GET)
 	public String showSalesmanPage(HttpSession session, ModelMap modelHolder) {
-		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login?destination=/salesman";
-		}
 		modelHolder.put("houses", houseDao.viewAssignedHouses(((User)session.getAttribute("currentUser")).getUserName()));
 		return "/salesman";
 	}
 	
 	@RequestMapping(path= {"/admin", "/viewTeam"}, method=RequestMethod.GET)
 	public String showTeam(HttpSession session, ModelMap modelHolder) {
-		if(session.getAttribute("currentUser") == null) {
-			return "redirect:/login?destination=/admin";
-		}
-		
 		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
 		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
 		return "/viewTeam";
 	}
 	
 	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
-	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId) {
+	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
+		String username = ((User) session.getAttribute("currentUser")).getUserName();
+		String assignedTo = houseDao.getHouseById(houseId).getAssignmentId();
+		if (!username.equals(assignedTo)) {
+			return "/notAuthorized";
+		}
 		modelHolder.put("house", houseDao.getHouseById(houseId));
 		return "/houseDetail";
 	}
@@ -152,10 +148,17 @@ public class UserController {
 	     	modelHolder.put("houses", houseDao.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
 		}
 		
-	
-		
-		
 		return "/salesData";
+	}
+	
+	@RequestMapping(path="/changePassword", method=RequestMethod.GET)
+	public String showChangePassForm() {
+		return "/changePassword"; 
+	}
+	
+	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
+	public String submitChangePassForm() {
+		return "redirect:/changePassword"; 
 	}
 	
 	
