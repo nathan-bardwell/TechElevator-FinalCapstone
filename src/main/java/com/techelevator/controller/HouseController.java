@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.House;
@@ -73,7 +72,7 @@ public class HouseController {
 	public String addNewHousesByCsv(@Valid @RequestParam String textArea, RedirectAttributes flash, HttpSession session) {
 		int success = houseDAO.createHouseMultiple(textArea, ((User)session.getAttribute("currentUser")).getUserName());	
 		if(success==0) {
-			flash.addFlashAttribute("message", "Houses Created Successfully!");
+			flash.addFlashAttribute("message", "House(s) Created Successfully!");
 		}else {
 			flash.addFlashAttribute("message", "Unable to create new houses");
 		}
@@ -96,12 +95,24 @@ public class HouseController {
 		}
 		int success = houseDAO.updateAssignment(houseId, assignmentId);
 		if(success==0) {
-			flash.addFlashAttribute("message", "Houses Created Successfully!");
+			flash.addFlashAttribute("message", "House(s) updated Successfully!");
 		}else {
-			flash.addFlashAttribute("message", "Unable to create new houses");
+			flash.addFlashAttribute("message", "Unable to update house(s)");
 		}
 		
 		return "redirect:/viewHouses";
+	}
+	
+	@RequestMapping(path="/addNote", method=RequestMethod.GET)
+	public String displayNewNoteForm(ModelMap modelHolder, @RequestParam long houseId) {
+		modelHolder.put("house", houseDAO.getHouseById(houseId));
+		return "/newNote";
+	}
+	
+	@RequestMapping(path="/addNote", method=RequestMethod.POST)
+	public String addNewHouseNote(@RequestParam String text, @RequestParam long houseId, @RequestParam String creatorId) {
+		noteDAO.saveNewNote(houseId, creatorId, text, LocalDateTime.now());
+		return "redirect:/houseDetail?houseId=" + houseId;
 	}
 	
 }

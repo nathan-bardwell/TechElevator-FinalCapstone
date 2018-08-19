@@ -121,6 +121,7 @@ public class UserController {
 			return "/notAuthorized";
 		}
 		modelHolder.put("house", houseDao.getHouseById(houseId));
+		modelHolder.put("notes", noteDao.getNotesByHouseId(houseId));
 		return "/houseDetail";
 	}
 	

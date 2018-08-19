@@ -27,8 +27,8 @@ public class JDBCNoteDAO implements NoteDAO{
 	public List<Note> getNotesByHouseId(Long houseId) {
 		List<Note> notes = new ArrayList<>();
 		String getNotesSql = "SELECT * "
-								+ "FROM note n"
-								+ "JOIN house_notes hn"
+								+ "FROM note n "
+								+ "JOIN house_notes hn "
 								+ "ON n.note_id = hn.note_id "
 								+ "WHERE hn.house_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getNotesSql, houseId);
@@ -36,7 +36,7 @@ public class JDBCNoteDAO implements NoteDAO{
 			Note thisNote = new Note();
 			thisNote.setId(results.getLong("note_id"));
 			thisNote.setText(results.getString("text"));
-			thisNote.setTimestamp(results.getTimestamp("timestamp").toLocalDateTime());
+			thisNote.setTimestamp(results.getTimestamp("time").toLocalDateTime());
 			
 			notes.add(thisNote);
 		}
