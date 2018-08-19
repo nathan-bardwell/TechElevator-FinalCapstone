@@ -13,9 +13,10 @@
 	</tr>
 
 	<c:forEach var="house" items="${houses }">
+	<c:url var = "houseDetail" value = "/houseDetail?houseId=${house.houseId }"/>
 		<tr>
-			<td><c:out value="${house.resident }" /></td>
-			<td><c:out value="${house.address }" /></td>
+			<td><a class = "nameLink" href = "${houseDetail}"><c:out value = "${house.resident }"/></a></td>
+			<td><c:out value="${house.address} ${house.city }, ${house.state } " /></td>
 			<td><c:out value="${house.phoneNumber }" /></td>
 			<td><c:choose>
 					<c:when test="${house.assignmentId == null }">

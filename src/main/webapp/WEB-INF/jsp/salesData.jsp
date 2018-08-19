@@ -8,7 +8,7 @@
 <form method = "GET" action = "${formAction }">
 		<label for="sort"><c:out value="Sort By:" /></label> 
 		<select name="sort"	id="sort">
-			<option value="timestamp"><c:out value="Time" /></option>
+			<option value="resident"><c:out value="Resident" /></option>
 			<option value="userId"><c:out value="Salesman" /></option>
 			<option value="status"><c:out value="Status" /></option>
 		</select>
@@ -30,7 +30,7 @@
 	
 		<tr>
 		<td><a class = "nameLink" href = "${houseDetail}"><c:out value = "${house.resident }"/></a></td>
-		<td><c:out value = "${house.address }"/></td>
+		<td><c:out value = "${house.address} ${house.city }, ${house.state } "/></td>
 		<td><a class = "nameLink" href ="#"><c:out value = "${house.assignmentId }"/></a></td>
 		<td>
 			<c:choose>

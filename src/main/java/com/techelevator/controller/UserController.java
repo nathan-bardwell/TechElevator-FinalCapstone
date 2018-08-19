@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.EmailServiceImpl;
 import com.techelevator.model.HouseDAO;
 import com.techelevator.model.NoteDAO;
 import com.techelevator.model.TeamDAO;
@@ -26,6 +27,7 @@ public class UserController {
 	private TeamDAO teamDAO;
 	private HouseDAO houseDao;
 	private NoteDAO noteDao;
+	//private EmailServiceImpl email = new EmailServiceImpl();
 
 	@Autowired
 	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao, NoteDAO noteDao) {
@@ -91,6 +93,7 @@ public class UserController {
             return "redirect:/newSalesman";
         }
         
+        //email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
         long team_id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
@@ -117,7 +120,8 @@ public class UserController {
 	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
 		String username = ((User) session.getAttribute("currentUser")).getUserName();
 		String assignedTo = houseDao.getHouseById(houseId).getAssignmentId();
-		if (!username.equals(assignedTo)) {
+		String assignedAdmin = houseDao.getHouseById(houseId).getCreatorId();
+		if (!username.equals(assignedTo) && !username.equals(assignedAdmin) ) {
 			return "/notAuthorized";
 		}
 		modelHolder.put("house", houseDao.getHouseById(houseId));
