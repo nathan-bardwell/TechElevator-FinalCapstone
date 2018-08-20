@@ -162,7 +162,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
-	public String submitChangePassForm() {
+	public String submitChangePassForm(@RequestParam String newPassword, HttpSession session, RedirectAttributes flash) {
+		String userName = ((User) (session.getAttribute("currentUser"))).getUserName();
+		int success = userDAO.updatePassword(userName, newPassword);
+		
+		if(success == 0) {
+			flash.addFlashAttribute("message", "Password has been successfully changed");
+		}
+		
 		return "redirect:/changePassword"; 
 	}
 	
