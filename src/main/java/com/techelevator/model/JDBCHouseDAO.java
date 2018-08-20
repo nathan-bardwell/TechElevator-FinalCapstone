@@ -25,7 +25,7 @@ public class JDBCHouseDAO implements HouseDAO
 	}
 
 	@Override
-	public Long createHouse(String address, String resident, String phone_number, String status, String city, String state, String creatorId) {
+	public Long createHouse(String address, String city, String state, String resident, String phone_number, String status,  String creatorId) {
 		
 		String creatHouseSql = "INSERT INTO house(address, city, state, resident,  phone_number, status,creator_id) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING house_id";
 
@@ -41,20 +41,22 @@ public class JDBCHouseDAO implements HouseDAO
 	public int createHouseMultiple(String textArea, String userName)
 	{
 	
-		
+		textArea=textArea.replace("\r", "");
 		String[] line = textArea.split("\n");
 
 		try
 		{
 				for (String field : line)
 				{
-					if(!field.isEmpty()) {
+					
+					
 					String[] values = field.split("\\|");
 					createHouse(values[0], values[1], values[2], values[3], values[4], values[5],  userName);
-					}
+					
 				}
 		} catch (Exception e)
 		{
+			e.printStackTrace();
 			System.out.println("This did not work");
 			return 1;
 		}

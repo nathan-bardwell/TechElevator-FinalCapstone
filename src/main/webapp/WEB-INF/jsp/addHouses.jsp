@@ -105,15 +105,30 @@
 	<div style="display: none" id="MultipleInput">
 	<c:url var="importCsvUrl" value="/textArea"/>
 	<form action="${importCsvUrl}" method="POST">
-		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-	<textarea class="form-control" id="textAreaInput" name="textArea"></textarea>
-		
-			<h3><c:out value="Add house info above: Copy and Paste from CSV using the following format" /></h3>
-			<h4><c:out value="address|resident|phone number|status" /></h4>
-			<input type="submit" value="Submit">
-			
-		
-	</form></div>
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+				<input type="file" class="form-control" id="fileInput"/>
+				<input type="hidden" value="" id="textInput" name='textArea'>
+				<h3>Please format CSV as follows:</h3>
+				<h4>address | city | state | resident | phone_number | status</h4>
+						
+				<script>
+				 document.getElementById('fileInput').addEventListener('change', readFile, false);
+					var text="";
+				   function readFile (evt) {
+				       var files = evt.target.files;
+				       var file = files[0];           
+				       var reader = new FileReader();
+				       reader.onload = function(event) {
+				         console.log("This is the file data:\n", event.target.result);
+					       document.getElementById('textInput').value=event.target.result;				        
+				       }
+				       reader.readAsText(file)
+				    }
+				</script>
+				<input type="submit" value="Submit" id="submit" />
+
+
+			</form></div>
 	 
 	</div>
 	<div class="col-sm-1"></div> 
