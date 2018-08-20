@@ -21,22 +21,21 @@
  <td><c:out value = "${house.phoneNumber }"/></td>
  <td>
  	<c:choose>
- 		<c:when test = "${house.status == 'NV' }">
- 		<c:out value = "Not Visited"/>
- 		</c:when>
- 		<c:when test = "${house.status == 'NS' }">
- 		<c:out value = "No Solicitors"/>
- 		</c:when>
- 		<c:when test = "${house.status == 'O' }">
- 		<c:out value = "Ordered"/>
- 		</c:when>
- 		<c:when test = "${house.status == 'FU' }">
- 		<c:out value = "Follow Up"/>
- 		</c:when>
- 		<c:when test = "${house.status == 'NI' }">
- 		<c:out value = "Not Interested"/>
- 		</c:when>
- 	
+		<c:when test="${house.status == 'NV'}">
+			<c:out value="Not Visited" />
+		</c:when>
+		<c:when test="${house.status == 'NI'}">
+			<c:out value="Not Interested" />
+		</c:when>
+		<c:when test="${house.status == 'O'}">
+			<c:out value="Order Placed" />
+		</c:when>
+		<c:when test="${house.status == 'CL'}">
+			<c:out value="Closed" />
+		</c:when>
+		<c:when test="${house.status == 'FU'}">
+			<c:out value="Follow Up Required" />
+		</c:when>
  	</c:choose>
  </td>	
 
