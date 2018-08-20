@@ -60,7 +60,7 @@ public class HouseController {
 			return "redirect:/addHouses";
 		} 
 		
-			Long id = houseDAO.createHouse(house.getAddress(), house.getResident(),  house.getPhoneNumber(), house.getStatus(),house.getCity(), house.getState(), creatorId);
+			Long id = houseDAO.createHouse(house.getAddress(), house.getCity(), house.getState(), house.getResident(), house.getPhoneNumber(), house.getStatus(), creatorId);
 			noteDAO.saveNewNote(id, creatorId, note, LocalDateTime.now());
 			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
 			return "redirect:/addHouses";
@@ -74,7 +74,7 @@ public class HouseController {
 		if(success==0) {
 			flash.addFlashAttribute("message", "House(s) Created Successfully!");
 		}else {
-			flash.addFlashAttribute("message", "Unable to create new houses");
+			flash.addFlashAttribute("errorMessage", "Unable to create new houses");
 		}
 		
 		return "redirect:/addHouses";
@@ -119,6 +119,17 @@ public class HouseController {
 	public String updateHouseStatus(@RequestParam String status, @RequestParam long houseId, @RequestParam String username) {
 		houseDAO.updateHouseStatus(houseId, status);
 		
+		if(status.equals("NV")) {
+			status = "Not Visited";
+		} else if(status.equals("NI") ) {
+			status = "Not Interested";
+		} else if(status.equals("CL") ) {
+			status = "Closed";
+		} else if(status.equals("O") ) {
+			status = "Ordered";
+		} else {
+			status = "Follow Up";
+		}
 		String statusChange = "Status changed to " + status + ".";
 		noteDAO.saveNewNote(houseId, username, statusChange, LocalDateTime.now());
 		return "redirect:/houseDetail?houseId=" + houseId;

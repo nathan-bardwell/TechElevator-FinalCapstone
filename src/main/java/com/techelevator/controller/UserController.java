@@ -59,7 +59,7 @@ public class UserController {
     	   flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
     	   teamDAO.createNewTeam(teamName, user.getUserName());
        }else {
-    	   flash.addFlashAttribute("message", "Invalid Registration, Please Try Again");
+    	   flash.addFlashAttribute("errorMessage", "Invalid Registration, Please Try Again");
     	   return "redirect:/users/new";
        }
         

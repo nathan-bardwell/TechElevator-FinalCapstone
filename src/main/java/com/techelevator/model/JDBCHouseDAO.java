@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,8 @@ public class JDBCHouseDAO implements HouseDAO
 					
 					
 					String[] values = field.split("\\|");
-					createHouse(values[0], values[1], values[2], values[3], values[4], values[5],  userName);
-					
+					long houseId = createHouse(values[0], values[1], values[2], values[3], values[4], values[5],  userName);
+					saveNewNote(houseId);
 				}
 		} catch (Exception e)
 		{
@@ -201,6 +202,18 @@ public class JDBCHouseDAO implements HouseDAO
 		return null;
 	}
 
-
+	private void saveNewNote(long houseId) {
+		String newNoteSql = "INSERT INTO note (text, time) "
+				   + "VALUES (?, ?) RETURNING note_id";
+		String finalNote = "House Added.";
+		long noteId;
+		SqlRowSet newNoteResult = jdbcTemplate.queryForRowSet(newNoteSql, finalNote, LocalDateTime.now());
+		newNoteResult.next();
+		noteId = newNoteResult.getLong("note_id");
+		
+		String matchNoteToHouseSql = "INSERT INTO house_notes (house_id, note_id) "
+										  + "VALUES (?, ?)";
+		jdbcTemplate.update(matchNoteToHouseSql, houseId, noteId);
+	}
 
 }
