@@ -142,22 +142,34 @@ public class UserController {
 		
 		return "/salesData";
 	}
-	
+		
 	@RequestMapping(path="/changePassword", method=RequestMethod.GET)
 	public String showChangePassForm() {
 		return "/changePassword"; 
 	}
 	
 	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
-	public String submitChangePassForm(@RequestParam String newPassword, HttpSession session, RedirectAttributes flash) {
+	public String submitChangePassForm(ModelMap model, @RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, RedirectAttributes flash) {
 		String userName = ((User) (session.getAttribute("currentUser"))).getUserName();
-		int success = userDAO.updatePassword(userName, newPassword);
-		
-		if(success == 0) {
-			flash.addFlashAttribute("message", "Password has been successfully changed");
+		if(userDAO.searchForUsernameAndPassword(userName, oldPassword)) {
+			int success = userDAO.updatePassword(userName, newPassword);
+			
+			if(success == 0) {
+				flash.addFlashAttribute("message", "Password has been successfully changed. Please log back in.");
+				model.remove("currentUser");
+				session.invalidate();
+				return "redirect:/";
+			} else {
+				flash.addFlashAttribute("errorMessage", "An error occured when trying to change your password. Please try again.");
+				return "redirect:/changePassword"; 
+			}
+		} else {
+			flash.addFlashAttribute("errorMessage", "An error occured when trying to change your password. Please try again.");
+			return "redirect:/changePassword"; 
 		}
 		
-		return "redirect:/changePassword"; 
+		
+		
 	}
 	
 	

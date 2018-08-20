@@ -78,6 +78,10 @@
   	<filter-name>authFilter</filter-name>
   	<url-pattern>/updateAssignment/*</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+  	<filter-name>authFilter</filter-name>
+  	<url-pattern>/changePassword/*</url-pattern>
+  </filter-mapping>
   
   <filter-mapping>
   	<filter-name>csrfFilter</filter-name>
