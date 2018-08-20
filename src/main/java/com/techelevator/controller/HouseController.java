@@ -115,4 +115,16 @@ public class HouseController {
 		return "redirect:/houseDetail?houseId=" + houseId;
 	}
 	
+	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
+	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
+		String username = ((User) session.getAttribute("currentUser")).getUserName();
+		String assignedTo = houseDAO.getHouseById(houseId).getAssignmentId();
+		String assignedAdmin = houseDAO.getHouseById(houseId).getCreatorId();
+		if (!username.equals(assignedTo) && !username.equals(assignedAdmin) ) {
+			return "/notAuthorized";
+		}
+		modelHolder.put("house", houseDAO.getHouseById(houseId));
+		modelHolder.put("notes", noteDAO.getNotesByHouseId(houseId));
+		return "/houseDetail";
+	}
 }
