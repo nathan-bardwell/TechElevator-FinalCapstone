@@ -7,17 +7,17 @@
 
 <table class="table">
 <tr>
-	<th>Resident Name</th>
-	<th>Address</th>
-	<th>Phone Number</th>
-	<th>Status</th>
+	<th><c:out value="Resident Name" /></th>
+	<th><c:out value="Address" /></th>
+	<th><c:out value="Phone Number" /></th>
+	<th><c:out value="Status" /></th>
 </tr>
 
 <c:forEach var = "house" items = "${houses }">
 <tr>
  <c:url var = "detailPageUrl" value = "/houseDetail?houseId=${house.houseId}"/>	
  <td><a href = "${detailPageUrl }"><c:out value = "${house.resident }"/></a></td>
- <td><c:out value = "${house.address }"/></td>
+ <td><c:out value="${house.address} ${house.city }, ${house.state } " /></td>
  <td><c:out value = "${house.phoneNumber }"/></td>
  <td>
  	<c:choose>
@@ -44,5 +44,34 @@
 </c:forEach>
 </table>
 
-<iframe width="300" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=10&center=41.4993%2C-81.6944&key=AIzaSyBJfBa4dO1dPPe7d3pKyQ5HkwqX21jLU_o" allowfullscreen></iframe> 
+<form>
+<select name="mapHouses" id="mapHouse">
+	<option disabled selected><c:out value="Choose Address To View" /></option>
+	<c:forEach var="mapHouse" items="${houses}">
+		<option value="${mapHouse.address}"><c:out value="${mapHouse.address}" /></option>
+	</c:forEach>
+</select>
+<div class="mapouter">
+	<div class="gmap_canvas">
+		<iframe width="600" height="500" id="gmap_canvas"
+			src="https://maps.google.com/maps?q=${house.address}${house.city}${house.state}&t=&z=13&iwloc=&output=embed"
+			frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+		<a href="https://www.pureblack.de">webdesigner</a>
+	</div>
+<style>
+.mapouter {
+	text-align: right;
+	height: 500px;
+	width: 600px;
+}
+
+.gmap_canvas {
+	overflow: hidden;
+	background: none !important;
+	height: 500px;
+	width: 600px;
+}
+</style>
+</div> 
+</form>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

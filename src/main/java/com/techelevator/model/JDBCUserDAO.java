@@ -54,6 +54,8 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
+	
+
 
 	@Override
 	public int updatePassword(String userName, String password) {

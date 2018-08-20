@@ -109,7 +109,7 @@
 				<input type="file" class="form-control" id="fileInput"/>
 				<input type="hidden" value="" id="textInput" name='textArea'>
 				<h3>Please format CSV as follows:</h3>
-				<h4>address | city | state | resident | phone_number | status</h4>
+				<h4><c:out value="address | city | state | resident | phone_number | status" /></h4>
 						
 				<script>
 				 document.getElementById('fileInput').addEventListener('change', readFile, false);
