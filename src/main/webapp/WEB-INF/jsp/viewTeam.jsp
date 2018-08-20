@@ -15,6 +15,7 @@
 	<th>Last Name</th>
 	<th>Email</th>
 	
+	
 </tr>
 
 <c:forEach var = "teamMember" items = "${teamMembers }">
@@ -25,6 +26,7 @@
  			<td><strong><c:out value = "${teamMember.firstName }"/></strong></td>
  			<td><strong><c:out value = "${teamMember.lastName}"/></strong></td>
  			<td><strong><c:out value = "${teamMember.email }"/></strong></td>
+ 			
 		</tr>
 	</c:when>
 	<c:otherwise>
@@ -32,6 +34,7 @@
 			<td><c:out value = "${teamMember.firstName }"/></td>
 			<td><c:out value = "${teamMember.lastName}"/></td>
 			<td><c:out value = "${teamMember.email }"/></td>
+	
 		</tr>
 	</c:otherwise>
 </c:choose>

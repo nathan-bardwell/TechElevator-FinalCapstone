@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.EmailServiceImpl;
+//import com.techelevator.model.EmailServiceImpl;
 import com.techelevator.model.HouseDAO;
 import com.techelevator.model.NoteDAO;
 import com.techelevator.model.TeamDAO;
@@ -165,6 +165,8 @@ public class UserController {
 	public String submitChangePassForm() {
 		return "redirect:/changePassword"; 
 	}
+	
+
 	
 	
 }
