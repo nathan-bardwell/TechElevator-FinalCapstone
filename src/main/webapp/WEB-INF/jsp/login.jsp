@@ -1,6 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -25,7 +29,7 @@
 	});
 </script>
 
-<div class="row">
+<div class="login-form-1">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
 		<c:url var="formAction" value="/login" />
@@ -40,7 +44,7 @@
 				<label for="password">Password: </label>
 				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
 			</div>
-			<button type="submit" class="btn btn-default">Login</button>
+			<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 		</form>
 	</div>
 	<div class="col-sm-4"></div>
