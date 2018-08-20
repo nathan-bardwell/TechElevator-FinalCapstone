@@ -6,11 +6,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailServiceImpl{
+public class EmailServiceImpl {
 	  
 
-	    
-	    @Autowired
+
+		@Autowired
 	    public JavaMailSender emailSender;
 	 
 	    public void sendSimpleMessage(String to, String adminName, String username, String password) {
