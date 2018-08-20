@@ -8,7 +8,7 @@ public interface UserDAO {
 
 	public boolean searchForUsernameAndPassword(String userName, String password);
 
-	public void updatePassword(String userName, String password);
+	public int updatePassword(String userName, String password);
 
 	public User getUserByUserName(String userName);
 

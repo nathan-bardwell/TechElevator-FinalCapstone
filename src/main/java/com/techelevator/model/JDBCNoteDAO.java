@@ -30,7 +30,8 @@ public class JDBCNoteDAO implements NoteDAO{
 								+ "FROM note n "
 								+ "JOIN house_notes hn "
 								+ "ON n.note_id = hn.note_id "
-								+ "WHERE hn.house_id = ?";
+								+ "WHERE hn.house_id = ? "
+								+ "ORDER BY time DESC;";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getNotesSql, houseId);
 		while(results.next()) {
 			Note thisNote = new Note();

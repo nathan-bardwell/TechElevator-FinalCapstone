@@ -116,19 +116,6 @@ public class UserController {
 		return "/viewTeam";
 	}
 	
-	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
-	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
-		String username = ((User) session.getAttribute("currentUser")).getUserName();
-		String assignedTo = houseDao.getHouseById(houseId).getAssignmentId();
-		String assignedAdmin = houseDao.getHouseById(houseId).getCreatorId();
-		if (!username.equals(assignedTo) && !username.equals(assignedAdmin) ) {
-			return "/notAuthorized";
-		}
-		modelHolder.put("house", houseDao.getHouseById(houseId));
-		modelHolder.put("notes", noteDao.getNotesByHouseId(houseId));
-		return "/houseDetail";
-	}
-	
 	@RequestMapping(path = "/salesData" , method = RequestMethod.GET)
 	public String showSalesData(ModelMap modelHolder, HttpSession session, @RequestParam(required = false) String sort) {
 		if(sort == null) {
@@ -162,7 +149,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
-	public String submitChangePassForm() {
+	public String submitChangePassForm(@RequestParam String newPassword, HttpSession session, RedirectAttributes flash) {
+		String userName = ((User) (session.getAttribute("currentUser"))).getUserName();
+		int success = userDAO.updatePassword(userName, newPassword);
+		
+		if(success == 0) {
+			flash.addFlashAttribute("message", "Password has been successfully changed");
+		}
+		
 		return "redirect:/changePassword"; 
 	}
 	

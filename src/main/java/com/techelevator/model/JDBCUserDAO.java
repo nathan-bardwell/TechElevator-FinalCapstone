@@ -58,8 +58,18 @@ public class JDBCUserDAO implements UserDAO {
 
 
 	@Override
-	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", password, userName);
+	public int updatePassword(String userName, String password) {
+		try {
+			byte[] salt = hashMaster.generateRandomSalt();
+			String hashedPassword = hashMaster.computeHash(password, salt);
+			String saltString = new String(Base64.encode(salt));
+			
+		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
+		
+		}catch (Exception e) {
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override
