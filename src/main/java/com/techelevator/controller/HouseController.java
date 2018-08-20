@@ -115,6 +115,15 @@ public class HouseController {
 		return "redirect:/houseDetail?houseId=" + houseId;
 	}
 	
+	@RequestMapping(path="/updateStatus", method=RequestMethod.POST)
+	public String updateHouseStatus(@RequestParam String status, @RequestParam long houseId, @RequestParam String username) {
+		houseDAO.updateHouseStatus(houseId, status);
+		
+		String statusChange = "Status changed to " + status + ".";
+		noteDAO.saveNewNote(houseId, username, statusChange, LocalDateTime.now());
+		return "redirect:/houseDetail?houseId=" + houseId;
+	}
+	
 	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
 	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
 		String username = ((User) session.getAttribute("currentUser")).getUserName();

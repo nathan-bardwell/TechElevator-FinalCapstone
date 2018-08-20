@@ -185,6 +185,14 @@ public class JDBCHouseDAO implements HouseDAO
 		house.setState(results.getString("state"));
 		return house;
 	}
+	
+	@Override
+	public void updateHouseStatus(long houseId, String status) {
+		String changeHouseStatusSql = "UPDATE house "
+									+ "SET status = ? "
+									+ "WHERE house_id = ?;";
+		jdbcTemplate.update(changeHouseStatusSql, status, houseId);
+	}
 
 	@Override
 	public List<House> getHouseByTeam(long teamId)

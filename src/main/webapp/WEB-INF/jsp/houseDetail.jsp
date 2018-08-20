@@ -52,7 +52,8 @@
 			<c:url var="formAction" value="/updateStatus" />
 			<form action="${formAction}" method="POST">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
-				<input type="hidden" name="houseId" value="${house.houseId}" /> 
+				<input type="hidden" name="houseId" value="${house.houseId}" />
+				<input type="hidden" name="username" value="${currentUser.userName}" /> 
 				<select name="status">
 					<option disabled selected>
 						<c:out value="-- Update Status --" />
