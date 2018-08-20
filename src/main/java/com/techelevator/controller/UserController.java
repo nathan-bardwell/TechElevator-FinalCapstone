@@ -92,7 +92,7 @@ public class UserController {
             flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
             return "redirect:/newSalesman";
         }
-        
+        // Steven has done nothing today
         //email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
