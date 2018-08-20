@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.EmailServiceImpl;
+//import com.techelevator.model.EmailServiceImpl;
 import com.techelevator.model.HouseDAO;
 import com.techelevator.model.NoteDAO;
 import com.techelevator.model.TeamDAO;
@@ -59,7 +59,7 @@ public class UserController {
     	   flash.addFlashAttribute("message", "New Admin " + user.getFirstName() + " Created Successfully!");
     	   teamDAO.createNewTeam(teamName, user.getUserName());
        }else {
-    	   flash.addFlashAttribute("message", "Invalid Registration, Please Try Again");
+    	   flash.addFlashAttribute("errorMessage", "Invalid Registration, Please Try Again");
     	   return "redirect:/users/new";
        }
         
@@ -92,7 +92,7 @@ public class UserController {
             flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
             return "redirect:/newSalesman";
         }
-        
+        // Steven has done nothing today
         //email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
@@ -114,19 +114,6 @@ public class UserController {
 		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
 		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
 		return "/viewTeam";
-	}
-	
-	@RequestMapping(path = "/houseDetail", method = RequestMethod.GET)
-	public String showHouseDetail(ModelMap modelHolder, @RequestParam long houseId, HttpSession session) {
-		String username = ((User) session.getAttribute("currentUser")).getUserName();
-		String assignedTo = houseDao.getHouseById(houseId).getAssignmentId();
-		String assignedAdmin = houseDao.getHouseById(houseId).getCreatorId();
-		if (!username.equals(assignedTo) && !username.equals(assignedAdmin) ) {
-			return "/notAuthorized";
-		}
-		modelHolder.put("house", houseDao.getHouseById(houseId));
-		modelHolder.put("notes", noteDao.getNotesByHouseId(houseId));
-		return "/houseDetail";
 	}
 	
 	@RequestMapping(path = "/salesData" , method = RequestMethod.GET)
@@ -155,16 +142,37 @@ public class UserController {
 		
 		return "/salesData";
 	}
-	
+		
 	@RequestMapping(path="/changePassword", method=RequestMethod.GET)
 	public String showChangePassForm() {
 		return "/changePassword"; 
 	}
 	
 	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
-	public String submitChangePassForm() {
-		return "redirect:/changePassword"; 
+	public String submitChangePassForm(ModelMap model, @RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, RedirectAttributes flash) {
+		String userName = ((User) (session.getAttribute("currentUser"))).getUserName();
+		if(userDAO.searchForUsernameAndPassword(userName, oldPassword)) {
+			int success = userDAO.updatePassword(userName, newPassword);
+			
+			if(success == 0) {
+				flash.addFlashAttribute("message", "Password has been successfully changed. Please log back in.");
+				model.remove("currentUser");
+				session.invalidate();
+				return "redirect:/";
+			} else {
+				flash.addFlashAttribute("errorMessage", "An error occured when trying to change your password. Please try again.");
+				return "redirect:/changePassword"; 
+			}
+		} else {
+			flash.addFlashAttribute("errorMessage", "An error occured when trying to change your password. Please try again.");
+			return "redirect:/changePassword"; 
+		}
+		
+		
+		
 	}
+	
+
 	
 	
 }

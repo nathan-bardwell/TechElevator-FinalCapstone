@@ -8,9 +8,6 @@
 </h2>
 <table>
 	<tr>
-		<th><c:out value="Information on ${house.resident}'s House" /></th>
-	</tr>
-	<tr>
 		<td><c:out value="Address" /></td>
 		<td><c:out value="${house.address}" /></td>
 	</tr>
@@ -49,11 +46,38 @@
 						<c:out value="Follow Up Required" />
 					</c:when>
 				</c:choose>
-		</strong></td>
+			</strong>
+		</td>
 		<td>
-			<button>
-				<c:out value="Change Status" />
-			</button>
+			<c:url var="formAction" value="/updateStatus" />
+			<form action="${formAction}" method="POST">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+				<input type="hidden" name="houseId" value="${house.houseId}" />
+				<input type="hidden" name="username" value="${currentUser.userName}" /> 
+				<select name="status">
+					<option disabled selected>
+						<c:out value="-- Update Status --" />
+					</option>
+					<c:if test="${house.status != 'FU'}">
+						<option value="FU"><c:out value="Follow Up" /></option>
+					</c:if>
+					<c:if test="${house.status != 'NV'}">
+						<option value="NV"><c:out value="Not Visited" /></option>
+					</c:if>
+					<c:if test="${house.status != 'NI'}">
+						<option value="NI"><c:out value="Not Interested" /></option>
+					</c:if>
+					<c:if test="${house.status != 'O'}">
+						<option value="O"><c:out value="Ordered" /></option>
+					</c:if>
+					<c:if test="${house.status != 'CL'}">
+						<option value="CL"><c:out value="Closed" /></option>
+					</c:if>
+				</select>
+				<button type="submit" class="btn btn-submit">
+					<c:out value="Update" />
+				</button>
+			</form>
 		</td>
 	</tr>
 </table>
@@ -81,35 +105,26 @@
 }
 </style>
 </div>
-<c:set var="buttonTest" value="false" />
-<c:forEach var="note" items="${notes}">
-	<table>
-		<tr>
-			<th><c:out value="Note" /></th>
-			<th>
-				<c:url var="addNoteUrl" value="/addNote" />
-				<form action="${addNoteUrl}" method="GET">
-					<input type="hidden" name="houseId" value="${house.houseId}" />
-					<c:choose>
-						<c:when test="${buttonTest == false}">
-							<button><c:out value="New Note" /></button>
-							<c:set var="buttonTest" value="true" />
-						</c:when>
-					</c:choose>
-				</form>
-			<th>
-			<th><c:out value="Timestamp" /></th>
-		</tr>
+
+<table>
+	<tr>
+		<th><c:out value="Note" /></th>
+		<th>
+			<c:url var="addNoteUrl" value="/addNote" />
+			<form action="${addNoteUrl}" method="GET">
+				<input type="hidden" name="houseId" value="${house.houseId}" />
+				<button><c:out value="New Note" /></button>
+			</form>
+		</th>
+		<th><c:out value="Timestamp" /></th>
+	</tr>
+	<c:forEach var="note" items="${notes}">
 		<tr>
 			<td><c:out value="${note.text}" /></td>
 			<td></td>
 			<td><c:out value="${note.timestamp}" /></td>
 		</tr>
-	</table>
-</c:forEach>
+	</c:forEach>
+</table>
 
-
-<iframe width="300" height="300" frameborder="0" style="border: 0"
-	src="https://www.google.com/maps/embed/v1/view?zoom=10&center=41.4993%2C-81.6944&key=AIzaSyBJfBa4dO1dPPe7d3pKyQ5HkwqX21jLU_o"
-	allowfullscreen></iframe>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

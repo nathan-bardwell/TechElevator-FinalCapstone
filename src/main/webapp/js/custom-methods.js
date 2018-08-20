@@ -14,3 +14,7 @@ function switchForms(event) {
         document.getElementById('MultipleInput').style.display = "";
     }
 }
+
+function changeAddress(event) {
+	
+}
