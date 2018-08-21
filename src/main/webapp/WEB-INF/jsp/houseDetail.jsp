@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
@@ -116,7 +117,7 @@
 		<tr class = "noteTableRow">
 			<td id = "noteText"><c:out value="${note.text}" /></td>
 			
-			<td><c:out value="${note.timestamp}" /></td>
+			<td><c:out value="${note.formattedTimestamp}" /></td>
 		</tr>
 		
 	</c:forEach>

@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Note {
 	
@@ -26,6 +27,10 @@ public class Note {
 	}
 	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
+	}
+	
+	public String getFormattedTimestamp() {
+		return this.timestamp.format(DateTimeFormatter.ofPattern("MM-dd-YYYY"));
 	}
 
 }
