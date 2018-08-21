@@ -24,5 +24,6 @@ public interface HouseDAO {
 	List<House> viewHousesSortedByStatus(String userName);
 
 	List<House> viewHousesSortedByResident(String userName);
+	
 	public void updateHouseStatus(long houseId, String status);
 }
