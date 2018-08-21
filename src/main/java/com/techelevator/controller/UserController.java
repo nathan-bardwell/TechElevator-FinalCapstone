@@ -92,7 +92,7 @@ public class UserController {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
             flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
-            return "redirect:/newSalesman";
+            return "redirect:/admin";
         }
         
         email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
@@ -100,7 +100,7 @@ public class UserController {
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
         long team_id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
         teamDAO.addSalesmanToTeam(team_id, user.getUserName());
-        return "redirect:/newSalesman";
+        return "redirect:/admin";
     }
 	
 	
@@ -122,7 +122,7 @@ public class UserController {
 	public String showTeam(HttpSession session, ModelMap modelHolder) {
 		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
 		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-		return "/viewTeam";
+		return "/adminHome";
 	}
 	
 	@RequestMapping(path = "/salesData" , method = RequestMethod.GET)

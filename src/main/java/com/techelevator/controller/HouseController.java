@@ -63,7 +63,7 @@ public class HouseController {
 			Long id = houseDAO.createHouse(house.getAddress(), house.getCity(), house.getState(), house.getResident(), house.getPhoneNumber(), house.getStatus(), creatorId);
 			noteDAO.saveNewNote(id, creatorId, note, LocalDateTime.now());
 			flash.addFlashAttribute("message", "New House " + house.getAddress() + " Created Successfully!");
-			return "redirect:/addHouses";
+			return "redirect:/admin";
 		
 		
 	}
@@ -77,7 +77,7 @@ public class HouseController {
 			flash.addFlashAttribute("errorMessage", "Unable to create new houses");
 		}
 		
-		return "redirect:/addHouses";
+		return "redirect:/admin";
 	}
 	
 	@RequestMapping(path ="/viewHouses", method = RequestMethod.GET)

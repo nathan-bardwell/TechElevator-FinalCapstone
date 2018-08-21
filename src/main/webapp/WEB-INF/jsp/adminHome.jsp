@@ -50,31 +50,139 @@
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
-		<c:out value="How would you like to add houses?" /><br>
+		<c:out value="Add New Information" /><br>
 		<form>
 		<select id="formToggler" class="form-control">
 			<option><c:out value="--Select one--" /></option>
-			<option value="individual" ><c:out value="Individually" /></option>
-			<option  value="csv"><c:out value="Enter multiple" /></option>
+			<option value="house" >Add New Houses</option>
+			<option  value="salesman">Add New Salesperson</option>
+			<option  value="product">Add New Product</option>
 		</select>
 		</form>
 	</div>
 	<div class="col-sm-4"></div>
 </div>
 <div class="row">
-	<div class="col-sm-4"></div>
-	<div class="col-sm-7">
-	<div  style="display:none" id="individualHouseForm">
+	
+	<div id="addSalesmanForm" style="display : none">
+		<script type="text/javascript">
+	$(document).ready(function () {
+		$.validator.addMethod('capitals', function(thing){
+			return thing.match(/[A-Z]/);
+		});
+		$("#newSalesmanForm").validate({
+			
+			rules : {
+				firstName : {
+					required : true
+				},
+				lastName : {
+					required : true
+				},
+				userName : {
+					required : true
+				},
+				password : {
+					required : true,
+					minlength: 10,
+					capitals: true,
+				},
+				confirmPassword : {
+					required : true,		
+					equalTo : "#password"  
+				}
+			},
+			messages : {	
+				firstName: {
+					required: "First Name is required."
+				},
+				lastName: {
+					required: "Last Name is required."
+				},
+				userName: {
+					required: "Username is required."
+				},
+				password: {
+					minlength: "Password too short, make it at least 10 characters",
+					capitals: "Field must contain a capital letter",
+				},
+				confirmPassword : {
+					equalTo : "Passwords do not match"
+				}
+			},
+			errorClass : "error"
+		});
+	});
+</script>
+<div class="col-sm-4"></div>
+<c:url var="formAction" value="/newSalesman" />
+<form id="newSalesmanForm" method="POST" action="${formAction}">
+<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label for="firstName"><c:out value="First Name:" /></label>
+				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" required />	
+			</div>
+			<div class="form-group">
+				<label for="lastName"><c:out value="Last Name:" /></label>
+				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" required />	
+			</div>
+			<div class="form-group">
+				<label for="userName"><c:out value="User Name:" /></label>
+				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label for="password"><c:out value="Password:" /></label>
+				<input type="password" id="password" name="password" placeHolder="Password (at least 10 characters and 1 capital)" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label for="confirmPassword"><c:out value="Confirm Password:" /></label>
+				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" required />	
+			</div>
+			<div class="form-group">
+				<label for="email"><c:out value="Email:" /></label>
+				<input type="email" id="email" name="email" placeHolder="Email" class="form-control" required />	
+			</div>
+			<div class="form-group">
+				<input type="hidden" id="role" name="role" value="Salesman"/>	
+			</div>
+			<button type="submit" class="btn btn-default"><c:out value="Create Salesman" /></button>
+		</div>
+</form><div class="col-sm-4"></div>
+	</div>
+	
+	<div id="addProductForm" style="display : none">
+		<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+	<div>
+	<c:url var="addProductUrl" value="/addProduct"/>
+	<form action="${addProductUrl}" method="POST">
+	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+		
+			<label for="name">Product Name: *</label><input type="text" name="name" class="form-control" required><br>
+			<label for="price">Price: *</label><input type="number" name="price" min="0" value="0.00" step=".01" class="form-control" required><br>
+
+			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
+		
+	</form></div>
+	
+	</div>
+	<div class="col-sm-4"></div> 
+	</div>
+	<div id="addHouseForms" style="display : none">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-4">
+	<div id="individualHouseForm">
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<input type ="hidden" name = "creatorId" value = "${currentUser.userName}"/>
 		
-			<c:out value="Address: *" /><br><input type="text" name="address" class="form-control" required><br>
-			<c:out value="City: *" /><br><input type="text" name="city" class="form-control" required><br>
+			<label for="address">Address: *</label><input type="text" name="address" class="form-control" required><br>
+			<label for="city">City: *</label><input type="text" name="city" class="form-control" required><br>
 			
-			<br><label for="state"><c:out value="State:" /></label>
-			<select name="state" id="state" required>
+			<label for="state">State: *</label>
+			<select name="state" id="state" class="form-control" required>
 				<option value="Alabama"><c:out value="Alabama" /></option>
 				<option value="Alaska"><c:out value="Alaska" /></option>
 				<option value="Arizona"><c:out value="Arizona" /></option>
@@ -126,10 +234,10 @@
 				<option value="West Virginia"><c:out value="West Virginia" /></option>
 				<option value="Wisconsin"><c:out value="Wisconsin" /></option>
 				<option value="Wyoming"><c:out value="Wyoming" /></option>
-			</select><br><br>
-			<c:out value="Resident Name: *" /><br><input type="text" name="resident" class="form-control" required><br>
-			<c:out value="Phone: *" /><br><input type="tel" name="phoneNumber" class="form-control" ><br>
-			<c:out value="Status: *" /><br><select name="status" class="form-control" required>
+			</select><br>
+			<label for="resident">Resident Name: *</label><input type="text" name="resident" class="form-control" required><br>
+			<label for="phoneNumber">Phone: *</label><input type="tel" name="phoneNumber" class="form-control" ><br>
+			<label for="status">Status: *</label><select name="status" class="form-control" required>
 				<option disabled selected ><c:out value="--Select a status--" /></option>
 				<option value="NV"><c:out value="Not Visited" /></option>
 				<option value="NI"><c:out value="Not Interested" /></option>
@@ -137,16 +245,19 @@
 				<option value="CL"><c:out value="Closed" /></option>
 				<option value="FU"><c:out value="Follow Up" /></option>
 			</select><br>
-			<c:out value="Notes:" /><br>
+			<label for="note">Notes: *</label>
 			<textarea  name="note" class="form-control"></textarea>
 
-			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
+			<button type = "submit" class = "btn btn-default" class="form-control"><c:out value = "Submit"/></button>
 		
-	</form></div>
-	<div style="display: none" id="MultipleInput">
+	</form></div></div>
+	<div class="col-sm-2"></div>
+	<div class="col-sm-4">
+	<div id="MultipleInput">
 	<c:url var="importCsvUrl" value="/textArea"/>
 	<form action="${importCsvUrl}" method="POST">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+				<label for="fileInput">Select CSV File from you computer:</label>
 				<input type="file" class="form-control" id="fileInput"/>
 				<input type="hidden" value="" id="textInput" name='textArea'>
 				<h3>Please format CSV as follows:</h3>
@@ -166,13 +277,15 @@
 				       reader.readAsText(file)
 				    }
 				</script>
-				<input type="submit" value="Submit" id="submit" />
+				<button type = "submit" class = "btn btn-default" class="form-control"><c:out value = "Submit"/></button>
 
 
 			</form></div>
 	 
 	</div>
-	<div class="col-sm-1"></div> 
+	<div class="col-sm-1"></div>
+	</div>
+	
 </div> 
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

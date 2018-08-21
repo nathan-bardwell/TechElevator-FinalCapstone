@@ -5,16 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function switchForms(event) {
     let value = event.currentTarget.value;
-    if(value == 'individual') {
-        document.getElementById('individualHouseForm').style.display = "";
-        document.getElementById('MultipleInput').style.display = "none";
+    if(value == 'house') {
+        document.getElementById('addHouseForms').style.display = "";
+        document.getElementById('addSalesmanForm').style.display = "none";
+        document.getElementById('addProductForm').style.display = "none";
     }
-    if(value == 'csv') {
-        document.getElementById('individualHouseForm').style.display = "none";
-        document.getElementById('MultipleInput').style.display = "";
+    if(value == 'salesman') {
+        document.getElementById('addHouseForms').style.display = "none";
+        document.getElementById('addSalesmanForm').style.display = "";
+        document.getElementById('addProductForm').style.display = "none";
     }
-}
-
-function changeAddress(event) {
-	
+    if(value == 'product') {
+        document.getElementById('addHouseForms').style.display = "none";
+        document.getElementById('addSalesmanForm').style.display = "none";
+        document.getElementById('addProductForm').style.display = "";
+    }
 }
