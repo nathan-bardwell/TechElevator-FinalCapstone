@@ -63,32 +63,25 @@
 	</select>
 </form>
 
+<form id="realForm" style="display:none;" action="/location" method="post">																		<!--hidden form to send user location back to model -->
+    <input id=location name="location" type = "hidden" value="" type="text">
+</form> 
+
 <div id="mapid"></div>
 <style>
 #mapid {
 	height: 50rem;
 	width: 75rem;
+	margin:auto;
+	border:.25rem gray solid;
 }
 </style>
 
 <script>
 
-navigator.geolocation.getCurrentPosition(function(location) {
-	  console.log(location.coords.latitude);
-	  console.log(location.coords.longitude);
-	  console.log(location.coords.accuracy);
-	});
-
-
-
-
-
-
-
-
 	// variables
 	let house = document.getElementsByClassName("address"); 																					// get address from DOM
-	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 10); 																				// map from leaflet
+	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 11); 																				// map from leaflet
 	let marker = []; 																															// array for marker variables
 
 	// map and layers
@@ -121,6 +114,21 @@ navigator.geolocation.getCurrentPosition(function(location) {
 		request.send();																													 // I assume that this is sending the request to API and the above works on a promise
 	}
 	
+	//user Location
+	let userLocation="";
+	var watchID = navigator.geolocation.watchPosition(function(location) {																		// watch for location of user time to update ???
+		 	userLocation=location.coords.latitude, location.coords.longitude;																	//set user location
+			let userLocationMarker=L.marker([location.coords.latitude, location.coords.longitude]).addTo(mymap);								// place marker for user on map
+			userLocationMarker.bindPopup("I am You");																							// pop for user marker
+	});
+	
+	//send location to database
+	$( '#submit_btn' ).click( function( data ){ 																								//method to auto send user location
+    locationForm = document.getElementById( 'locationForm' );
+    $("location").val()=userLocation; 
+    locationForm.submit();
+});
+
 </script>
 
 
