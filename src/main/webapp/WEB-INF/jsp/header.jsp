@@ -72,12 +72,8 @@
 						<c:when test ="${currentUser.role == 'Admin' }">
 							<c:url var="homePageHref" value="/admin" />
 							<li><a href="${homePageHref}">Home</a></li>
-							<c:url var = "addNewSalesman" value = "/newSalesman"/>
-							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<c:url var = "viewHouses" value = "/viewHouses"/>
 							<li><a href = "${viewHouses }">View Houses</a></li>
-							<c:url var = "addHouses" value = "/addHouses"/>
-							<li><a href = "${addHouses }">Add Houses</a></li>
 							<c:url var = "salesData" value = "/salesData"/>
 							<li><a href = "${salesData }">Sales Data</a></li>
 						</c:when>
