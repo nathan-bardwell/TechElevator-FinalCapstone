@@ -60,8 +60,8 @@ table.teamTable{
 }
 .login-form-1 .login-button {
   position: absolute;
-  right: -25px;
-  top: 50%;
+  right: -50px;
+  top: 60%;
   background: #ffffff;
   color: #999999;
   padding: 11px 0;
