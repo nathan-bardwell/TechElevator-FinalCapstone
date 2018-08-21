@@ -49,7 +49,7 @@
 
 <div class="row">
 	<div class="col-sm-4"></div>
-	<div class="col-sm-4">
+	<div id="selectForm" class="col-sm-4">
 		<c:out value="Add New Information" /><br>
 		<form>
 		<select id="formToggler" class="form-control">
@@ -115,10 +115,11 @@
 	});
 </script>
 <div class="col-sm-4"></div>
+<div class="col-sm-4">
 <c:url var="formAction" value="/newSalesman" />
 <form id="newSalesmanForm" method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-		<div class="col-sm-4">
+		
 			<div class="form-group">
 				<label for="firstName"><c:out value="First Name:" /></label>
 				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" required />	
@@ -146,9 +147,9 @@
 			<div class="form-group">
 				<input type="hidden" id="role" name="role" value="Salesman"/>	
 			</div>
-			<button type="submit" class="btn btn-default"><c:out value="Create Salesman" /></button>
-		</div>
-</form><div class="col-sm-4"></div>
+			<button type="submit" class="btn btn-primary"><c:out value="Create Salesman" /></button>
+		
+</form></div><div class="col-sm-4"></div>
 	</div>
 	
 	<div id="addProductForm" style="display : none">
@@ -156,13 +157,13 @@
 	<div class="col-sm-4">
 	<div>
 	<c:url var="addProductUrl" value="/addProduct"/>
-	<form action="${addProductUrl}" method="POST">
+	<form id="newProductForm" action="${addProductUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 		
 			<label for="name">Product Name: *</label><input type="text" name="name" class="form-control" required><br>
 			<label for="price">Price: *</label><input type="number" name="price" min="0" value="0.00" step=".01" class="form-control" required><br>
 
-			<button type = "submit" class = "btn btn-default"><c:out value = "Submit"/></button>
+			<button type = "submit" class="btn btn-primary"><c:out value = "Submit"/></button>
 		
 	</form></div>
 	
@@ -248,7 +249,7 @@
 			<label for="note">Notes: *</label>
 			<textarea  name="note" class="form-control"></textarea>
 
-			<button type = "submit" class = "btn btn-default" class="form-control"><c:out value = "Submit"/></button>
+			<button type = "submit" class="btn btn-primary" class="form-control"><c:out value = "Submit"/></button>
 		
 	</form></div></div>
 	<div class="col-sm-2"></div>
@@ -277,7 +278,7 @@
 				       reader.readAsText(file)
 				    }
 				</script>
-				<button type = "submit" class = "btn btn-default" class="form-control"><c:out value = "Submit"/></button>
+				<button type = "submit" class="btn btn-primary" class="form-control"><c:out value = "Submit"/></button>
 
 
 			</form></div>

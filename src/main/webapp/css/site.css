@@ -53,13 +53,13 @@ header p {
 	
 .main-content {
 	background-color: #f8f8f8;
-	border-radius: 1%;
+	border-radius: 15px;
 	width: 1200px;
 	margin-top: 3rem;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 2em;
-	paddding-right: 2em;
+	padding-right: 2em;
 }
 
 body {
@@ -192,6 +192,30 @@ h2.houseDetailHeader{
 	width: 125px;
 }
 
+#addHouseForms form {
+	background:white;
+	padding:15px;
+	border-radius: 10px;
+	margin: 20px 0px 10px 0px;
+}
+
+#newSalesmanForm {
+		background:white;
+	padding:15px;
+	border-radius: 10px;
+	margin: 20px 0px 10px 0px;
+}
+
+#newProductForm {
+		background:white;
+	padding:15px;
+	border-radius: 10px;
+	margin: 20px 0px 10px 0px;
+}
+
+#selectForm {
+	margin-bottom: 20px;
+}
 
 
 
