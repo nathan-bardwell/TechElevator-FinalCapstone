@@ -15,21 +15,26 @@
 margin-top:2rem;
 
 }
+
 .headerContents{
-	height: 200px;
+	height: 1px;
 	
 }
 
 .header{
-	background-image: url("https://i.imgur.com/uY385No.jpg");
+	background-image: url("../img/map2.png");
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* background-color: #E0FFFF; */
 	
 }
+
 .navbar{
-	margin-bottom:0;
+	margin: 0px 0px 0px 0px;
+}
+
+header p {
+	margin: 0px 0px 0px 0px;
 }
 
 .container{
@@ -38,8 +43,13 @@ margin-top:2rem;
 	height:100%;
 	margin-left:0px;
 	margin-right: 0px;
-	
 }
+	
+.main-content {
+	background-color: white;
+	border-radius: 1%;
+}
+
 body {
 	   /* font-family: 'Varela Round'; */
 	
@@ -99,7 +109,7 @@ table.teamTable{
 	
 	grid-template-areas:
 	'header header header'
-	'detailTable noteTable noteTable'
+	'detailTable detailTable detailTable'
 	'map noteTable noteTable'
 	
 	}

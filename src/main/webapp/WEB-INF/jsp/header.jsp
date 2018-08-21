@@ -47,7 +47,12 @@
 		<div class = "headerContents">
 			
 			
-		</div>	
+		</div>
+		<c:url var = "bunny" value = "/img/Bunny.png"/>
+		<div id = "headerTextDiv"><h1 id = "headerText" ><c:out value="Maximus Sales" /><img class = "bunnyImg" src = "${bunny }"></h1></div>
+		<c:if test="${not empty currentUser}">
+			<p id="currentUser"><c:out value="Current User: ${currentUser.userName}"/></p>
+		</c:if>	
 		</header>
 		<div>
 		<nav class="navbar navbar-default">
@@ -108,9 +113,6 @@
 		</nav>
 	</div>	
 		<div class="container">
-		<c:url var = "bunny" value = "/img/Bunny.png"/>
-		<div id = "headerTextDiv"><h1 id = "headerText" >Maximus Sales<img class = "bunnyImg" src = "${bunny }"></h1></div>
-		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Current User: <c:out value="${currentUser.userName}"/></p>
-		</c:if>		
+
+			<div class="main-content">
 		
