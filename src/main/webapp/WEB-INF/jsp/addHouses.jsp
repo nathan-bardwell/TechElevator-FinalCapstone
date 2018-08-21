@@ -22,7 +22,7 @@
 </div>
 <div class="row">
 	<div class="col-sm-4"></div>
-	<div class="col-sm-7">
+	<div class="col-sm-4">
 	<div  style="display:none" id="individualHouseForm">
 	<c:url var="addHouseUrl" value="/addHouses"/>
 	<form action="${addHouseUrl}" method="POST">
@@ -33,7 +33,7 @@
 			<c:out value="City: *" /><br><input type="text" name="city" class="form-control" required><br>
 			
 			<br><label for="state"><c:out value="State:" /></label>
-			<select name="state" id="state" required>
+			<select name="state" id="state" class="form-control" required>
 				<option value="Alabama"><c:out value="Alabama" /></option>
 				<option value="Alaska"><c:out value="Alaska" /></option>
 				<option value="Arizona"><c:out value="Arizona" /></option>
@@ -125,13 +125,13 @@
 				       reader.readAsText(file)
 				    }
 				</script>
-				<input type="submit" value="Submit" id="submit" />
+				<input type="submit" value="Submit" id="submit" class="form-control"/>
 
 
 			</form></div>
 	 
 	</div>
-	<div class="col-sm-1"></div> 
+	<div class="col-sm-4"></div> 
 </div> 
 
 
