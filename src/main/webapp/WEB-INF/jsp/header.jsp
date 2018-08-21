@@ -108,7 +108,8 @@
 		</nav>
 	</div>	
 		<div class="container">
-		<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
+		<c:url var = "bunny" value = "/img/Bunny.png"/>
+		<div id = "headerTextDiv"><h1 id = "headerText" >Maximus Sales<img class = "bunnyImg" src = "${bunny }"></h1></div>
 		<c:if test="${not empty currentUser}">
 			<p id="currentUser">Current User: <c:out value="${currentUser.userName}"/></p>
 		</c:if>		

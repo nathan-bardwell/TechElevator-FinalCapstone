@@ -56,7 +56,7 @@ a.nameLink{
 }
 
 table.teamTable{
-	background-color:#d39bff;
+	background-color:#fcd092;
 }
 .login-form-1 .login-button {
   position: absolute;
@@ -161,6 +161,11 @@ tr.noteTableRow td{
 h2.houseDetailHeader{
 	grid-area:header;
 	text-align : center;
+}
+
+.bunnyImg{
+	height: 125px;
+	width: 125px;
 }
 
 
