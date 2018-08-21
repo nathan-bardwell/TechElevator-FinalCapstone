@@ -26,8 +26,9 @@
 </tr>
 
 	<c:forEach var = "house" items = "${houses }">
-	<c:url var = "houseDetail" value = "/houseDetail?houseId=${house.houseId }"/>
 	
+	<c:url var = "houseDetail" value = "/houseDetail?houseId=${house.houseId }"/>
+	<c:if test = "${house.assignmentId != null}">
 		<tr>
 		<td><a class = "nameLink" href = "${houseDetail}"><c:out value = "${house.resident }"/></a></td>
 		<td><c:out value = "${house.address} ${house.city }, ${house.state } "/></td>
@@ -42,7 +43,7 @@
 			</c:choose>
 		</td>
 		</tr>
-		
+		</c:if>
 
 	</c:forEach>
 </table>

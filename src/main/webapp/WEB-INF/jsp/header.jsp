@@ -49,9 +49,16 @@
 			
 		</div>	
 		</header>
-		
+		<div>
 		<nav class="navbar navbar-default">
-			<div class="container-fluid">
+		
+			<button class = "navbar-toggle" data-toggle ="collapse" data-target = ".navHeaderCollapse">
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+			
+			</button>
+			<div class="container-fluid collapse navbar-collapse navHeaderCollapse">
 			
 				<ul class="nav navbar-nav">
 					
@@ -94,9 +101,12 @@
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>
+				
 				</ul>
+				 
 			</div>
 		</nav>
+	</div>	
 		<div class="container">
 		<div id = "headerTextDiv"><h1 id = "headerText" >Door 2 Door Sales</h1></div>
 		<c:if test="${not empty currentUser}">

@@ -54,6 +54,10 @@ a.nameLink{
 	color: black;
 	text-decoration: none;
 }
+
+table.teamTable{
+	background-color:#d39bff;
+}
 .login-form-1 .login-button {
   position: absolute;
   right: -25px;
@@ -84,3 +88,82 @@ a.nameLink{
 .login-form-1 .login-button.clicked.error {
   color: #e74c3c;
 }
+
+/*Desktop*/
+@media(min-width: 768px){
+	.houseDetailWrapper{
+	display: grid;
+	grid-template-rows:auto;
+	grid-gap:10px;
+	grid-template-columns:3fr;
+	
+	grid-template-areas:
+	'header header header'
+	'detailTable noteTable noteTable'
+	'map noteTable noteTable'
+	
+	}
+	
+}
+
+/*Tablet*/
+@media(max-width: 767px){
+
+	
+}
+
+/*Mobile*/
+@media(max-width:480px){
+	#headerTextDiv h1{
+		font-size: 30pt;	
+	}
+	
+	.houseDetailWrapper{
+	
+	display: grid;
+	grid-template-rows:auto;
+	grid-template-columns:1fr;
+	
+	grid-template-areas:
+	'header'
+	'detailTable'
+	'noteTable'
+	'map';
+	
+	overflow:auto;
+	
+	}
+	
+
+}
+
+div.noteTable{
+	grid-area:noteTable;
+}
+
+div.mapouter{
+	grid-area: map;
+}
+
+div.detailTable{
+	grid-area:detailTable;
+}
+
+#noteText{
+	width:400px;
+	word-wrap: break-word; 
+}
+
+tr.noteTableRow td{
+	padding-bottom:1em;
+}
+
+h2.houseDetailHeader{
+	grid-area:header;
+	text-align : center;
+}
+
+
+
+
+

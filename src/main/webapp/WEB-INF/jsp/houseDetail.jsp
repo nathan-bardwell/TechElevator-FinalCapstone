@@ -2,11 +2,12 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-
-<h2>
+<div class = "houseDetailWrapper">
+<h2 class ="houseDetailHeader">
 	<c:out value="Information on ${house.resident}'s House:" />
 </h2>
-<table>
+<div class = "detailTable">
+<table class = "table table-striped">
 	<tr>
 		<td><c:out value="Address" /></td>
 		<td><c:out value="${house.address}" /></td>
@@ -81,11 +82,11 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="mapouter">
 	<div class="gmap_canvas">
-		<iframe width="600" height="500" id="gmap_canvas"
+		<iframe width="100%" height="400px" id="gmap_canvas"
 			src="https://maps.google.com/maps?q=${house.address}${house.city}${house.state}&t=&z=13&iwloc=&output=embed"
 			frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 		<a href="https://www.pureblack.de">webdesigner</a>
@@ -105,26 +106,33 @@
 }
 </style>
 </div>
-
-<table>
+<div class = "noteTable">
+<table  >
 	<tr>
 		<th><c:out value="Note" /></th>
-		<th>
-			<c:url var="addNoteUrl" value="/addNote" />
-			<form action="${addNoteUrl}" method="GET">
-				<input type="hidden" name="houseId" value="${house.houseId}" />
-				<button><c:out value="New Note" /></button>
-			</form>
-		</th>
 		<th><c:out value="Timestamp" /></th>
 	</tr>
 	<c:forEach var="note" items="${notes}">
-		<tr>
-			<td><c:out value="${note.text}" /></td>
-			<td></td>
+		<tr class = "noteTableRow">
+			<td id = "noteText"><c:out value="${note.text}" /></td>
+			
 			<td><c:out value="${note.timestamp}" /></td>
 		</tr>
+		
 	</c:forEach>
 </table>
+<c:url var="addNoteUrl" value="/addNote"/>
+<form action="${addNoteUrl}" method="POST">
+	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	<input type ="hidden" name = "creatorId" value = "${currentUser.userName}"/>
+	<input type="hidden" name="houseId" id="houseId" value="${house.houseId}"/>
+	
+		<label for="text"><c:out value="Note: " /></label>
+		<textarea  name="text" class="form-control" required></textarea>
+		<input type="submit" value="Submit Note!" />
+
+</form>
+</div>
+</div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

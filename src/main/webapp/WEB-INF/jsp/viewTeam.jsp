@@ -9,7 +9,7 @@
 
 
 <div class = "teamTable">
-<table class="table">
+<table class="teamTable table">
 <tr>
 	<th>First Name</th>
 	<th>Last Name</th>
