@@ -123,7 +123,7 @@
 	</c:forEach>
 </table>
 <c:url var="addNoteUrl" value="/addNote"/>
-<form action="${addNoteUrl}" method="POST">
+<form class="addNoteClass" action="${addNoteUrl}" method="POST">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<input type ="hidden" name = "creatorId" value = "${currentUser.userName}"/>
 	<input type="hidden" name="houseId" id="houseId" value="${house.houseId}"/>
