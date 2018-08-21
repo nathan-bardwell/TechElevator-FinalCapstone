@@ -111,7 +111,14 @@ public class UserController {
 		return "/salesman";
 	}
 	
-	@RequestMapping(path= {"/admin", "/viewTeam"}, method=RequestMethod.GET)
+	@RequestMapping(path = "/salesmanPage", method = RequestMethod.GET)
+	public String showSalesmanPage2(@RequestParam String userName, ModelMap modelHolder) {
+		modelHolder.put("houses", houseDao.viewAssignedHouses(userName));
+		return "/salesman";
+		
+	}
+	
+	@RequestMapping(path= {"/admin"}, method=RequestMethod.GET)
 	public String showTeam(HttpSession session, ModelMap modelHolder) {
 		long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
 		modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));

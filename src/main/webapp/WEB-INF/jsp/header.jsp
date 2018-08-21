@@ -74,8 +74,6 @@
 							<li><a href="${homePageHref}">Home</a></li>
 							<c:url var = "addNewSalesman" value = "/newSalesman"/>
 							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
-							<c:url var = "viewTeam" value = "/viewTeam"/>
-							<li><a href = "${viewTeam }">View Team</a></li>
 							<c:url var = "viewHouses" value = "/viewHouses"/>
 							<li><a href = "${viewHouses }">View Houses</a></li>
 							<c:url var = "addHouses" value = "/addHouses"/>
@@ -115,4 +113,9 @@
 		<div class="container">
 
 			<div class="main-content">
+		<c:url var = "bunny" value = "/img/Bunny.png"/>
+		<div id = "headerTextDiv"><h1 id = "headerText" >Maximus Sales<a target = "blank" href = "https://www.petfinder.com/search/rabbits-for-adoption/?sort%5B0%5D=recently_added"><img class = "bunnyImg" src = "${bunny }"></a></h1></div>
+		<c:if test="${not empty currentUser}">
+			<p id="currentUser">Current User: <c:out value="${currentUser.userName}"/></p>
+		</c:if>		
 		
