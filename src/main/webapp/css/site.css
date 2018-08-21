@@ -1,12 +1,12 @@
 #headerText{
 	font-size: 60pt;
 	text-align: center;
-	background-color: #E0FFFF;
+	/* background-color: #E0FFFF; */
 }
 
 #headerTextDiv{
 	color: black;
-	background-color: #E0FFFF;
+	/* background-color: #E0FFFF; */
 }
 
 #textAreaInput{
@@ -25,7 +25,7 @@ margin-top:2rem;
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-color: #E0FFFF;
+    /* background-color: #E0FFFF; */
 	
 }
 .navbar{
@@ -33,7 +33,7 @@ margin-top:2rem;
 }
 
 .container{
-	background-color: #E0FFFF;
+	background-image: url("../img/map2.png");
 	width:100%;
 	height:100%;
 	margin-left:0px;
