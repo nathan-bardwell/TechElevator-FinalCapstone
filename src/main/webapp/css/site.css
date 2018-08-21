@@ -41,7 +41,7 @@ margin-top:2rem;
 	
 }
 body {
-	   font-family: 'Varela Round';
+	   /* font-family: 'Varela Round'; */
 	
 	    
 }
@@ -56,12 +56,12 @@ a.nameLink{
 }
 
 table.teamTable{
-	background-color:#d39bff;
+	background-color:#fcd092;
 }
 .login-form-1 .login-button {
   position: absolute;
-  right: -25px;
-  top: 50%;
+  right: -50px;
+  top: 60%;
   background: #ffffff;
   color: #999999;
   padding: 11px 0;
@@ -161,6 +161,11 @@ tr.noteTableRow td{
 h2.houseDetailHeader{
 	grid-area:header;
 	text-align : center;
+}
+
+.bunnyImg{
+	height: 125px;
+	width: 125px;
 }
 
 

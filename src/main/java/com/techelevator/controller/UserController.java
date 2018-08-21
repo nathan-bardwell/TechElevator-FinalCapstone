@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.EmailServiceImpl;
 //import com.techelevator.model.EmailServiceImpl;
 import com.techelevator.model.HouseDAO;
 import com.techelevator.model.NoteDAO;
@@ -27,14 +28,15 @@ public class UserController {
 	private TeamDAO teamDAO;
 	private HouseDAO houseDao;
 	private NoteDAO noteDao;
-	//private EmailServiceImpl email = new EmailServiceImpl();
+	private EmailServiceImpl email;
 
 	@Autowired
-	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao, NoteDAO noteDao) {
+	public UserController(UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao, NoteDAO noteDao, EmailServiceImpl email) {
 		this.userDAO = userDAO;
 		this.teamDAO = teamDAO;
 		this.houseDao= houseDao;
 		this.noteDao= noteDao;
+		this.email = email;
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
@@ -92,8 +94,8 @@ public class UserController {
             flash.addFlashAttribute("errorMessage", "Error creating new Salesman.");
             return "redirect:/newSalesman";
         }
-        // Steven has done nothing today
-        //email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
+        
+        email.sendSimpleMessage(user.getEmail(),((User)session.getAttribute("currentUser")).getUserName() ,user.getUserName(), user.getPassword());
         userDAO.saveUser(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getEmail(), user.getRole() );
         flash.addFlashAttribute("message", "New Salesman " + user.getFirstName() + " Created Successfully!");
         long team_id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
