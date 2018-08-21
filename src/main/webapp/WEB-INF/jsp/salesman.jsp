@@ -1,6 +1,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <c:import url="/WEB-INF/jsp/header.jsp" />
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+<style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+
 
 
 <h2><c:out value = "You Have Been Assigned The Following Houses:"/></h2>
@@ -51,27 +64,23 @@
 		<option value="${mapHouse.address}"><c:out value="${mapHouse.address}" /></option>
 	</c:forEach>
 </select>
-<div class="mapouter">
-	<div class="gmap_canvas">
-		<iframe width="600" height="500" id="gmap_canvas"
-			src="https://maps.google.com/maps?q=${house.address}${house.city}${house.state}&t=&z=13&iwloc=&output=embed"
-			frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-		<a href="https://www.pureblack.de">webdesigner</a>
-	</div>
-<style>
-.mapouter {
-	text-align: right;
-	height: 500px;
-	width: 600px;
-}
-
-.gmap_canvas {
-	overflow: hidden;
-	background: none !important;
-	height: 500px;
-	width: 600px;
-}
-</style>
-</div> 
 </form>
+
+<div id="mapid"></div>
+<style>
+#mapid { height: 50rem; }
+</style>
+<script>
+var mymap = L.map('mapid').setView([41.4993, -81.6944], 13);
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZXRhY2FscGhhIiwiYSI6ImNqbDJ4M2w5bTF2ODQzcHA0bzlxMDc3dzQifQ.nGrjnJwmCl7mG46Fy01_LQ'
+}).addTo(mymap);
+
+</script>
+ 
+
 <c:import url="/WEB-INF/jsp/footer.jsp" />
