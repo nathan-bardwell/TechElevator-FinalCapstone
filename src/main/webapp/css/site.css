@@ -29,6 +29,10 @@ margin-top:2rem;
 	
 }
 
+#headerTextDiv h1{
+	margin-bottom:0px;
+}
+
 .navbar{
 	margin: 0px 0px 0px 0px;
 	

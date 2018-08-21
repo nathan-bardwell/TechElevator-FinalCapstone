@@ -49,7 +49,7 @@
 			
 		</div>
 		<c:url var = "bunny" value = "/img/Bunny.png"/>
-		<div id = "headerTextDiv"><h1 id = "headerText" ><c:out value="Maximus Sales" /><img class = "bunnyImg" src = "${bunny }"></h1></div>
+		<div id = "headerTextDiv"><h1 id = "headerText" ><c:out value="Maximus Sales" /><a target = "blank" href = "https://www.petfinder.com/search/rabbits-for-adoption/?sort%5B0%5D=recently_added"><img class = "bunnyImg" src = "${bunny }"></a></h1></div>
 		<c:if test="${not empty currentUser}">
 			<p id="currentUser"><c:out value="Current User: ${currentUser.userName}"/></p>
 		</c:if>	
@@ -72,12 +72,8 @@
 						<c:when test ="${currentUser.role == 'Admin' }">
 							<c:url var="homePageHref" value="/admin" />
 							<li><a href="${homePageHref}">Home</a></li>
-							<c:url var = "addNewSalesman" value = "/newSalesman"/>
-							<li><a href = "${addNewSalesman }">Add New Salesman</a></li>
 							<c:url var = "viewHouses" value = "/viewHouses"/>
 							<li><a href = "${viewHouses }">View Houses</a></li>
-							<c:url var = "addHouses" value = "/addHouses"/>
-							<li><a href = "${addHouses }">Add Houses</a></li>
 							<c:url var = "salesData" value = "/salesData"/>
 							<li><a href = "${salesData }">Sales Data</a></li>
 						</c:when>
