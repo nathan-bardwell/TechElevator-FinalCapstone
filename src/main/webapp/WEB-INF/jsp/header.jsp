@@ -49,7 +49,7 @@
 			
 		</div>
 		<c:url var = "bunny" value = "/img/Bunny.png"/>
-		<div id = "headerTextDiv"><h1 id = "headerText" ><c:out value="Maximus Sales" /><img class = "bunnyImg" src = "${bunny }"></h1></div>
+		<div id = "headerTextDiv"><h1 id = "headerText" ><c:out value="Maximus Sales" /><a target = "blank" href = "https://www.petfinder.com/search/rabbits-for-adoption/?sort%5B0%5D=recently_added"><img class = "bunnyImg" src = "${bunny }"></a></h1></div>
 		<c:if test="${not empty currentUser}">
 			<p id="currentUser"><c:out value="Current User: ${currentUser.userName}"/></p>
 		</c:if>	
