@@ -15,21 +15,27 @@
 margin-top:2rem;
 
 }
+
 .headerContents{
-	height: 200px;
+	height: 1px;
 	
 }
 
 .header{
-	background-image: url("https://i.imgur.com/uY385No.jpg");
+	background-image: url("../img/map2.png");
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* background-color: #E0FFFF; */
 	
 }
+
 .navbar{
-	margin-bottom:0;
+	margin: 0px 0px 0px 0px;
+	
+}
+
+header p {
+	margin: 0px 0px 0px 0px;
 }
 
 .container{
@@ -38,16 +44,34 @@ margin-top:2rem;
 	height:100%;
 	margin-left:0px;
 	margin-right: 0px;
-	
 }
+
+.noteTable {
+	padding-left: 2em;
+	padding-right: 2em;
+}
+	
+.main-content {
+	background-color: #f8f8f8;
+	border-radius: 1%;
+	width: 1200px;
+	margin-top: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 2em;
+	paddding-right: 2em;
+}
+
 body {
 	   /* font-family: 'Varela Round'; */
 	
 	    
 }
 footer{
-	padding-top:200px;
+	padding-top:500px;
+	padding-bottom:25px;
 	text-align: center;
+	height: 100%;
 }
 
 a.nameLink{
@@ -99,7 +123,7 @@ table.teamTable{
 	
 	grid-template-areas:
 	'header header header'
-	'detailTable noteTable noteTable'
+	'detailTable detailTable detailTable'
 	'map noteTable noteTable'
 	
 	}

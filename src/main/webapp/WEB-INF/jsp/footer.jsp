@@ -1,5 +1,4 @@
-<html>
-	<body>
+</div>
 		<footer>
 			Copyright 2018 Make America Great Again Inc.
 		</footer>
