@@ -140,13 +140,8 @@ let z=0;
 		</c:forEach>
 
 	// variables
-<<<<<<< HEAD
-	let status = document.getElementsByClassName("status");
-	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 11); 																				// map from leaflet
-=======
-	let house = document.getElementsByClassName("address"); 																					// get addresses from DOM
+	// map from leaflet
 	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 9); 																				// map from leaflet
->>>>>>> c3530bae38d0c5d1f52edc0cd2d5c9c682930727
 	let marker = []; 																															// array for marker variables
 
 	//marker Icon colors																														// usage is: L.marker([location]], {icon: greenIcon}).addTo(map);
