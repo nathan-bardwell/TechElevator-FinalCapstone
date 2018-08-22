@@ -18,7 +18,7 @@ public class EmailServiceImpl {
 	        SimpleMailMessage message = new SimpleMailMessage(); 
 	        message.setTo(to); 
 	        message.setSubject("Youve been registered"); 
-	        message.setText("You have been signed up by " + adminName + "Your username is:" + username + "see your admin for your password");
+	        message.setText("You have been signed up by " + adminName +'\n' +'\n' + "Your username is: " + username + "\n Please see your admin for your password");
 	        emailSender.send(message);
 	        
 	}

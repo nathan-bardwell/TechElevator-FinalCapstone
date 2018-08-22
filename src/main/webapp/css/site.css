@@ -33,6 +33,16 @@ margin-top:2rem;
 	margin-bottom:0px;
 }
 
+.navbar li:hover {
+	background-color: #89edfb;
+}
+
+.navbar a:hover {
+	background-color: red;
+	font-size: 1.5em;
+	font-style: italic;
+}
+
 .navbar{
 	margin: 0px 0px 0px 0px;
 	
@@ -64,6 +74,7 @@ header p {
 	margin-right: auto;
 	padding-left: 2em;
 	padding-right: 2em;
+	overflow:auto;
 }
 
 body {
@@ -84,7 +95,7 @@ a.nameLink{
 }
 
 table.teamTable{
-	background-color:#a69eff;
+	background-color:#89edfb;
 }
 .login-form-1 .login-button {
   position: absolute;
@@ -102,7 +113,7 @@ table.teamTable{
 }
 .login-form-1 .login-button:hover {
   color: #555555;
-  transform: rotate(450deg);
+  transform: rotate(720deg);
 }
 .login-form-1 .login-button.clicked {
   color: #555555;
@@ -116,7 +127,7 @@ table.teamTable{
 .login-form-1 .login-button.clicked.error {
   color: #e74c3c;
 }
-
+/*Desktop*/
 /*Desktop*/
 @media(min-width: 768px){
 	.houseDetailWrapper{
@@ -132,10 +143,39 @@ table.teamTable{
 	
 	}
 	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
 }
 
 /*Tablet*/
 @media(max-width: 767px){
+	#headerTextDiv h1{
+		font-size: 30pt;	
+	}
+	
+	.houseDetailWrapper{
+	
+	display: grid;
+	grid-template-rows:auto;
+	grid-template-columns:1fr;
+	
+	grid-template-areas:
+	'header'
+	'detailTable'
+	'noteTable'
+	'map';
+	
+	overflow:auto;
+	position:relative;
+	}
+	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
+	
 
 	
 }
@@ -159,8 +199,15 @@ table.teamTable{
 	'map';
 	
 	overflow:auto;
-	
+	position:relative;
 	}
+	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
+	
+	
 	
 
 }
@@ -219,6 +266,10 @@ h2.houseDetailHeader{
 
 #selectForm {
 	margin-bottom: 20px;
+}
+
+#houseTable a {
+	color: black;
 }
 
 
