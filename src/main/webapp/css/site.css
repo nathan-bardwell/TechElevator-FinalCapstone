@@ -127,7 +127,7 @@ table.teamTable{
 .login-form-1 .login-button.clicked.error {
   color: #e74c3c;
 }
-
+/*Desktop*/
 /*Desktop*/
 @media(min-width: 768px){
 	.houseDetailWrapper{
