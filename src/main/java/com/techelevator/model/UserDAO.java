@@ -14,7 +14,7 @@ public interface UserDAO {
 
 	public Long getUserIdByUserName(String userName);
 
-//	public void setLocation(String location);
+	//public void setLocation(String location);
 
 	
 
