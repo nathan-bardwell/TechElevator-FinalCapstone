@@ -59,7 +59,7 @@
   <ul class='legend-labels'>
     <li><span style='background:#D50000;'></span>Not Visited</li>
     <li><span style='background:#00D500;'></span>User Location</li>
-    <li><span style='background:#0000D5;'></span>Ordered</li>
+    <li><span style='background:#699bea;'></span>Ordered</li>
     <li><span style='background:#8a2be2;'></span>Follow Up</li>
     <li><span style='background:#000000;'></span>Not Interested</li>
     <li><span style='background:#808080;'></span>Closed</li>
@@ -242,7 +242,7 @@ let z=0;
 					marker[i] = L.marker([ lat, lng ],{icon: markerColor.red}).addTo(mymap); 
 				break;
 			  case 'O':
-					marker[i] = L.marker([ lat, lng ],{icon: markerColor.grey}).addTo(mymap); 
+					marker[i] = L.marker([ lat, lng ]).addTo(mymap); 
 				break;
 			  case 'FU':
 					marker[i] = L.marker([ lat, lng ],{icon: markerColor.violet}).addTo(mymap); 
