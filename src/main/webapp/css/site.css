@@ -64,6 +64,7 @@ header p {
 	margin-right: auto;
 	padding-left: 2em;
 	padding-right: 2em;
+	overflow:auto;
 }
 
 body {
@@ -132,10 +133,39 @@ table.teamTable{
 	
 	}
 	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
 }
 
 /*Tablet*/
 @media(max-width: 767px){
+	#headerTextDiv h1{
+		font-size: 30pt;	
+	}
+	
+	.houseDetailWrapper{
+	
+	display: grid;
+	grid-template-rows:auto;
+	grid-template-columns:1fr;
+	
+	grid-template-areas:
+	'header'
+	'detailTable'
+	'noteTable'
+	'map';
+	
+	overflow:auto;
+	position:relative;
+	}
+	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
+	
 
 	
 }
@@ -159,8 +189,15 @@ table.teamTable{
 	'map';
 	
 	overflow:auto;
-	
+	position:relative;
 	}
+	
+	.main-content{
+		position:relative;
+		width:100%;
+	}
+	
+	
 	
 
 }
