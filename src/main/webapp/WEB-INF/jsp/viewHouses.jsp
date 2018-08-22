@@ -2,7 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<table class="table">
+<table id="houseTable" class="table">
 	<tr>
 		<th><c:out value="Resident Name" /></th>
 		<th><c:out value="Address" /></th>
@@ -12,12 +12,12 @@
 
 	</tr>
 
-	<c:forEach var="house" items="${houses }">
-	<c:url var = "houseDetail" value = "/houseDetail?houseId=${house.houseId }"/>
-		<tr>
-			<td><a class = "nameLink" href = "${houseDetail}"><c:out value = "${house.resident }"/></a></td>
-			<td><c:out value="${house.address} ${house.city }, ${house.state } " /></td>
-			<td><c:out value="${house.phoneNumber }" /></td>
+	<c:forEach var="house" items="${houses}">
+	<c:url var = "houseDetail" value = "/houseDetail?houseId=${house.houseId}"/>
+		<tr class="table-row">
+			<td><a href="${houseDetail}"><c:out value = "${house.resident}"/></a></td>
+			<td><a href="${houseDetail}"><c:out value="${house.address} ${house.city}, ${house.state} " /></a></td>
+			<td><a href="${houseDetail}"><c:out value="${house.phoneNumber}" /></a></td>
 			<td><c:choose>
 					<c:when test="${house.assignmentId == null }">
 						<c:out value="Not Assigned" />

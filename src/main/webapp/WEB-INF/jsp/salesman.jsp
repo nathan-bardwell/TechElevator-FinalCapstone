@@ -82,7 +82,7 @@
 
 	// variables
 	let house = document.getElementsByClassName("address"); 																					// get addresses from DOM
-	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 11); 																				// map from leaflet
+	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 9); 																				// map from leaflet
 	let marker = []; 																															// array for marker variables
 
 	//marker Icon colors																														// usage is: L.marker([location]], {icon: greenIcon}).addTo(map);
