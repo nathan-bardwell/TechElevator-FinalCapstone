@@ -63,9 +63,10 @@
 	</select>
 </form>
 
-<form id="realForm" style="display:none;" action="/location" method="post">																		<!--hidden form to send user location back to model -->
+<%-- <form id="realForm" style="display:none;" action="/location" method="post">																		<!--hidden form to send user location back to model -->
     <input id=location name="location" type = "hidden" value="" type="text">
-</form> 
+    <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+</form>--%>  
 
 <div id="mapid"></div>
 <style>
@@ -80,10 +81,76 @@
 <script>
 
 	// variables
-	let house = document.getElementsByClassName("address"); 																					// get address from DOM
+	let house = document.getElementsByClassName("address"); 																					// get addresses from DOM
 	var mymap = L.map('mapid').setView([ 41.4993, -81.6944 ], 11); 																				// map from leaflet
 	let marker = []; 																															// array for marker variables
 
+	//marker Icon colors																														// usage is: L.marker([location]], {icon: greenIcon}).addTo(map);
+	var redIcon = new L.Icon({																														
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	var greenIcon = new L.Icon({
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	
+	var blackIcon = new L.Icon({
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	var orangeIcon = new L.Icon({																														
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	var yellowIcon = new L.Icon({																														
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	var violetIcon = new L.Icon({																														
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	var greyIcon = new L.Icon({																														
+		  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+		  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		  iconSize: [25, 41],
+		  iconAnchor: [12, 41],
+		  popupAnchor: [1, -34],
+		  shadowSize: [41, 41]
+		});
+	
+	
 	// map and layers
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
 					{
@@ -106,7 +173,7 @@
 			let lng = (data.results[0].locations[0].displayLatLng.lng);																			// assign longitude form api json
 
 			//markers
-			marker[i] = L.marker([ lat, lng ]).addTo(mymap); 																					// place marker
+			marker[i] = L.marker([ lat, lng ],{icon: redIcon}).addTo(mymap); 																					// place marker
 
 			//popups
 			marker[i].bindPopup("<b>Hello world!</b><br>this is my address: " + address).openPopup(); 											// create popup on each marker that says address
@@ -118,8 +185,9 @@
 	let userLocation="";
 	var watchID = navigator.geolocation.watchPosition(function(location) {																		// watch for location of user time to update ???
 		 	userLocation=location.coords.latitude, location.coords.longitude;																	//set user location
-			let userLocationMarker=L.marker([location.coords.latitude, location.coords.longitude]).addTo(mymap);								// place marker for user on map
+			let userLocationMarker=L.marker([location.coords.latitude, location.coords.longitude],{icon: greenIcon}).addTo(mymap);								// place marker for user on map
 			userLocationMarker.bindPopup("I am You");																							// pop for user marker
+			console.log(userLocation);
 	});
 	
 	//send location to database

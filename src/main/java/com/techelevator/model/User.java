@@ -15,7 +15,7 @@ public class User {
 	private String email;
 	private String firstName;
 	private String lastName;
-	
+	private String location;
 
 	public String getUserName() {
 		return userName;
@@ -34,6 +34,15 @@ public class User {
 	 */
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	
+	public String getLocation() {
+		return this.location;
+	}
+	
+	public void setLocation(String location) {
+		this.location=location;
 	}
 
 	public String getEmail() {
