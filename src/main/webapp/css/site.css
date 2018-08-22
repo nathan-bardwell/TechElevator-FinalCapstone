@@ -33,6 +33,16 @@ margin-top:2rem;
 	margin-bottom:0px;
 }
 
+.navbar li:hover {
+	background-color: #89edfb;
+}
+
+.navbar a:hover {
+	background-color: red;
+	font-size: 1.5em;
+	font-style: italic;
+}
+
 .navbar{
 	margin: 0px 0px 0px 0px;
 	
@@ -84,7 +94,7 @@ a.nameLink{
 }
 
 table.teamTable{
-	background-color:#a69eff;
+	background-color:#89edfb;
 }
 .login-form-1 .login-button {
   position: absolute;
@@ -102,7 +112,7 @@ table.teamTable{
 }
 .login-form-1 .login-button:hover {
   color: #555555;
-  transform: rotate(450deg);
+  transform: rotate(720deg);
 }
 .login-form-1 .login-button.clicked {
   color: #555555;
