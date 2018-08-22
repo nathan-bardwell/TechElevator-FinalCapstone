@@ -1,8 +1,11 @@
 package com.techelevator.model;
 
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -11,8 +14,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
-public class JDBCHouseDAO implements HouseDAO
+public class JDBCHouseDAO<JSONArray> implements HouseDAO
 {
 
 	private JdbcTemplate jdbcTemplate;
@@ -36,7 +41,8 @@ public class JDBCHouseDAO implements HouseDAO
 
 		result.next();
 		long id = result.getLong("house_id");
-
+/*		String geolocation = getGeoFromAddress(address+","+city+","+state);
+*/
 		return id;
 	}
 
@@ -215,5 +221,27 @@ public class JDBCHouseDAO implements HouseDAO
 		String matchNoteToHouseSql = "INSERT INTO house_notes (house_id, note_id) " + "VALUES (?, ?)";
 		jdbcTemplate.update(matchNoteToHouseSql, houseId, noteId);
 	}
+	
+	/*private String getGeoFromAddress(String address) {
+		ObjectMapper mapper = new ObjectMapper();
+		Map data = null;
+        try {
+             data = mapper.readValue(new URL("http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location="+address), Map.class);
+            System.out.println(data);
+          
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        String url = "http://www.mapquestapi.com/geocoding/v1/address?key=Mtbu18nHxlnliiqzIQuzjPlbm3zUrdQk&location="+ address; 
+
+        		$.getJSON(url, function(data)
+        		 {
+        		         alert(data.results[0].formatted_address)
+
+        		 });
+        
+		return geolocation;
+	}*/
 
 }

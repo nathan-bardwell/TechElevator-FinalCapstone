@@ -176,12 +176,16 @@ public class UserController {
 			flash.addFlashAttribute("errorMessage", "An error occured when trying to change your password. Please try again.");
 			return "redirect:/changePassword"; 
 		}
-		
-		
-		
 	}
 	
-
+	@RequestMapping(path="/loctionForm", method=RequestMethod.POST)
+	public String updatelocation(@RequestParam String location, HttpSession session, RedirectAttributes flash) 
+	{
+		userDAO.setLocation(location);
+		return "/salesman";
+	}	
+		
+			
 	
 	
 }
