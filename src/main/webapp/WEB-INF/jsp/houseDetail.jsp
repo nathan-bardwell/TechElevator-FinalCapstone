@@ -103,7 +103,7 @@
 	width: 600px;
 }
 </style>
-<<<<<<< HEAD
+
 </div>
 <div class = "noteTable">
 <table  >
@@ -133,6 +133,7 @@
 </form>
 <c:url var="sellProductUrl" value="/newSale"/>
 <form action="${sellProductUrl}" method="POST">
+	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<table class="table">
 	<tr>
 		<th>Product</th>
@@ -143,45 +144,18 @@
 	<tr>
 		<td><c:out value="${product.name}"/></td>
 		<td>$<c:out value="${product.price}"/></td>
-		<td><input type="number" min="0" value="0" required></td>
+		<td><input type="hidden" name="productId" value="${product.id}"><input type="number" name="quantity" min="0" value="0" required></td>
 	</tr>
 	</c:forEach>
 	<tr>
 		<th>Total:</th>
 	</tr>
 	</table>
+	<input type="hidden" name="houseId" id="houseId" value="${house.houseId}"/>
+	<input type="submit" value="Finalize Sale" class="btn btn-primary">
 </form>
 </div>
-=======
 	</div>
-	<div class="noteTable">
-		<table>
-			<tr>
-				<th><c:out value="Note" /></th>
-				<th><c:out value="Timestamp" /></th>
-			</tr>
-			<c:forEach var="note" items="${notes}">
-				<tr class="noteTableRow">
-					<td id="noteText"><c:out value="${note.text}" /></td>
-
-					<td><c:out value="${note.formattedTimestamp}" /></td>
-				</tr>
-
-			</c:forEach>
-		</table>
-		<c:url var="addNoteUrl" value="/addNote" />
-		<form action="${addNoteUrl}" method="POST">
-			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
-				type="hidden" name="creatorId" value="${currentUser.userName}" /> <input
-				type="hidden" name="houseId" id="houseId" value="${house.houseId}" />
-
-			<label for="text"><c:out value="Note: " /></label>
-			<textarea name="text" class="form-control" required></textarea>
-			<input type="submit" value="Submit Note!" />
-
-		</form>
-	</div>
->>>>>>> 0e850d81b3691317189097cff124dea9a0bd9464
-</div>
+	
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
