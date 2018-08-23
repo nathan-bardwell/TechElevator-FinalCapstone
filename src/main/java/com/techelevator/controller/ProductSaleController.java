@@ -52,10 +52,10 @@ public class ProductSaleController {
 		int success = productDAO.saveNewProduct(name, productDAO.convertDollarsToCents(price));
 		
 		if(success == 0) {
-			flash.addAttribute("message", "Successfully added " + name + " to your product list with a price of: $" +price);
+			flash.addFlashAttribute("message", "Successfully added " + name + " to your product list with a price of: $" +price);
 			return "redirect:/admin";
 		} else {
-			flash.addAttribute("errorMessage", "There was an error while adding your new product. Please try again");
+			flash.addFlashAttribute("errorMessage", "There was an error while adding your new product. Please try again");
 			return "redirect:/admin";
 		}
 		
