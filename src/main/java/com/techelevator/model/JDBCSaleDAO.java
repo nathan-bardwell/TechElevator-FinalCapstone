@@ -47,11 +47,12 @@ public class JDBCSaleDAO implements SaleDAO {
 	public void saveNewSale(Long houseId, Long productId, Long userId, int quantity) {
 		String newSaleSql = "INSERT INTO sales(house_id, product_id, user_id, quantity) "
 							   + "VALUES (?, ?, ?, ?); ";
-		
+		jdbcTemplate.update(newSaleSql, houseId, productId, userId, quantity);
 		String setSaleTotalSql =	"UPDATE sales "
-							   + "SET cost_in_cents = (SELECT (price_in_cents * ?) "
-							   							+ "FROM product "
-							   						  	+ "WHERE product_id = ?);";
+							   		  + "SET cost_in_cents = (SELECT (price_in_cents * ?) "
+							   								  + "FROM product "
+							   								  + "WHERE product_id = ?);";
+		jdbcTemplate.update(setSaleTotalSql, quantity, productId);
 		
 		
 	}
