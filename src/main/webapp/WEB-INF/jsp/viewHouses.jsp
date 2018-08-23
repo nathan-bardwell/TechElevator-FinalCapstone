@@ -15,6 +15,7 @@
 		<th><c:out value="Address" /></th>
 		<th><c:out value="Phone Number" /></th>
 		<th><c:out value="Assigned To" /></th>
+		<th><c:out value="Status"></c:out></th>
 		<th><c:out value="Update" /></th>
 
 	</tr>
@@ -32,13 +33,13 @@
 					<c:otherwise>
 						<c:out value="${house.assignmentId }" />
 					</c:otherwise>
-				</c:choose></td>
+				</c:choose></td> 
 			<td><c:url var="formAction" value="/updateAssignment" />
 				<form action="${formAction }" method="POST">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
 						type="hidden" name="houseId" value="${house.houseId}" /> <select
 						name="assignmentId">
-						<option disabled selected><c:out
+						<option value="null" disabled selected><c:out
 								value="-----SELECT AN OPTION-----" /></option>
 						<c:forEach var="team" items="${teamMembers }">
 							<c:if test="${team.role == 'Salesman' }">

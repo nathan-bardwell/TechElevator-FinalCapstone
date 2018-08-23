@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.HouseDAO;
+import com.techelevator.model.NoteDAO;
 import com.techelevator.model.Product;
 import com.techelevator.model.ProductDAO;
 import com.techelevator.model.SaleDAO;
@@ -31,14 +33,16 @@ public class ProductSaleController {
 	private UserDAO userDAO;
 	private TeamDAO teamDAO;
 	private HouseDAO houseDao;
+	private NoteDAO noteDAO;
 	
 	@Autowired
-	public ProductSaleController(ProductDAO productDAO, SaleDAO saleDAO, UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao) {
+	public ProductSaleController(NoteDAO noteDAO, ProductDAO productDAO, SaleDAO saleDAO, UserDAO userDAO, TeamDAO teamDAO, HouseDAO houseDao) {
 		this.productDAO = productDAO;
 		this.saleDAO = saleDAO;
 		this.userDAO = userDAO;
 		this.houseDao = houseDao;
 		this.teamDAO = teamDAO;
+		this.noteDAO = noteDAO;
 	}
 	
 	@RequestMapping(path="/addProduct", method=RequestMethod.GET)
@@ -72,6 +76,11 @@ public class ProductSaleController {
 			
 			saleDAO.saveNewSale(houseId, Long.parseLong(products[i]), Long.parseLong(userId), Integer.parseInt(quantities[i]));
 		}
+		
+		houseDao.updateHouseStatus(houseId, "O");
+		String username = ((User) session.getAttribute("currentUser")).getUserName();
+		noteDAO.saveNewNote(houseId, username, "Order placed ", LocalDateTime.now());
+		
 		return "redirect:/houseDetail?houseId=" + houseId;
 	}
 	
