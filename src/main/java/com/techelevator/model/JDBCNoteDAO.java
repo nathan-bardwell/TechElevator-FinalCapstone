@@ -46,7 +46,7 @@ public class JDBCNoteDAO implements NoteDAO{
 
 	@Override
 	public void saveNewNote(Long houseId, String username, String text, LocalDateTime timestamp) {
-		String finalNote = text + "\n\n Submitted by: " + username;
+		String finalNote = text + "   | Submitted by: " + username;
 		Long noteId = null;
 		String newNoteSql = "INSERT INTO note (text, time) "
 							   + "VALUES (?, ?) RETURNING note_id";

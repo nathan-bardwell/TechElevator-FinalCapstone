@@ -58,6 +58,7 @@
 							<option disabled selected>
 								<c:out value="-- Update Status --" />
 							</option>
+							 
 							<c:if test="${house.status != 'FU'}">
 								<option value="FU"><c:out value="Follow Up" /></option>
 							</c:if>
