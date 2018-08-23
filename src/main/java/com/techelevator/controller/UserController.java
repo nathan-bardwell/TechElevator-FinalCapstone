@@ -181,7 +181,7 @@ public class UserController {
 	@RequestMapping(path="/loctionForm", method=RequestMethod.POST)
 	public String updatelocation(@RequestParam String location, HttpSession session, RedirectAttributes flash) 
 	{
-		userDAO.setLocation(location);
+		//userDAO.setLocation(location);
 		return "/salesman";
 	}	
 		

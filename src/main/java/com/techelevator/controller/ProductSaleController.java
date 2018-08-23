@@ -12,12 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.techelevator.model.ProductDAO;
 
 @Controller
-public class ProductController {
+public class ProductSaleController {
 	
 	private ProductDAO productDAO;
 	
 	@Autowired
-	public ProductController(ProductDAO productDAO) {
+	public ProductSaleController(ProductDAO productDAO) {
 		this.productDAO = productDAO;
 	}
 	
@@ -39,6 +39,11 @@ public class ProductController {
 			return "redirect:/admin";
 		}
 		
+	}
+	
+	@RequestMapping(path="/newSale", method=RequestMethod.POST)
+	public String makeNewSale() {
+		return null;
 	}
 
 }

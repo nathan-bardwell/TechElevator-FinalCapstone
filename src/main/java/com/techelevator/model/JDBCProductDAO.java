@@ -23,7 +23,7 @@ public class JDBCProductDAO implements ProductDAO {
 
 	@Override
 	public BigDecimal convertCentsToDollars(int priceInCents) {
-		BigDecimal priceInDollars = new BigDecimal(priceInCents / 100);
+		BigDecimal priceInDollars = new BigDecimal(priceInCents / 100 +".00");
 		return priceInDollars;
 	}
 
@@ -49,12 +49,12 @@ public class JDBCProductDAO implements ProductDAO {
 
 	@Override
 	public List<Product> displayAllProducts() {
-		Product product = new Product();
 		List<Product> products = new ArrayList<>();
-		String displayProductsSql = "SELECT * FROM products";
+		String displayProductsSql = "SELECT * FROM product";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(displayProductsSql);
 		
 		while(results.next()) {
+			Product product = new Product();
 			product.setId(results.getLong("product_id"));
 			product.setName(results.getString("name"));
 			product.setPrice(convertCentsToDollars(results.getInt("price_in_cents")));

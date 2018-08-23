@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.techelevator.model.House;
 import com.techelevator.model.HouseDAO;
 import com.techelevator.model.NoteDAO;
+import com.techelevator.model.ProductDAO;
 import com.techelevator.model.TeamDAO;
 import com.techelevator.model.User;
 
@@ -28,12 +29,14 @@ public class HouseController {
 	private HouseDAO houseDAO;
 	private TeamDAO teamDao;
 	private NoteDAO noteDAO;
+	private ProductDAO productDAO;
 	
 	@Autowired
-	public HouseController(HouseDAO houseDAO, TeamDAO teamDao, NoteDAO noteDAO) {
+	public HouseController(HouseDAO houseDAO, TeamDAO teamDao, NoteDAO noteDAO, ProductDAO productDAO) {
 		this.houseDAO = houseDAO;
 		this.teamDao = teamDao;
 		this.noteDAO = noteDAO;
+		this.productDAO = productDAO;
 	}
 	
 	
@@ -145,6 +148,7 @@ public class HouseController {
 		}
 		modelHolder.put("house", houseDAO.getHouseById(houseId));
 		modelHolder.put("notes", noteDAO.getNotesByHouseId(houseId));
+		modelHolder.put("products", productDAO.displayAllProducts());
 		return "/houseDetail";
 	}
 }

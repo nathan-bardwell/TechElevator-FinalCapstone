@@ -130,8 +130,28 @@
 	
 		<label for="text"><c:out value="Note: " /></label>
 		<textarea  name="text" class="form-control" required></textarea>
-		<input type="submit" value="Submit Note!" />
+		<input type="submit" value="Submit Note"class="btn btn-primary" />
 
+</form>
+<c:url var="sellProductUrl" value="/newSale"/>
+<form action="${sellProductUrl}" method="POST">
+	<table class="table">
+	<tr>
+		<th>Product</th>
+		<th>Price</th>
+		<th>Quantity</th>
+	</tr>
+	<c:forEach var="product" items="${products}">
+	<tr>
+		<td><c:out value="${product.name}"/></td>
+		<td>$<c:out value="${product.price}"/></td>
+		<td><input type="number" min="0" value="0" required></td>
+	</tr>
+	</c:forEach>
+	<tr>
+		<th>Total:</th>
+	</tr>
+	</table>
 </form>
 </div>
 </div>

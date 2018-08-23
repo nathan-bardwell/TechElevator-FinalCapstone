@@ -12,8 +12,7 @@ DROP TABLE IF EXISTS user_team cascade;
 DROP TABLE IF EXISTS team cascade;
 DROP TABLE IF EXISTS house_notes cascade;
 DROP TABLE IF EXISTS note cascade;
-DROP TABLE IF EXISTS house_products cascade;
-DROP TABLE IF EXISTS team_products cascade;
+DROP TABLE IF EXISTS sales cascade;
 DROP TABLE IF EXISTS product cascade;
 
 CREATE TABLE app_user (
@@ -81,36 +80,17 @@ CREATE TABLE product(
      CONSTRAINT pk_product_id PRIMARY KEY (product_id)
 );
 
-CREATE TABLE user_products(
+CREATE TABLE sales(
+    house_id integer,
     product_id integer,
     user_id integer,
-    CONSTRAINT pk_product_id_user_id PRIMARY KEY (product_id, user_id),
+    quantity integer,
+    cost_in_cents integer,
+    sale_date_time timestamp,
+    CONSTRAINT pk_product_id_house_id_use_id PRIMARY KEY (product_id, house_id, user_id),
     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(product_id),
+    CONSTRAINT fk_house_id FOREIGN KEY (house_id) REFERENCES house(house_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES app_user(user_id)
 );
-
-CREATE TABLE house_products(
-    product_id integer,
-    house_id integer,
-    CONSTRAINT pk_product_id_house_id PRIMARY KEY (product_id, house_id),
-    CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(product_id),
-    CONSTRAINT fk_house_id FOREIGN KEY (house_id) REFERENCES house(house_id)
-);
-
-CREATE TABLE team_products(
-    product_id integer,
-    team_id integer,
-    CONSTRAINT pk_product_id_team_id PRIMARY KEY (product_id, team_id),
-    CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(product_id),
-    CONSTRAINT fk_team_id FOREIGN KEY (team_id) REFERENCES team(team_id)
-);
-
-
-  
-
-
- 
- 
-  
 
 COMMIT;
