@@ -103,7 +103,7 @@
 	width: 600px;
 }
 </style>
-<<<<<<< HEAD
+
 </div>
 <div class = "noteTable">
 <table  >
@@ -135,24 +135,24 @@
 <form action="${sellProductUrl}" method="POST">
 	<table class="table">
 	<tr>
-		<th>Product</th>
-		<th>Price</th>
-		<th>Quantity</th>
+		<th><c:out value="Product" /></th>
+		<th><c:out value="Price" /></th>
+		<th><c:out value="Quantity" /></th>
 	</tr>
 	<c:forEach var="product" items="${products}">
 	<tr>
 		<td><c:out value="${product.name}"/></td>
-		<td>$<c:out value="${product.price}"/></td>
+		<td><c:out value="$${product.price}"/></td>
 		<td><input type="number" min="0" value="0" required></td>
 	</tr>
 	</c:forEach>
 	<tr>
-		<th>Total:</th>
+		<th><c:out value="Total:" /></th>
 	</tr>
 	</table>
 </form>
 </div>
-=======
+<%-- =======
 	</div>
 	<div class="noteTable">
 		<table>
@@ -182,6 +182,6 @@
 		</form>
 	</div>
 >>>>>>> 0e850d81b3691317189097cff124dea9a0bd9464
-</div>
+</div> --%>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
