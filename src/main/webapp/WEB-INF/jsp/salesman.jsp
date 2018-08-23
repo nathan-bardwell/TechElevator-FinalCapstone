@@ -12,7 +12,7 @@
 <h2>
 	<c:out value="You Have Been Assigned The Following Houses:" />
 </h2>
-
+<div class = "tableDiv">
 <table class="table">
 	<tr>
 		<th><c:out value="Resident Name" /></th>
@@ -51,7 +51,7 @@
 		</tr>
 	</c:forEach>
 </table>
-
+</div>
 
 
 <div class='my-legend'>
