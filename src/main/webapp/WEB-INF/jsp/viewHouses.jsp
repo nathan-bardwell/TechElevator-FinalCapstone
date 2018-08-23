@@ -39,7 +39,7 @@
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
 						type="hidden" name="houseId" value="${house.houseId}" /> <select
 						name="assignmentId">
-						<option value="null" disabled selected><c:out
+						<option value="null"  selected><c:out
 								value="-----SELECT AN OPTION-----" /></option>
 						<c:forEach var="team" items="${teamMembers }">
 							<c:if test="${team.role == 'Salesman' }">
