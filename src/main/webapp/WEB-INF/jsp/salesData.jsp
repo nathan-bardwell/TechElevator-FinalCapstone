@@ -48,6 +48,29 @@
 	</c:forEach>
 </table>
 
+<table class="table">
+	<tr>
+	<th>Product</th>
+		<c:forEach var="product" items="${products}">
+			<td><c:out value="${product.name}"/></td>
+		</c:forEach>
+	</tr>
+	<tr>
+		<th>Units Sold</th>
+		<c:forEach var="quantity" items="${quantities}">
+			<td><c:out value="${quantity}"/></td>
+		</c:forEach>
+	</tr>
+	<tr>
+	<th>Total Revenue</th>
+		<c:forEach var="total" items="${totals}">
+			<td>$<c:out value="${total}"/></td>
+		</c:forEach>
+	</tr>
+</table>
+
+
+
 
 
 </div>

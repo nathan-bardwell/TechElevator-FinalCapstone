@@ -125,33 +125,6 @@ public class UserController {
 		return "/adminHome";
 	}
 	
-	@RequestMapping(path = "/salesData" , method = RequestMethod.GET)
-	public String showSalesData(ModelMap modelHolder, HttpSession session, @RequestParam(required = false) String sort) {
-		if(sort == null) {
-			long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-	     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-	     	modelHolder.put("houses", houseDao.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
-		}else if(sort.equals("userId")) {
-			long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-	     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-			modelHolder.put("houses", houseDao.viewHousesSortedBySalesman(((User)session.getAttribute("currentUser")).getUserName()));
-		}else if (sort.equals("resident")) {
-			long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-	     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-	     	modelHolder.put("houses", houseDao.viewHousesSortedByResident(((User)session.getAttribute("currentUser")).getUserName()));
-		}else if(sort.equals("status")) {
-			long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-	     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-	     	modelHolder.put("houses", houseDao.viewHousesSortedByStatus(((User)session.getAttribute("currentUser")).getUserName()));
-		}else {
-			long id  = teamDAO.getTeamId(((User)session.getAttribute("currentUser")).getUserName());
-	     	modelHolder.put("teamMembers",teamDAO.getAllTeamMembers(id));
-	     	modelHolder.put("houses", houseDao.viewHouses(((User)session.getAttribute("currentUser")).getUserName()));
-		}
-		
-		return "/salesData";
-	}
-		
 	@RequestMapping(path="/changePassword", method=RequestMethod.GET)
 	public String showChangePassForm() {
 		return "/changePassword"; 

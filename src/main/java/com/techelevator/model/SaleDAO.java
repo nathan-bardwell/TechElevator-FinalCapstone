@@ -10,5 +10,6 @@ public interface SaleDAO {
 	public List<Sale> getSalesByProductId(Long productId);
 	public List<Sale> getSalesByUserId(Long userId);
 	public BigDecimal getSalesTotal(List<Sale> sales);
+	public int getUnitsSold(List<Sale> sales);
 
 }
