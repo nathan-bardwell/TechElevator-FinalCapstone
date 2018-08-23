@@ -65,6 +65,7 @@
     <li><span style='background:#808080;'></span>Closed</li>
   </ul>
 </div>
+</div>
 
 <style type='text/css'>
   .my-legend .legend-title {
