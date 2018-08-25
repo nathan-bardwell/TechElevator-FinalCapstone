@@ -155,13 +155,6 @@ table.teamTable{
 		height: 300px;
 		padding-bottom: 10px;
 	}
-	
-	#mapid {
-	height: 50rem;
-	width: 75rem;
-	margin: auto;
-	border: .25rem gray solid;
-}
 }
 
 /*Tablet*/
@@ -197,13 +190,6 @@ table.teamTable{
 		height: 300px;
 		padding-bottom: 10px;
 	}
-	
-		#mapid {
-	height: 500px;
-	width: 479px;
-	margin: auto;
-	border: .25rem gray solid;
-}
 	
 
 	
@@ -243,12 +229,7 @@ table.teamTable{
 		padding-bottom: 10px;
 	}
 	
-	#mapid {
-	height: 400px;
-	width: 300px;
-	margin: auto;
-	border: .25rem gray solid;
-}
+
 	
 	
 	

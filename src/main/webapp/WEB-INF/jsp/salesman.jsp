@@ -116,13 +116,30 @@
 
 <div id="mapid"></div>
 <style>
-/*
+@media(min-width:768px){
 #mapid {
 	height: 50rem;
 	width: 75rem;
 	margin: auto;
 	border: .25rem gray solid;
-}*/
+}
+}
+@media(max-width:767px){
+	#mapid {
+	height: 500px;
+	width: 481px;
+	margin: auto;
+	border: .25rem gray solid;
+}
+}
+@media(max-width:480px){
+	#mapid {
+	height: 400px;
+	width: 300;
+	margin: auto;
+	border: .25rem gray solid;
+}
+}
 </style>
 
 <script>
