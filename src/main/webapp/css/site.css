@@ -155,7 +155,7 @@ table.teamTable{
 		height: 300px;
 		padding-bottom: 10px;
 	}
-		.houseTableDiv{
+		#houseTable{
 		postion:relative;
 		overflow-y: scroll; 
 		height: 300px;
@@ -196,7 +196,7 @@ table.teamTable{
 		height: 300px;
 		padding-bottom: 10px;
 	}
-		.houseTableDiv{
+		#houseTable{
 		postion:relative;
 		overflow-y: scroll; 
 		height: 300px;
@@ -242,7 +242,7 @@ table.teamTable{
 		padding-bottom: 10px;
 	}
 	
-		.houseTableDiv{
+		#houseTable{
 		postion:relative;
 		overflow-y: scroll; 
 		height: 300px;
