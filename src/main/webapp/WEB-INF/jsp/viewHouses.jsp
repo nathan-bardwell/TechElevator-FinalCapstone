@@ -9,7 +9,7 @@
 	integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
 	crossorigin=""></script>
 
-<div class="tableDiv">
+<div class="houseTableDiv">
 <table id="houseTable" class="table">
 	<tr>
 		<th><c:out value="Resident Name" /></th>
@@ -120,12 +120,31 @@
 </style>
 <div id="mapid"></div>
 <style>
+@media(min-width:768px){
 #mapid {
 	height: 50rem;
-	width: 100rem;
+	width: 75rem;
 	margin: auto;
 	border: .25rem gray solid;
 }
+}
+@media(max-width:767px){
+	#mapid {
+	height: 500px;
+	width: 481px;
+	margin: auto;
+	border: .25rem gray solid;
+}
+}
+@media(max-width:480px){
+	#mapid {
+	height: 400px;
+	width: 300px;
+	margin: auto;
+	border: .25rem gray solid;
+}
+}
+
 </style>
 <script>
 let house = document.getElementsByClassName("address"); 																					
@@ -231,7 +250,7 @@ let z=0;
 	let address=houses[i].address;
 	let status=houses[i].status;
 		var request = new XMLHttpRequest(); 																									// front end API call object
-		request.open('GET','http://www.mapquestapi.com/geocoding/v1/address?key=Mtbu18nHxlnliiqzIQuzjPlbm3zUrdQk&location='+ houses[i].address, true); 	// api call
+		request.open('GET','https://www.mapquestapi.com/geocoding/v1/address?key=Mtbu18nHxlnliiqzIQuzjPlbm3zUrdQk&location='+ houses[i].address, true); 	// api call
 		request.onload = function() {																											// function to get data from api and parse as JSON
 
 			// Begin accessing JSON data here
