@@ -228,7 +228,7 @@ let z=0;
 	let address=houses[i].address;
 	let status=houses[i].status;
 		var request = new XMLHttpRequest(); 																									// front end API call object
-		request.open('GET','http://www.mapquestapi.com/geocoding/v1/address?key=Mtbu18nHxlnliiqzIQuzjPlbm3zUrdQk&location='+ houses[i].address, true); 	// api call
+		request.open('GET','https://www.mapquestapi.com/geocoding/v1/address?key=Mtbu18nHxlnliiqzIQuzjPlbm3zUrdQk&location='+ houses[i].address, true); 	// api call
 		request.onload = function() {																											// function to get data from api and parse as JSON
 
 			// Begin accessing JSON data here
