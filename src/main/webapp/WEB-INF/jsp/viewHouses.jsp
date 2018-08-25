@@ -9,7 +9,7 @@
 	integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
 	crossorigin=""></script>
 
-<div class="houseTableDiv">
+<div class="tableDiv">
 <table id="houseTable" class="table">
 	<tr>
 		<th><c:out value="Resident Name" /></th>
