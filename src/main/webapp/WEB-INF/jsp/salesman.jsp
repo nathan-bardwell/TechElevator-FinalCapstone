@@ -135,7 +135,7 @@
 @media(max-width:480px){
 	#mapid {
 	height: 400px;
-	width: 300;
+	width: 300px;
 	margin: auto;
 	border: .25rem gray solid;
 }

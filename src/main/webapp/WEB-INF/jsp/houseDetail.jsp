@@ -90,18 +90,59 @@
 				frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 			<a href="https://www.pureblack.de">webdesigner</a>
 		</div>
+	
 		<style>
+@media(min-width:480px){		
 .mapouter {
 	text-align: right;
 	height: 500px;
 	width: 600px;
 }
 
+
+
+
 .gmap_canvas {
 	overflow: hidden;
 	background: none !important;
 	height: 500px;
 	width: 600px;
+}
+}
+
+@media(max-width:767px){		
+.mapouter {
+	text-align: right;
+	height: 500px;
+	width: 481px;
+}
+
+
+
+
+.gmap_canvas {
+	overflow: hidden;
+	background: none !important;
+	height: 500px;
+	width: 481px;
+}
+}
+@media(max-width:480px){		
+.mapouter {
+	text-align: right;
+	height: 400px;
+	width: 300px;
+}
+
+
+
+
+.gmap_canvas {
+	overflow: hidden;
+	background: none !important;
+	height: 400px;
+	width: 300px;
+}
 }
 </style>
 
